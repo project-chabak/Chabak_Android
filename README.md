@@ -25,3 +25,7 @@
           ImageView -> img
           RecyclerView -> rv
           ...
+	  
+
+## 기타
+- 화면레이아웃 - 가능하면 Constraintlayout 사용(기기에따라 레이아웃이 변형되는 문제를 최소화하기위해)
