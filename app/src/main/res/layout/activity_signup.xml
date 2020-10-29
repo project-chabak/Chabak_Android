@@ -70,6 +70,21 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_id" />
 
+        <Button
+            android:id="@+id/btn_id_check"
+            android:layout_width="60dp"
+            android:layout_height="35dp"
+            android:layout_marginEnd="7dp"
+            android:layout_marginRight="7dp"
+            android:background="@drawable/rec_primary_transp_15dp"
+            android:fontFamily="@font/nanum_barun_gothic_regular"
+            android:text="중복확인"
+            android:textColor="@color/colorPrimary"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@+id/edt_id"
+            app:layout_constraintEnd_toEndOf="@+id/edt_id"
+            app:layout_constraintTop_toTopOf="@+id/edt_id" />
+
         <TextView
             android:id="@+id/tv_pw"
             android:layout_width="wrap_content"
@@ -217,26 +232,12 @@
             android:layout_marginEnd="60dp"
             android:layout_marginRight="60dp"
             android:background="@drawable/rec_primary_15dp"
+            android:fontFamily="@font/nanum_barun_gothic_regular"
             android:text="회원가입"
             android:textColor="@android:color/white"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/edt_birth" />
-
-        <Button
-            android:id="@+id/btn_id_check"
-            android:layout_width="60dp"
-            android:layout_height="35dp"
-            android:layout_marginEnd="7dp"
-            android:layout_marginRight="7dp"
-            android:background="@drawable/rec_primary_transp_15dp"
-            android:fontFamily="@font/nanum_barun_gothic_regular"
-            android:text="중복확인"
-            android:textColor="@color/colorPrimary"
-            android:textSize="12sp"
-            app:layout_constraintBottom_toBottomOf="@+id/edt_id"
-            app:layout_constraintEnd_toEndOf="@+id/edt_id"
-            app:layout_constraintTop_toTopOf="@+id/edt_id" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

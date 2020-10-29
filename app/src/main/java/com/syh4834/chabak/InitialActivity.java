@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class InitialActivity extends AppCompatActivity {
     Button btnSignup;
+    Button btnSignin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,9 +17,15 @@ public class InitialActivity extends AppCompatActivity {
         setContentView(R.layout.activity_initial);
 
         btnSignup = findViewById(R.id.btn_signup);
+        btnSignin = findViewById(R.id.btn_signin);
 
         btnSignup.setOnClickListener(l -> {
             Intent intent = new Intent(this, SignupActivity.class);
+            startActivity(intent);
+        });
+
+        btnSignin.setOnClickListener(l -> {
+            Intent intent = new Intent(this, SigninActivity.class);
             startActivity(intent);
         });
     }
