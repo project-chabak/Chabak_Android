@@ -1,0 +1,25 @@
+package com.syh4834.chabak;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+public class InitialActivity extends AppCompatActivity {
+    Button btnSignup;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_initial);
+
+        btnSignup = findViewById(R.id.btn_signup);
+
+        btnSignup.setOnClickListener(l -> {
+            Intent intent = new Intent(this, SignupActivity.class);
+            startActivity(intent);
+        });
+    }
+}
