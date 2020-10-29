@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:screenOrientation="portrait"
+    android:windowSoftInputMode="adjustResize|adjustPan"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SignupActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <ImageView
+            android:id="@+id/img_back"
+            android:layout_width="20dp"
+            android:layout_height="25dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/left_arrow" />
+
+        <ImageView
+            android:id="@+id/img_logo"
+            android:layout_width="103dp"
+            android:layout_height="55dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/img_back"
+            app:srcCompat="@drawable/logo_green_text" />
+
+        <TextView
+            android:id="@+id/tv_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:fontFamily="@font/nanum_barun_gothic_regular"
+            android:text="아이디"
+            android:textColor="@color/colorTextLight"
+            android:textSize="15sp"
+            app:layout_constraintStart_toStartOf="@+id/edt_id"
+            app:layout_constraintTop_toBottomOf="@+id/img_logo" />
+
+        <EditText
+            android:id="@+id/edt_id"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="40dp"
+            android:layout_marginRight="40dp"
+            android:background="@drawable/rec_gray_transp_5dp"
+            android:ems="10"
+            android:fontFamily="@font/nanum_barun_gothic_regular"
+            android:hint="아이디"
+            android:inputType="textPersonName|textEmailSubject"
+            android:paddingLeft="20dp"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_id" />
+
+        <TextView
+            android:id="@+id/tv_pw"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/nanum_barun_gothic_regular"
+            android:text="비밀번호"
+            android:textColor="@color/colorTextLight"
+            android:textSize="15sp"
+            app:layout_constraintStart_toStartOf="@+id/edt_id"
+            app:layout_constraintTop_toBottomOf="@+id/edt_id" />
+
+        <EditText
+            android:id="@+id/edt_pw"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="40dp"
+            android:layout_marginRight="40dp"
+            android:background="@drawable/rec_gray_transp_5dp"
+            android:ems="10"
+            android:fontFamily="@font/nanum_barun_gothic_regular"
+            android:hint="비밀번호"
+            android:inputType="textPassword"
+            android:paddingLeft="20dp"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_pw" />
+
+        <TextView
+            android:id="@+id/tv_pw_check"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/nanum_barun_gothic_regular"
+            android:text="비밀번호확인"
+            android:textColor="@color/colorTextLight"
+            android:textSize="15sp"
+            app:layout_constraintStart_toStartOf="@+id/edt_pw"
+            app:layout_constraintTop_toBottomOf="@+id/edt_pw" />
+
+        <EditText
+            android:id="@+id/edt_pw_check"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="40dp"
+            android:layout_marginRight="40dp"
+            android:background="@drawable/rec_gray_transp_5dp"
+            android:ems="10"
+            android:fontFamily="@font/nanum_barun_gothic_regular"
+            android:hint="비밀번호확인"
+            android:inputType="textPassword"
+            android:paddingLeft="20dp"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_pw_check" />
+
+        <TextView
+            android:id="@+id/tv_gender"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/nanum_barun_gothic_regular"
+            android:text="성별"
+            android:textColor="@color/colorTextLight"
+            android:textSize="15sp"
+            app:layout_constraintStart_toStartOf="@+id/edt_pw_check"
+            app:layout_constraintTop_toBottomOf="@+id/edt_pw_check" />
+
+        <RadioGroup
+            android:id="@+id/rg_gender"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="@+id/tv_gender"
+            app:layout_constraintTop_toBottomOf="@+id/tv_gender">
+
+            <RadioButton
+                android:id="@+id/rb_gender_m"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nanum_barun_gothic_regular"
+                android:text="남성"
+                android:textColor="@android:color/black" />
+
+            <RadioButton
+                android:id="@+id/rb_gender_f"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="60dp"
+                android:fontFamily="@font/nanum_barun_gothic_regular"
+                android:text="여성"
+                android:textColor="@android:color/black" />
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/tv_birth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/nanum_barun_gothic_regular"
+            android:text="생년월일"
+            android:textColor="@color/colorTextLight"
+            android:textSize="15sp"
+            app:layout_constraintStart_toStartOf="@+id/rg_gender"
+            app:layout_constraintTop_toBottomOf="@+id/rg_gender" />
+
+        <EditText
+            android:id="@+id/edt_birth"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="40dp"
+            android:layout_marginRight="40dp"
+            android:background="@drawable/rec_gray_transp_5dp"
+            android:ems="10"
+            android:fontFamily="@font/nanum_barun_gothic_regular"
+            android:hint="1999-01-01"
+            android:paddingLeft="20dp"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_birth" />
+
+        <Button
+            android:id="@+id/btn_signup"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="60dp"
+            android:layout_marginLeft="60dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="60dp"
+            android:layout_marginRight="60dp"
+            android:background="@drawable/rec_primary_15dp"
+            android:text="회원가입"
+            android:textColor="@android:color/white"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edt_birth" />
+
+        <Button
+            android:id="@+id/btn_id_check"
+            android:layout_width="60dp"
+            android:layout_height="35dp"
+            android:layout_marginEnd="7dp"
+            android:layout_marginRight="7dp"
+            android:background="@drawable/rec_primary_transp_15dp"
+            android:fontFamily="@font/nanum_barun_gothic_regular"
+            android:text="중복확인"
+            android:textColor="@color/colorPrimary"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@+id/edt_id"
+            app:layout_constraintEnd_toEndOf="@+id/edt_id"
+            app:layout_constraintTop_toTopOf="@+id/edt_id" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
