@@ -163,6 +163,21 @@
             app:layout_constraintStart_toStartOf="@+id/edt_pw"
             app:layout_constraintTop_toBottomOf="@+id/edt_pw" />
 
+        <TextView
+            android:id="@+id/tv_pw_check_error"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginBottom="3dp"
+            android:fontFamily="@font/nanum_barun_gothic_regular"
+            android:text="비밀번호가 일치하지 않습니다"
+            android:textColor="@android:color/holo_red_dark"
+            android:textSize="12sp"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toTopOf="@+id/edt_pw_check"
+            app:layout_constraintStart_toEndOf="@+id/tv_pw_check" />
+
         <EditText
             android:id="@+id/edt_pw_check"
             android:layout_width="0dp"
@@ -274,5 +289,29 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/edt_birth" />
+
+        <ImageView
+            android:id="@+id/img_id_check"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_id"
+            app:layout_constraintStart_toEndOf="@+id/tv_id"
+            app:layout_constraintTop_toTopOf="@+id/tv_id"
+            app:srcCompat="@drawable/checked" />
+
+        <ImageView
+            android:id="@+id/img_pw_check"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_pw_check"
+            app:layout_constraintStart_toEndOf="@+id/tv_pw_check"
+            app:layout_constraintTop_toTopOf="@+id/tv_pw_check"
+            app:srcCompat="@drawable/checked" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
