@@ -1,0 +1,474 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipToPadding="false"
+    tools:context=".PlaceDetailActivity">
+
+    <ScrollView
+        android:id="@+id/sv_place_detail"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_place_detail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/vp_place_image"
+                android:layout_width="0dp"
+                android:layout_height="270dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/cl_place_detail">
+
+            </androidx.viewpager.widget.ViewPager>
+
+            <ImageView
+                android:id="@+id/img_back_white"
+                android:layout_width="20dp"
+                android:layout_height="25dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="15dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/left_arrow_white" />
+
+            <CheckBox
+                android:id="@+id/chb_like_white"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginRight="15dp"
+                android:background="@drawable/chb_like_white"
+                android:button="@null"
+                android:checked="false"
+                app:layout_constraintBottom_toBottomOf="@+id/img_back_white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/img_back_white" />
+
+            <TextView
+                android:id="@+id/tv_image_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/rec_gray_75_5dp"
+                android:fontFamily="@font/nanum_barun_gothic_bold"
+                android:paddingLeft="10dp"
+                android:paddingTop="5.5dp"
+                android:paddingRight="10dp"
+                android:paddingBottom="5.5dp"
+                android:text="1 / 5"
+                android:textColor="@android:color/white"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="@+id/vp_place_image"
+                app:layout_constraintEnd_toEndOf="@+id/vp_place_image" />
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/nanum_barun_gothic_bold"
+                android:text="장소 제목"
+                android:textColor="@android:color/black"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/vp_place_image" />
+
+            <TextView
+                android:id="@+id/tv_place_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/nanum_barun_gothic_regular"
+                android:text="장소 이름"
+                android:textColor="@color/colorSubIcon"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="@id/tv_title"
+                app:layout_constraintTop_toBottomOf="@+id/tv_title" />
+
+            <ImageView
+                android:id="@+id/img_star"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_marginTop="25dp"
+                app:layout_constraintStart_toStartOf="@id/tv_place_name"
+                app:layout_constraintTop_toBottomOf="@+id/tv_place_name"
+                app:srcCompat="@drawable/star" />
+
+            <TextView
+                android:id="@+id/tv_star"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="7dp"
+                android:layout_marginLeft="7dp"
+                android:fontFamily="@font/nanum_barun_gothic_regular"
+                android:text="4.7"
+                android:textColor="@color/colorSubIcon"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="@id/img_star"
+                app:layout_constraintStart_toEndOf="@+id/img_star"
+                app:layout_constraintTop_toTopOf="@+id/img_star" />
+
+            <TextView
+                android:id="@+id/tv_review_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginLeft="5dp"
+                android:fontFamily="@font/nanum_barun_gothic_regular"
+                android:text="(25)"
+                android:textColor="@color/colorSubIcon"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="@id/tv_star"
+                app:layout_constraintStart_toEndOf="@+id/tv_star"
+                app:layout_constraintTop_toTopOf="@+id/tv_star" />
+
+            <ImageView
+                android:id="@+id/img_line_seperator_01"
+                android:layout_width="0dp"
+                android:layout_height="2dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginRight="15dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/img_star"
+                app:srcCompat="@drawable/line_seperator" />
+
+            <ImageView
+                android:id="@+id/img_like"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="20dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/img_line_seperator_01"
+                app:srcCompat="@drawable/like" />
+
+            <TextView
+                android:id="@+id/tv_like"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="7dp"
+                android:layout_marginLeft="7dp"
+                android:fontFamily="@font/nanum_barun_gothic_regular"
+                android:text="35명이 저장한 차박여행지"
+                android:textColor="@color/colorSubIcon"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="@id/img_like"
+                app:layout_constraintStart_toEndOf="@+id/img_like"
+                app:layout_constraintTop_toTopOf="@+id/img_like" />
+
+            <ImageView
+                android:id="@+id/img_address"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_marginTop="15dp"
+                app:layout_constraintStart_toStartOf="@+id/img_like"
+                app:layout_constraintTop_toBottomOf="@+id/img_like"
+                app:srcCompat="@drawable/location" />
+
+            <TextView
+                android:id="@+id/tv_address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="7dp"
+                android:layout_marginLeft="7dp"
+                android:fontFamily="@font/nanum_barun_gothic_regular"
+                android:text="OO시, OO로 34-1길"
+                android:textColor="@color/colorSubIcon"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="@id/img_address"
+                app:layout_constraintStart_toEndOf="@+id/img_address"
+                app:layout_constraintTop_toTopOf="@+id/img_address" />
+
+            <ImageView
+                android:id="@+id/img_line_seperator_02"
+                android:layout_width="0dp"
+                android:layout_height="2dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginRight="15dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/img_address"
+                app:srcCompat="@drawable/line_seperator" />
+
+            <TextView
+                android:id="@+id/tv_etc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/nanum_barun_gothic_bold"
+                android:text="기타사항"
+                android:textColor="@android:color/black"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/img_line_seperator_02" />
+
+            <TextView
+                android:id="@+id/tv_toilet"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:fontFamily="@font/nanum_barun_gothic_regular"
+                android:text="화장실"
+                android:textColor="@color/colorSubIcon"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="@+id/tv_etc"
+                app:layout_constraintTop_toBottomOf="@+id/tv_etc" />
+
+            <ImageView
+                android:id="@+id/img_toilet"
+                android:layout_width="27dp"
+                android:layout_height="27dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginRight="15dp"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_toilet"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tv_toilet"
+                app:srcCompat="@drawable/restroom" />
+
+            <ImageView
+                android:id="@+id/img_toilet_banned"
+                android:layout_width="27dp"
+                android:layout_height="27dp"
+                android:layout_marginEnd="2dp"
+                android:layout_marginRight="2dp"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="@+id/img_toilet"
+                app:layout_constraintEnd_toEndOf="@+id/img_toilet"
+                app:layout_constraintStart_toStartOf="@+id/img_toilet"
+                app:layout_constraintTop_toTopOf="@+id/img_toilet"
+                app:srcCompat="@drawable/close" />
+
+            <TextView
+                android:id="@+id/tv_cooking"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/nanum_barun_gothic_regular"
+                android:text="취사가능여부"
+                android:textColor="@color/colorSubIcon"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="@+id/tv_toilet"
+                app:layout_constraintTop_toBottomOf="@+id/tv_toilet" />
+
+            <ImageView
+                android:id="@+id/img_cooking"
+                android:layout_width="27dp"
+                android:layout_height="27dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginRight="15dp"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_cooking"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tv_cooking"
+                app:srcCompat="@drawable/cooking" />
+
+            <ImageView
+                android:id="@+id/img_cooking_banned"
+                android:layout_width="27dp"
+                android:layout_height="27dp"
+                android:layout_marginEnd="2dp"
+                android:layout_marginRight="2dp"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="@+id/img_cooking"
+                app:layout_constraintEnd_toEndOf="@+id/img_cooking"
+                app:layout_constraintStart_toStartOf="@+id/img_cooking"
+                app:layout_constraintTop_toTopOf="@+id/img_cooking"
+                app:srcCompat="@drawable/close" />
+
+            <TextView
+                android:id="@+id/tv_store"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/nanum_barun_gothic_regular"
+                android:text="편의점(마트)"
+                android:textColor="@color/colorSubIcon"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="@+id/tv_cooking"
+                app:layout_constraintTop_toBottomOf="@+id/tv_cooking" />
+
+            <ImageView
+                android:id="@+id/img_store"
+                android:layout_width="27dp"
+                android:layout_height="27dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginRight="15dp"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_store"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tv_store"
+                app:srcCompat="@drawable/supermarket" />
+
+            <ImageView
+                android:id="@+id/img_store_banned"
+                android:layout_width="27dp"
+                android:layout_height="27dp"
+                android:layout_marginEnd="2dp"
+                android:layout_marginRight="2dp"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="@+id/img_store"
+                app:layout_constraintEnd_toEndOf="@+id/img_store"
+                app:layout_constraintStart_toStartOf="@+id/img_store"
+                app:layout_constraintTop_toTopOf="@+id/img_store"
+                app:srcCompat="@drawable/close" />
+
+            <ImageView
+                android:id="@+id/img_rec_seperator_01"
+                android:layout_width="0dp"
+                android:layout_height="7dp"
+                android:layout_marginTop="30dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_store"
+                app:srcCompat="@drawable/rec_seperator" />
+
+            <TextView
+                android:id="@+id/tv_place_intro"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="30dp"
+                android:fontFamily="@font/nanum_barun_gothic_bold"
+                android:text="장소 소개"
+                android:textColor="@android:color/black"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/img_rec_seperator_01" />
+
+            <TextView
+                android:id="@+id/tv_place_intro_content"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginRight="15dp"
+                android:fontFamily="@font/nanum_barun_gothic_regular"
+                android:lineSpacingExtra="5sp"
+                android:text="장소 소개가 들어갈 예정입니다. 장소 소개가 들어갈 예정입니다. 장소 소개가 들어갈 예정입니다. 장소 소개가 들어갈 예정입니다. 장소 소개가 들어갈 예정입니다. 장소 소개가 들어갈 예정입니다. 장소 소개가 들어갈 예정입니다. 장소 소개가 들어갈 예정입니다.
+장소 소개가 들어갈 예정입니다. 장소 소개가 들어갈 예정입니다. 장소 소개가 들어갈 예정입니다. 장소 소개가 들어갈 예정입니다. 장소 소개가 들어갈 예정입니다. 장소 소개가 들어갈 예정입니다. 장소 소개가 들어갈 예정입니다. 장소 소개가 들어갈 예정입니다."
+                android:textColor="@color/colorSubIcon"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_place_intro" />
+
+            <ImageView
+                android:id="@+id/img_rec_seperator_02"
+                android:layout_width="0dp"
+                android:layout_height="7dp"
+                android:layout_marginTop="30dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_place_intro_content"
+                app:srcCompat="@drawable/rec_seperator" />
+
+            <TextView
+                android:id="@+id/tv_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="30dp"
+                android:fontFamily="@font/nanum_barun_gothic_regular"
+                android:text="위치"
+                android:textColor="@android:color/black"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/img_rec_seperator_02" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme"
+            android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="@id/cl_toolbar"
+            app:layout_constraintStart_toStartOf="@id/cl_toolbar"
+            app:layout_constraintTop_toTopOf="@id/cl_toolbar" />
+
+        <TextView
+            android:id="@+id/tv_toolbar_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:fontFamily="@font/nanum_barun_gothic_regular"
+            android:text="장소 이름"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="@+id/toolbar"
+            app:layout_constraintStart_toEndOf="@+id/img_back"
+            app:layout_constraintTop_toTopOf="@id/toolbar" />
+
+        <ImageView
+            android:id="@+id/img_back"
+            android:layout_width="20dp"
+            android:layout_height="25dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginLeft="15dp"
+            app:layout_constraintBottom_toBottomOf="@+id/toolbar"
+            app:layout_constraintStart_toStartOf="@id/toolbar"
+            app:layout_constraintTop_toTopOf="@id/toolbar"
+            app:srcCompat="@drawable/left_arrow_black" />
+
+        <CheckBox
+            android:id="@+id/chb_like"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/chb_like"
+            android:button="@null"
+            android:checked="false"
+            app:layout_constraintBottom_toBottomOf="@+id/toolbar"
+            app:layout_constraintEnd_toEndOf="@+id/toolbar"
+            app:layout_constraintTop_toTopOf="@id/toolbar" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
