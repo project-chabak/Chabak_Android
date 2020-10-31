@@ -2,7 +2,7 @@
 - 클래스 이름 => UpperCamelCase방식
 	ex) MainActivity
 	
-- 메소드 이름 => loserCamelCase방식
+- 메소드 이름 => lowerCamelCase방식
 	ex) initMap
 	
 - 파라미터 이름 & 로컬 변수 이름 => lowerCamelCase
