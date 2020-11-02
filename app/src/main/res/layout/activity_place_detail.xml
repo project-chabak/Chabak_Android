@@ -399,12 +399,31 @@
                 android:layout_marginStart="15dp"
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="30dp"
-                android:fontFamily="@font/nanum_barun_gothic_regular"
+                android:fontFamily="@font/nanum_barun_gothic_bold"
                 android:text="위치"
                 android:textColor="@android:color/black"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/img_rec_seperator_02" />
+
+            <com.naver.maps.map.MapView
+                android:id="@+id/map_view"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginRight="15dp"
+                android:background="@drawable/rec_transp_15dp"
+                android:visibility="visible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_location"
+                app:navermap_logoGravity="bottom|right"
+                app:navermap_logoMargin="10dp">
+
+            </com.naver.maps.map.MapView>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
