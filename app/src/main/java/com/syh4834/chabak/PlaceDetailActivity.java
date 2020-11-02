@@ -6,6 +6,9 @@ import androidx.annotation.UiThread;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.res.Resources;
@@ -31,6 +34,9 @@ import com.naver.maps.map.UiSettings;
 import com.naver.maps.map.overlay.Marker;
 import com.naver.maps.map.overlay.OverlayImage;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class PlaceDetailActivity extends AppCompatActivity implements OnMapReadyCallback {
     private PlaceImagePageAdapter placeImagePageAdapter;
     private ViewPager vpPlaceImage;
@@ -38,6 +44,9 @@ public class PlaceDetailActivity extends AppCompatActivity implements OnMapReady
     private String pageNum;
     private ConstraintLayout clToolbar;
     private ScrollView svPlaceDetail;
+
+    private RecyclerView rvReview;
+    private RecyclerReviewAdapter recyclerReviewAdapter;
 
     private MapView mapView;
 
@@ -68,6 +77,9 @@ public class PlaceDetailActivity extends AppCompatActivity implements OnMapReady
         pageNum = 1 + " / " + totalPage;
         tvImageNum.setText(pageNum);
 
+        init();
+        getData();
+
         svPlaceDetail.getViewTreeObserver().addOnScrollChangedListener(new ViewTreeObserver.OnScrollChangedListener() {
             @Override
             public void onScrollChanged() {
@@ -97,6 +109,36 @@ public class PlaceDetailActivity extends AppCompatActivity implements OnMapReady
 
             }
         });
+    }
+
+    private void init() {
+        RecyclerView rvReview = findViewById(R.id.rv_review);
+
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(rvReview.getContext());
+        rvReview.setLayoutManager(linearLayoutManager);
+
+
+
+        recyclerReviewAdapter = new RecyclerReviewAdapter();
+        rvReview.setAdapter(recyclerReviewAdapter);
+
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(rvReview.getContext(), linearLayoutManager.getOrientation());
+        //dividerItemDecoration.setDrawable(getResources().getDrawable(R.drawable.line_seperator));
+        rvReview.addItemDecoration(dividerItemDecoration);
+
+    }
+
+    private void getData() {
+        List<String> listWriter = Arrays.asList("작성자1", "작성자2", "작성자3", "작성자4");
+
+        for(int i = 0; i < 3; i++) {
+            RecyclerReviewData recyclerReviewData = new RecyclerReviewData();
+            recyclerReviewData.setWriter(listWriter.get(i));
+
+            recyclerReviewAdapter.addItem(recyclerReviewData);
+        }
+
+        recyclerReviewAdapter.notifyDataSetChanged();
     }
 
     @Override
