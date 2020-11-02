@@ -24,7 +24,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-
             <androidx.viewpager.widget.ViewPager
                 android:id="@+id/vp_place_image"
                 android:layout_width="0dp"
@@ -424,6 +423,89 @@
                 app:navermap_logoMargin="10dp">
 
             </com.naver.maps.map.MapView>
+
+            <ImageView
+                android:id="@+id/img_marker"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginRight="5dp"
+                app:layout_constraintBottom_toBottomOf="@id/tv_location_detail"
+                app:layout_constraintEnd_toStartOf="@id/tv_location_detail"
+                app:layout_constraintTop_toTopOf="@id/tv_location_detail"
+                app:srcCompat="@drawable/marker_place" />
+
+            <TextView
+                android:id="@+id/tv_location_detail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/nanum_barun_gothic_regular"
+                android:text="OO시, OO로 34-1길"
+                android:textColor="@color/colorSubIcon"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="@id/map_view"
+                app:layout_constraintTop_toBottomOf="@id/map_view" />
+
+            <ImageView
+                android:id="@+id/img_rec_seperator_03"
+                android:layout_width="0dp"
+                android:layout_height="7dp"
+                android:layout_marginTop="30dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/img_marker"
+                app:srcCompat="@drawable/rec_seperator" />
+
+            <ImageView
+                android:id="@+id/img_review_star"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginLeft="15dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/img_rec_seperator_03"
+                app:srcCompat="@drawable/star" />
+
+            <TextView
+                android:id="@+id/tv_review"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:fontFamily="@font/nanum_barun_gothic_bold"
+                android:text="4.7(25)"
+                android:textColor="@android:color/black"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@+id/img_review_star"
+                app:layout_constraintStart_toEndOf="@id/img_review_star"
+                app:layout_constraintTop_toTopOf="@id/img_review_star" />
+
+            <ImageView
+                android:id="@+id/img_edit"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginRight="15dp"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_review"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tv_review"
+                app:srcCompat="@drawable/edit" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_review"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginRight="15dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/img_review_star" />
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

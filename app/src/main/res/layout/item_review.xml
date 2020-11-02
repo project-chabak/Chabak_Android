@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/tv_writer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/nanum_barun_gothic_regular"
+        android:text="작성자"
+        android:textColor="@color/colorSubIcon"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/img_picture"
+        android:layout_width="17dp"
+        android:layout_height="17dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_writer"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tv_writer"
+        app:srcCompat="@drawable/picture" />
+
+    <ImageView
+        android:id="@+id/img_star_01"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_writer"
+        app:srcCompat="@drawable/star_yellow" />
+
+    <ImageView
+        android:id="@+id/img_star_02"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginLeft="5dp"
+        app:layout_constraintBottom_toBottomOf="@+id/img_star_01"
+        app:layout_constraintStart_toEndOf="@+id/img_star_01"
+        app:layout_constraintTop_toTopOf="@+id/img_star_01"
+        app:srcCompat="@drawable/star_yellow" />
+
+    <ImageView
+        android:id="@+id/img_star_03"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginLeft="5dp"
+        app:layout_constraintBottom_toBottomOf="@+id/img_star_02"
+        app:layout_constraintStart_toEndOf="@+id/img_star_02"
+        app:layout_constraintTop_toTopOf="@+id/img_star_02"
+        app:srcCompat="@drawable/star_yellow" />
+
+    <ImageView
+        android:id="@+id/img_star_04"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginLeft="5dp"
+        app:layout_constraintBottom_toBottomOf="@+id/img_star_03"
+        app:layout_constraintStart_toEndOf="@+id/img_star_03"
+        app:layout_constraintTop_toTopOf="@+id/img_star_03"
+        app:srcCompat="@drawable/star_gray" />
+
+    <ImageView
+        android:id="@+id/img_star_05"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginLeft="5dp"
+        app:layout_constraintBottom_toBottomOf="@+id/img_star_04"
+        app:layout_constraintStart_toEndOf="@+id/img_star_04"
+        app:layout_constraintTop_toTopOf="@+id/img_star_04"
+        app:srcCompat="@drawable/star_gray" />
+
+    <TextView
+        android:id="@+id/tv_review_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/nanum_barun_gothic_regular"
+        android:text="2020.10.03"
+        android:textColor="@color/colorSubIcon"
+        app:layout_constraintBottom_toBottomOf="@+id/img_star_05"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/img_star_05" />
+
+    <TextView
+        android:id="@+id/tv_review_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/nanum_barun_gothic_regular"
+        android:text="리뷰내용이 들어갈 예정입니다"
+        android:textColor="@color/colorSubIcon"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/img_star_01" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_review_picture"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:visibility="visible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_review_content">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+    <CheckBox
+        android:id="@+id/chb_good"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="15dp"
+        android:background="@drawable/chb_good"
+        android:button="@null"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rv_review_picture" />
+
+    <TextView
+        android:id="@+id/tv_good_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginLeft="5dp"
+        android:fontFamily="@font/nanum_barun_gothic_regular"
+        android:text="10"
+        android:textColor="@color/colorSubIcon"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/chb_good"
+        app:layout_constraintStart_toEndOf="@+id/chb_good"
+        app:layout_constraintTop_toTopOf="@+id/chb_good" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
