@@ -2,5 +2,6 @@
 <resources>
     <color name="colorPrimary">#54a58d</color>
     <color name="colorTextLight">#656565</color>
+    <color name="colorTextDark">#272727</color>
     <color name="colorSubIcon">#515151</color>
 </resources>

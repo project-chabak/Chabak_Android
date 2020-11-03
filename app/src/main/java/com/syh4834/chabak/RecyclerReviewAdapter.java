@@ -62,7 +62,7 @@ public class RecyclerReviewAdapter extends RecyclerView.Adapter<RecyclerReviewAd
             recyclerReviewPictureAdapter = new RecyclerReviewPictureAdapter();
             rvReviewPicture.setAdapter(recyclerReviewPictureAdapter);
 
-            List<Integer> listPictures = Arrays.asList(R.drawable.place_image_01, R.drawable.place_image_02);
+            List<Integer> listPictures = Arrays.asList(R.drawable.place_image_01, R.drawable.place_image_02, R.drawable.place_image_01);
 
             for(int i =0; i<listPictures.size(); i++) {
                 RecyclerReviewPictureData recyclerReviewPictureData = new RecyclerReviewPictureData();

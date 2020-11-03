@@ -44,4 +44,7 @@ dependencies {
     implementation ('com.naver.maps:map-sdk:3.9.0') {
         exclude group: 'com.android.support'
     }
+
+    //textview 더보기 라이브러리
+    implementation 'kr.co.prnd:readmore-textview:1.0.0'
 }

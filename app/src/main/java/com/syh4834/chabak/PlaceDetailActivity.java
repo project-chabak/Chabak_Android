@@ -6,17 +6,20 @@ import androidx.annotation.UiThread;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.widget.NestedScrollView;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.view.animation.AnimationUtils;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -43,7 +46,9 @@ public class PlaceDetailActivity extends AppCompatActivity implements OnMapReady
     private TextView tvImageNum;
     private String pageNum;
     private ConstraintLayout clToolbar;
-    private ScrollView svPlaceDetail;
+    private NestedScrollView nsvPlaceDetail;
+    private Button btnReviewMore;
+    private ImageView imgBack;
 
     private RecyclerView rvReview;
     private RecyclerReviewAdapter recyclerReviewAdapter;
@@ -60,9 +65,11 @@ public class PlaceDetailActivity extends AppCompatActivity implements OnMapReady
         setContentView(R.layout.activity_place_detail);
 
         vpPlaceImage = (ViewPager) findViewById(R.id.vp_place_image);
-        svPlaceDetail = findViewById(R.id.sv_place_detail);
+        nsvPlaceDetail = findViewById(R.id.nsv_place_detail);
         tvImageNum = findViewById(R.id.tv_image_num);
         clToolbar = findViewById(R.id.cl_toolbar);
+        btnReviewMore = findViewById(R.id.btn_review_more);
+        imgBack = findViewById(R.id.img_back);
 
         mapView = findViewById(R.id.map_view);
         mapView.onCreate(savedInstanceState);
@@ -80,16 +87,25 @@ public class PlaceDetailActivity extends AppCompatActivity implements OnMapReady
         init();
         getData();
 
-        svPlaceDetail.getViewTreeObserver().addOnScrollChangedListener(new ViewTreeObserver.OnScrollChangedListener() {
+        nsvPlaceDetail.getViewTreeObserver().addOnScrollChangedListener(new ViewTreeObserver.OnScrollChangedListener() {
             @Override
             public void onScrollChanged() {
-                int scrollY = svPlaceDetail.getScrollY();
+                int scrollY = nsvPlaceDetail.getScrollY();
                 if(scrollY > 120) {
                     clToolbar.setVisibility(View.VISIBLE);
                 } else {
                     clToolbar.setVisibility(View.INVISIBLE);
                 }
             }
+        });
+
+        btnReviewMore.setOnClickListener(l -> {
+            Intent intent = new Intent(this, ReviewTotalActivity.class);
+            startActivity(intent);
+        });
+
+        imgBack.setOnClickListener(L -> {
+            finish();
         });
 
         vpPlaceImage.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -112,9 +128,14 @@ public class PlaceDetailActivity extends AppCompatActivity implements OnMapReady
     }
 
     private void init() {
-        RecyclerView rvReview = findViewById(R.id.rv_review);
+        rvReview = findViewById(R.id.rv_review);
 
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(rvReview.getContext());
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(rvReview.getContext()){
+            @Override
+            public boolean canScrollVertically() {
+                return false;
+            }
+        };
         rvReview.setLayoutManager(linearLayoutManager);
 
 

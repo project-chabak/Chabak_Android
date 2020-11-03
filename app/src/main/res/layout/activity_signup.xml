@@ -44,8 +44,9 @@
             android:layout_marginTop="30dp"
             android:fontFamily="@font/nanum_barun_gothic_regular"
             android:text="닉네임"
-            android:textColor="@color/colorTextLight"
+            android:textColor="@color/colorSubIcon"
             android:textSize="15sp"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/edt_id"
             app:layout_constraintTop_toBottomOf="@+id/img_logo" />
 
@@ -60,11 +61,11 @@
             android:layout_marginRight="40dp"
             android:background="@drawable/rec_gray_transp_5dp"
             android:ems="10"
-            android:fontFamily="@font/nanum_barun_gothic_regular"
+            android:fontFamily="@font/nanum_barun_gothic_light"
             android:hint="닉네임"
             android:inputType="textPersonName"
             android:paddingLeft="10dp"
-            android:textSize="16sp"
+            android:textSize="15sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -77,8 +78,9 @@
             android:layout_marginTop="10dp"
             android:fontFamily="@font/nanum_barun_gothic_regular"
             android:text="아이디"
-            android:textColor="@color/colorTextLight"
+            android:textColor="@color/colorSubIcon"
             android:textSize="15sp"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/edt_nickname"
             app:layout_constraintTop_toBottomOf="@+id/edt_nickname" />
 
@@ -97,7 +99,7 @@
             android:hint="아이디"
             android:inputType="textPersonName|textEmailSubject"
             android:paddingLeft="10dp"
-            android:textSize="16sp"
+            android:textSize="15sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -109,7 +111,7 @@
             android:layout_height="35dp"
             android:layout_marginEnd="7dp"
             android:layout_marginRight="7dp"
-            android:background="@drawable/rec_primary_transp_15dp"
+            android:background="@drawable/rec_primary_transp_10dp"
             android:fontFamily="@font/nanum_barun_gothic_regular"
             android:text="중복확인"
             android:textColor="@color/colorPrimary"
@@ -125,8 +127,9 @@
             android:layout_marginTop="10dp"
             android:fontFamily="@font/nanum_barun_gothic_regular"
             android:text="비밀번호"
-            android:textColor="@color/colorTextLight"
+            android:textColor="@color/colorSubIcon"
             android:textSize="15sp"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/edt_id"
             app:layout_constraintTop_toBottomOf="@+id/edt_id" />
 
@@ -145,7 +148,7 @@
             android:hint="비밀번호"
             android:inputType="textPassword"
             android:paddingLeft="10dp"
-            android:textSize="16sp"
+            android:textSize="15sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -158,8 +161,9 @@
             android:layout_marginTop="10dp"
             android:fontFamily="@font/nanum_barun_gothic_regular"
             android:text="비밀번호확인"
-            android:textColor="@color/colorTextLight"
+            android:textColor="@color/colorSubIcon"
             android:textSize="15sp"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/edt_pw"
             app:layout_constraintTop_toBottomOf="@+id/edt_pw" />
 
@@ -193,7 +197,7 @@
             android:hint="비밀번호확인"
             android:inputType="textPassword"
             android:paddingLeft="10dp"
-            android:textSize="16sp"
+            android:textSize="15sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -206,8 +210,9 @@
             android:layout_marginTop="10dp"
             android:fontFamily="@font/nanum_barun_gothic_regular"
             android:text="성별"
-            android:textColor="@color/colorTextLight"
+            android:textColor="@color/colorSubIcon"
             android:textSize="15sp"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/edt_pw_check"
             app:layout_constraintTop_toBottomOf="@+id/edt_pw_check" />
 
@@ -226,7 +231,8 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/nanum_barun_gothic_regular"
                 android:text="남성"
-                android:textColor="@android:color/black" />
+                android:textColor="@color/colorSubIcon"
+                android:textStyle="bold" />
 
             <RadioButton
                 android:id="@+id/rb_gender_f"
@@ -235,7 +241,8 @@
                 android:layout_marginLeft="60dp"
                 android:fontFamily="@font/nanum_barun_gothic_regular"
                 android:text="여성"
-                android:textColor="@android:color/black" />
+                android:textColor="@color/colorSubIcon"
+                android:textStyle="bold" />
         </RadioGroup>
 
         <TextView
@@ -245,8 +252,9 @@
             android:layout_marginTop="10dp"
             android:fontFamily="@font/nanum_barun_gothic_regular"
             android:text="생년월일"
-            android:textColor="@color/colorTextLight"
+            android:textColor="@color/colorSubIcon"
             android:textSize="15sp"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/rg_gender"
             app:layout_constraintTop_toBottomOf="@+id/rg_gender" />
 
@@ -264,7 +272,7 @@
             android:fontFamily="@font/nanum_barun_gothic_regular"
             android:hint="1999-01-01"
             android:paddingLeft="10dp"
-            android:textSize="16sp"
+            android:textSize="15sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -273,18 +281,19 @@
         <Button
             android:id="@+id/btn_signup"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="60dp"
-            android:layout_marginLeft="60dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginLeft="50dp"
             android:layout_marginTop="40dp"
-            android:layout_marginEnd="60dp"
-            android:layout_marginRight="60dp"
+            android:layout_marginEnd="50dp"
+            android:layout_marginRight="50dp"
             android:layout_marginBottom="30dp"
-            android:background="@drawable/rec_primary_15dp"
+            android:background="@drawable/rec_primary_10dp"
             android:fontFamily="@font/nanum_barun_gothic_regular"
             android:text="회원가입"
             android:textColor="@android:color/white"
-            android:textSize="14sp"
+            android:textSize="15sp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

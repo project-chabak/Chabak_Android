@@ -9,12 +9,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".ReviewRegisterActivity"></activity>
+        <activity android:name=".ReviewTotalActivity" />
 
         <meta-data
             android:name="com.naver.maps.map.CLIENT_ID"
-            android:value="1tsbt7auhh"/>
+            android:value="1tsbt7auhh" />
 
-        <activity android:name=".PlaceDetailActivity"></activity>
+        <activity android:name=".PlaceDetailActivity" />
         <activity android:name=".SigninActivity" />
         <activity android:name=".MainActivity" />
         <activity android:name=".InitialActivity">
