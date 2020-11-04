@@ -47,8 +47,11 @@ public class PlaceDetailActivity extends AppCompatActivity implements OnMapReady
     private String pageNum;
     private ConstraintLayout clToolbar;
     private NestedScrollView nsvPlaceDetail;
+
     private Button btnReviewMore;
-    private ImageView imgBack;
+    private Button btnBackWhite;
+    private Button btnBack;
+    private Button btnEdit;
 
     private RecyclerView rvReview;
     private RecyclerReviewAdapter recyclerReviewAdapter;
@@ -68,8 +71,11 @@ public class PlaceDetailActivity extends AppCompatActivity implements OnMapReady
         nsvPlaceDetail = findViewById(R.id.nsv_place_detail);
         tvImageNum = findViewById(R.id.tv_image_num);
         clToolbar = findViewById(R.id.cl_toolbar);
+
         btnReviewMore = findViewById(R.id.btn_review_more);
-        imgBack = findViewById(R.id.img_back);
+        btnBackWhite = findViewById(R.id.btn_back_white);
+        btnBack = findViewById(R.id.btn_back);
+        btnEdit = findViewById(R.id.btn_edit);
 
         mapView = findViewById(R.id.map_view);
         mapView.onCreate(savedInstanceState);
@@ -104,7 +110,16 @@ public class PlaceDetailActivity extends AppCompatActivity implements OnMapReady
             startActivity(intent);
         });
 
-        imgBack.setOnClickListener(L -> {
+        btnEdit.setOnClickListener(l -> {
+            Intent intent = new Intent(this, ReviewRegisterActivity.class);
+            startActivity(intent);
+        });
+
+        btnBack.setOnClickListener(l -> {
+            finish();
+        });
+
+        btnBackWhite.setOnClickListener(l -> {
             finish();
         });
 

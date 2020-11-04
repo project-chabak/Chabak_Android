@@ -54,7 +54,7 @@ public class RecyclerReviewAdapter extends RecyclerView.Adapter<RecyclerReviewAd
             tvWriter = itemView.findViewById(R.id.tv_writer);
             imgStar01 = itemView.findViewById(R.id.img_star_01);
 
-            RecyclerView rvReviewPicture = itemView.findViewById(R.id.rv_review_picture);
+            rvReviewPicture = itemView.findViewById(R.id.rv_review_picture);
 
             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(rvReviewPicture.getContext(), LinearLayoutManager.HORIZONTAL, false);
             rvReviewPicture.setLayoutManager(linearLayoutManager);
@@ -62,7 +62,7 @@ public class RecyclerReviewAdapter extends RecyclerView.Adapter<RecyclerReviewAd
             recyclerReviewPictureAdapter = new RecyclerReviewPictureAdapter();
             rvReviewPicture.setAdapter(recyclerReviewPictureAdapter);
 
-            List<Integer> listPictures = Arrays.asList(R.drawable.place_image_01, R.drawable.place_image_02, R.drawable.place_image_01);
+            List<Integer> listPictures = Arrays.asList(R.drawable.place_image_01, R.drawable.place_image_01, R.drawable.place_image_01);
 
             for(int i =0; i<listPictures.size(); i++) {
                 RecyclerReviewPictureData recyclerReviewPictureData = new RecyclerReviewPictureData();
