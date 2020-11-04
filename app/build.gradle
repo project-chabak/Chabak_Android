@@ -47,7 +47,5 @@ dependencies {
 
     //textview 더보기 라이브러리
     implementation 'kr.co.prnd:readmore-textview:1.0.0'
-    
-    //갤러리 연동 라이브러리
-    implementation 'com.github.yongbeam:Android-Y-PhotoPicker:1.0.0'
+
 }
