@@ -18,6 +18,7 @@ public class RecyclerReviewPictureAdapter extends RecyclerView.Adapter<RecyclerR
 
     private ArrayList<RecyclerReviewPictureData> listPicture = new ArrayList<>();
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @NonNull
     @Override
     public RecyclerReviewPictureAdapter.ItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {

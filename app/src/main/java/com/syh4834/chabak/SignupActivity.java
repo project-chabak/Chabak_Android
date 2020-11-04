@@ -16,7 +16,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class SignupActivity extends AppCompatActivity {
-    ImageView imgBack;
+    Button btnBack;
     Button btnSignup;
     EditText edtNickname;
     EditText edtId;
@@ -31,7 +31,7 @@ public class SignupActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
 
-        imgBack = findViewById(R.id.img_back);
+        btnBack = findViewById(R.id.btn_back);
         btnSignup = findViewById(R.id.btn_signup);
         edtNickname = findViewById(R.id.edt_nickname);
         edtId = findViewById(R.id.edt_id);
@@ -42,7 +42,7 @@ public class SignupActivity extends AppCompatActivity {
         tvPwCheckError = findViewById(R.id.tv_pw_check_error);
         imgPwCheck = findViewById(R.id.img_pw_check);
 
-        imgBack.setOnClickListener(l -> {
+        btnBack.setOnClickListener(l -> {
             Intent intent = new Intent(this, InitialActivity.class);
             startActivity(intent);
             finish();

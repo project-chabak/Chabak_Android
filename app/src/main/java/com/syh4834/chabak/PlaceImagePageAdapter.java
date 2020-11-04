@@ -12,7 +12,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.viewpager.widget.PagerAdapter;
 
 public class PlaceImagePageAdapter extends PagerAdapter {
-    private int [] placeImages = {R.drawable.place_image_01, R.drawable.place_image_02};
+    private int [] placeImages = {R.drawable.place_image_01, R.drawable.place_image_01};
     private LayoutInflater inflater;
     private Context context;
 

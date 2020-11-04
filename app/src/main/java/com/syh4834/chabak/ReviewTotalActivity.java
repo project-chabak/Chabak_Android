@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import java.util.Arrays;
@@ -17,7 +18,7 @@ public class ReviewTotalActivity extends AppCompatActivity {
     private RecyclerView rvReviewTotal;
     private RecyclerReviewAdapter recyclerReviewAdapter;
 
-    private ImageView imgBack;
+    private Button btnBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,9 +26,9 @@ public class ReviewTotalActivity extends AppCompatActivity {
         setContentView(R.layout.activity_review_total);
 
         rvReviewTotal = findViewById(R.id.rv_review_total);
-        imgBack = findViewById(R.id.img_back);
+        btnBack = findViewById(R.id.btn_back);
 
-        imgBack.setOnClickListener(l -> {
+        btnBack.setOnClickListener(l -> {
             Intent intent = new Intent(this, PlaceDetailActivity.class);
             finish();
         });

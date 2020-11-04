@@ -32,36 +32,36 @@
 
             </androidx.viewpager.widget.ViewPager>
 
-            <ImageView
-                android:id="@+id/img_back_white"
+            <Button
+                android:id="@+id/btn_back_white"
                 android:layout_width="20dp"
                 android:layout_height="25dp"
-                android:layout_marginStart="15dp"
-                android:layout_marginLeft="15dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginLeft="20dp"
                 android:layout_marginTop="15dp"
+                android:background="@drawable/left_arrow_white"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/left_arrow_white" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <CheckBox
                 android:id="@+id/chb_like_white"
                 android:layout_width="22dp"
                 android:layout_height="22dp"
-                android:layout_marginEnd="15dp"
-                android:layout_marginRight="15dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginRight="20dp"
                 android:background="@drawable/chb_like_white"
                 android:button="@null"
                 android:checked="false"
-                app:layout_constraintBottom_toBottomOf="@+id/img_back_white"
+                app:layout_constraintBottom_toBottomOf="@+id/btn_back_white"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/img_back_white" />
+                app:layout_constraintTop_toTopOf="@+id/btn_back_white" />
 
             <TextView
                 android:id="@+id/tv_image_num"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="15dp"
-                android:layout_marginRight="15dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginRight="20dp"
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/rec_gray_75_5dp"
                 android:fontFamily="@font/nanum_barun_gothic_regular"
@@ -77,27 +77,31 @@
 
             <TextView
                 android:id="@+id/tv_title"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginRight="20dp"
                 android:fontFamily="@font/nanum_barun_gothic_bold"
                 android:text="장소 제목"
                 android:textColor="@android:color/black"
                 android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/vp_place_image" />
 
             <TextView
                 android:id="@+id/tv_place_name"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:fontFamily="@font/nanum_barun_gothic_regular"
                 android:text="장소 이름"
                 android:textColor="@color/colorSubIcon"
                 android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="@+id/tv_title"
                 app:layout_constraintStart_toStartOf="@id/tv_title"
                 app:layout_constraintTop_toBottomOf="@+id/tv_title" />
 
@@ -142,11 +146,11 @@
                 android:id="@+id/img_line_seperator_01"
                 android:layout_width="0dp"
                 android:layout_height="2dp"
-                android:layout_marginStart="15dp"
-                android:layout_marginLeft="15dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginLeft="20dp"
                 android:layout_marginTop="20dp"
-                android:layout_marginEnd="15dp"
-                android:layout_marginRight="15dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginRight="20dp"
                 android:background="@null"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -205,11 +209,11 @@
                 android:id="@+id/img_line_seperator_02"
                 android:layout_width="0dp"
                 android:layout_height="2dp"
-                android:layout_marginStart="15dp"
-                android:layout_marginLeft="15dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginLeft="20dp"
                 android:layout_marginTop="20dp"
-                android:layout_marginEnd="15dp"
-                android:layout_marginRight="15dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginRight="20dp"
                 android:background="@null"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -246,8 +250,8 @@
                 android:id="@+id/img_toilet"
                 android:layout_width="27dp"
                 android:layout_height="27dp"
-                android:layout_marginEnd="15dp"
-                android:layout_marginRight="15dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginRight="20dp"
                 app:layout_constraintBottom_toBottomOf="@+id/tv_toilet"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/tv_toilet"
@@ -464,6 +468,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginLeft="10dp"
+                android:layout_marginTop="3dp"
                 android:fontFamily="@font/nanum_barun_gothic_bold"
                 android:text="4.7(25)"
                 android:textColor="@color/colorTextDark"
@@ -472,16 +477,16 @@
                 app:layout_constraintStart_toEndOf="@id/img_review_star"
                 app:layout_constraintTop_toTopOf="@id/img_review_star" />
 
-            <ImageView
-                android:id="@+id/img_edit"
+            <Button
+                android:id="@+id/btn_edit"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginRight="20dp"
+                android:background="@drawable/edit"
                 app:layout_constraintBottom_toBottomOf="@+id/tv_review"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/tv_review"
-                app:srcCompat="@drawable/edit" />
+                app:layout_constraintTop_toTopOf="@+id/tv_review"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_review"
@@ -574,19 +579,19 @@
             android:textSize="16sp"
             android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="@+id/toolbar"
-            app:layout_constraintStart_toEndOf="@+id/img_back"
+            app:layout_constraintStart_toEndOf="@+id/btn_back"
             app:layout_constraintTop_toTopOf="@id/toolbar" />
 
-        <ImageView
-            android:id="@+id/img_back"
+        <Button
+            android:id="@+id/btn_back"
             android:layout_width="20dp"
             android:layout_height="25dp"
             android:layout_marginStart="20dp"
             android:layout_marginLeft="20dp"
+            android:background="@drawable/left_arrow"
             app:layout_constraintBottom_toBottomOf="@+id/toolbar"
             app:layout_constraintStart_toStartOf="@id/toolbar"
-            app:layout_constraintTop_toTopOf="@id/toolbar"
-            app:srcCompat="@drawable/left_arrow_black" />
+            app:layout_constraintTop_toTopOf="@id/toolbar" />
 
         <CheckBox
             android:id="@+id/chb_like"

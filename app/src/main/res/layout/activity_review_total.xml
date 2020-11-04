@@ -19,8 +19,8 @@
         app:layout_constraintTop_toTopOf="parent" />
 
 
-    <ImageView
-        android:id="@+id/img_back"
+    <Button
+        android:id="@+id/btn_back"
         android:layout_width="20dp"
         android:layout_height="25dp"
         android:layout_marginStart="20dp"
@@ -28,10 +28,10 @@
         app:layout_constraintBottom_toBottomOf="@+id/toolbar"
         app:layout_constraintStart_toStartOf="@id/toolbar"
         app:layout_constraintTop_toTopOf="@id/toolbar"
-        app:srcCompat="@drawable/left_arrow_black" />
+        android:background="@drawable/left_arrow" />
 
-    <ImageView
-        android:id="@+id/img_edit"
+    <Button
+        android:id="@+id/btn_edit"
         android:layout_width="22dp"
         android:layout_height="22dp"
         android:layout_marginEnd="20dp"
@@ -54,8 +54,9 @@
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:fillViewport="true"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar">
@@ -149,7 +150,6 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginRight="20dp"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/radioGroup" />

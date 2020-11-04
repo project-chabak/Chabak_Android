@@ -120,26 +120,43 @@
 
     <CheckBox
         android:id="@+id/chb_good"
-        android:layout_width="22dp"
-        android:layout_height="22dp"
+        android:layout_width="23dp"
+        android:layout_height="23dp"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="15dp"
+        android:autoText="false"
         android:background="@drawable/chb_good"
         android:button="@null"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rv_review_picture" />
+        app:layout_constraintTop_toBottomOf="@+id/rv_review_picture"
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/tv_good_count"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_marginLeft="5dp"
+        android:layout_marginStart="2dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginTop="1dp"
         android:fontFamily="@font/nanum_barun_gothic_regular"
         android:text="10"
-        android:textColor="@color/colorTextDark"
-        android:textSize="15sp"
+        android:textColor="@color/colorTextLight"
+        android:textSize="11sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView"
+        app:layout_constraintStart_toEndOf="@+id/textView"
+        app:layout_constraintTop_toTopOf="@+id/textView" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="3dp"
+        android:layout_marginLeft="3dp"
+        android:fontFamily="@font/nanum_barun_gothic_regular"
+        android:text="도움이 됐어요"
+        android:textColor="@color/colorTextLight"
+        android:textSize="10sp"
         app:layout_constraintBottom_toBottomOf="@+id/chb_good"
         app:layout_constraintStart_toEndOf="@+id/chb_good" />
 
