@@ -21,10 +21,6 @@ allprojects {
             //네이버 지도 저장소
             url 'https://navercorp.bintray.com/maps'
         }
-        maven {
-            //갤러리 연동
-            url 'https://jitpack.io'
-        }
     }
 }
 
