@@ -55,7 +55,8 @@ public class ReviewRegisterActivity extends AppCompatActivity {
     private void recyclerInit() {
         rvReviewUploadImg = findViewById(R.id.rv_review_upload_img);
 
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(rvReviewUploadImg.getContext(), LinearLayoutManager.HORIZONTAL, false) {
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(rvReviewUploadImg.getContext(),
+                LinearLayoutManager.HORIZONTAL, false) {
             @Override
             public boolean canScrollVertically() {
                 return false;

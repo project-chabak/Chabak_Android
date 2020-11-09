@@ -45,7 +45,7 @@ public class RecyclerReviewAdapter extends RecyclerView.Adapter<RecyclerReviewAd
         private TextView tvWriter;
         private ImageView imgStar01;
         private RecyclerView rvReviewPicture;
-        private RecyclerReviewPictureAdapter recyclerReviewPictureAdapter;
+        private RecyclerReviewImageAdapter recyclerReviewImageAdapter;
 
 
         ItemViewHolder(View itemView) {
@@ -59,18 +59,18 @@ public class RecyclerReviewAdapter extends RecyclerView.Adapter<RecyclerReviewAd
             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(rvReviewPicture.getContext(), LinearLayoutManager.HORIZONTAL, false);
             rvReviewPicture.setLayoutManager(linearLayoutManager);
 
-            recyclerReviewPictureAdapter = new RecyclerReviewPictureAdapter();
-            rvReviewPicture.setAdapter(recyclerReviewPictureAdapter);
+            recyclerReviewImageAdapter = new RecyclerReviewImageAdapter();
+            rvReviewPicture.setAdapter(recyclerReviewImageAdapter);
 
             List<Integer> listPictures = Arrays.asList(R.drawable.place_image_01, R.drawable.place_image_01, R.drawable.place_image_01);
 
             for(int i =0; i<listPictures.size(); i++) {
-                RecyclerReviewPictureData recyclerReviewPictureData = new RecyclerReviewPictureData();
-                recyclerReviewPictureData.setPicture(listPictures.get(i));
+                RecyclerReviewImageData recyclerReviewImageData = new RecyclerReviewImageData();
+                recyclerReviewImageData.setPicture(listPictures.get(i));
 
-                recyclerReviewPictureAdapter.addItem(recyclerReviewPictureData);
+                recyclerReviewImageAdapter.addItem(recyclerReviewImageData);
             }
-            recyclerReviewPictureAdapter.notifyDataSetChanged();
+            recyclerReviewImageAdapter.notifyDataSetChanged();
 
         }
 
