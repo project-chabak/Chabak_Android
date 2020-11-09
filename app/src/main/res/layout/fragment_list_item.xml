@@ -5,7 +5,7 @@
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="300dp"
-    android:padding="8dp"
+    android:padding="2dp"
     android:gravity="center_vertical"
     android:layout_marginBottom="8dp"
     android:background="@android:color/white">
@@ -17,9 +17,10 @@
         android:includeFontPadding="false"
         android:padding="2dp"
         android:text="가고싶은 그곳"
-        android:textSize="30sp"
         android:textColor="@android:color/black"
+        android:textSize="30sp"
         android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/content_image_view"
         app:layout_constraintTop_toBottomOf="@+id/content_image_view"
         tools:ignore="MissingConstraints" />
 
@@ -30,9 +31,10 @@
         android:includeFontPadding="false"
         android:padding="2dp"
         android:text="경기도 파주시 와석순환로"
-        android:textSize="13sp"
-        app:layout_constraintTop_toBottomOf="@+id/text_view1"
         android:textColor="@color/colorTextLight"
+        android:textSize="13sp"
+        app:layout_constraintStart_toStartOf="@+id/text_view1"
+        app:layout_constraintTop_toBottomOf="@+id/text_view1"
         tools:ignore="MissingConstraints" />
     <TextView
         android:id="@+id/rate_text"
@@ -46,25 +48,33 @@
         app:layout_constraintTop_toTopOf="@+id/rate_image_view"
         android:textColor="@color/colorPrimary"
         tools:ignore="MissingConstraints" />
+
     <ImageView
         android:id="@+id/content_image_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/sample_image"
+        android:background="@drawable/rec_transp_10dp"
+        app:srcCompat="@drawable/sample_image"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         tools:ignore="MissingConstraints" />
+
     <ImageView
         android:id="@+id/rate_image_view"
         android:layout_width="20dp"
         android:layout_height="20dp"
         android:src="@drawable/star"
+        app:layout_constraintStart_toStartOf="@+id/text_view2"
         app:layout_constraintTop_toBottomOf="@+id/text_view2"
         tools:ignore="MissingConstraints" />
+
     <ImageView
         android:id="@+id/like_image_view"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:src="@drawable/like_unselected_btn"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/content_image_view"
+        app:layout_constraintTop_toBottomOf="@+id/text_view2"
         tools:ignore="MissingConstraints" />
 </androidx.constraintlayout.widget.ConstraintLayout>
