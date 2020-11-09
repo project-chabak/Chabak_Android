@@ -126,30 +126,35 @@
             android:id="@+id/rb_review__01"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:buttonTint="@color/colorPrimaryDark"
             android:layout_marginRight="40dp" />
 
         <RadioButton
             android:id="@+id/rb_review_02"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:buttonTint="@color/colorPrimaryDark"
             android:layout_marginRight="40dp" />
 
         <RadioButton
             android:id="@+id/rb_review_03"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:buttonTint="@color/colorPrimaryDark"
             android:layout_marginRight="40dp" />
 
         <RadioButton
             android:id="@+id/rb_review_04"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:buttonTint="@color/colorPrimaryDark"
             android:layout_marginRight="40dp" />
 
         <RadioButton
             android:id="@+id/rb_review_05"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/colorPrimaryDark"/>
     </RadioGroup>
 
     <TextView
