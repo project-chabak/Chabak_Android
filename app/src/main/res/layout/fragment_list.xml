@@ -18,7 +18,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/recyclerView"
-        android:background="@drawable/bnt_filter"
+        android:background="@drawable/btn_filter"
         tools:ignore="MissingConstraints" />
     <Button
         android:id="@+id/btn_option_drop"
@@ -27,7 +27,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/btn_option"
         app:layout_constraintLeft_toRightOf="@+id/btn_option"
         app:layout_constraintTop_toTopOf="@+id/btn_option"
-        android:background="@drawable/bnt_drop"
+        android:background="@drawable/btn_drop"
         tools:ignore="MissingConstraints" />
     <Button
         android:id="@+id/btn_option"
