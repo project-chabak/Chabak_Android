@@ -58,16 +58,15 @@ public class SignupActivity extends AppCompatActivity {
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 if(edtPw.getText().toString().equals(edtPwCheck.getText().toString())) {
                     tvPwCheckError.setVisibility(View.GONE);
+                    imgPwCheck.setVisibility(View.VISIBLE);
                 } else {
+                    imgPwCheck.setVisibility(View.GONE);
                     tvPwCheckError.setVisibility(View.VISIBLE);
                 }
             }
 
             @Override
             public void afterTextChanged(Editable editable) {
-                if(edtPw.getText().toString().equals(edtPwCheck.getText().toString())) {
-                    imgPwCheck.setVisibility(View.VISIBLE);
-                }
             }
         });
 

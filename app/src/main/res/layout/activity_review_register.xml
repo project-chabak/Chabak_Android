@@ -271,7 +271,7 @@
         android:fadeScrollbars="true"
         android:fontFamily="@font/nanum_barun_gothic_regular"
         android:gravity="start|top"
-        android:hint="방문하신 여행지의 후기(화장실, 취사시설 등)를 20자 이상 남겨주시면 다른 구매자들에게도 도움이 됩니다."
+        android:hint="방문하신 여행지의 후기(화장실, 취사시설 등)를 20자 이상 남겨주시면 다른 여행객들에게도 도움이 됩니다."
         android:inputType="textMultiLine"
         android:padding="10dp"
         android:scrollbarStyle="insideOverlay"

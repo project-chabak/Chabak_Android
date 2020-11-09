@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
@@ -14,20 +13,20 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class RecyclerReviewPictureAdapter extends RecyclerView.Adapter<RecyclerReviewPictureAdapter.ItemViewHolder> {
+public class RecyclerReviewImageAdapter extends RecyclerView.Adapter<RecyclerReviewImageAdapter.ItemViewHolder> {
 
-    private ArrayList<RecyclerReviewPictureData> listPicture = new ArrayList<>();
+    private ArrayList<RecyclerReviewImageData> listPicture = new ArrayList<>();
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @NonNull
     @Override
-    public RecyclerReviewPictureAdapter.ItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public RecyclerReviewImageAdapter.ItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_review_image, parent, false);
-        return new RecyclerReviewPictureAdapter.ItemViewHolder(view);
+        return new RecyclerReviewImageAdapter.ItemViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerReviewPictureAdapter.ItemViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull RecyclerReviewImageAdapter.ItemViewHolder holder, int position) {
         holder.onBind(listPicture.get(position));
     }
 
@@ -36,8 +35,8 @@ public class RecyclerReviewPictureAdapter extends RecyclerView.Adapter<RecyclerR
         return listPicture.size();
     }
 
-    void addItem(RecyclerReviewPictureData recyclerReviewPictureData) {
-        listPicture.add(recyclerReviewPictureData);
+    void addItem(RecyclerReviewImageData recyclerReviewImageData) {
+        listPicture.add(recyclerReviewImageData);
     }
 
     class ItemViewHolder extends RecyclerView.ViewHolder {
@@ -51,7 +50,7 @@ public class RecyclerReviewPictureAdapter extends RecyclerView.Adapter<RecyclerR
             imgReviewPicture.setClipToOutline(true);
         }
 
-        void onBind(RecyclerReviewPictureData recyclerReviewData) {
+        void onBind(RecyclerReviewImageData recyclerReviewData) {
             imgReviewPicture.setImageResource(recyclerReviewData.getPicture());
         }
     }

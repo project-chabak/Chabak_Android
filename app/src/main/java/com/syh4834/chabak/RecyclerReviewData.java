@@ -1,6 +1,5 @@
 package com.syh4834.chabak;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class RecyclerReviewData {
@@ -8,7 +7,7 @@ public class RecyclerReviewData {
     private String writer;
     private int star;
     private String content;
-    private ArrayList<RecyclerReviewPictureData> picture;
+    private ArrayList<RecyclerReviewImageData> picture;
     private int goodCount;
     private String date;
 
@@ -36,7 +35,7 @@ public class RecyclerReviewData {
         this.content = content;
     }
 
-    public ArrayList<RecyclerReviewPictureData> getPicture() {
+    public ArrayList<RecyclerReviewImageData> getPicture() {
         return picture;
     }
 

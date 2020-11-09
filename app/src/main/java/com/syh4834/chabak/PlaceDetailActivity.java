@@ -14,8 +14,10 @@ import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
 import android.content.res.Resources;
+import android.graphics.PointF;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.view.animation.AnimationUtils;
@@ -39,6 +41,7 @@ import com.naver.maps.map.overlay.OverlayImage;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 public class PlaceDetailActivity extends AppCompatActivity implements OnMapReadyCallback {
     private PlaceImagePageAdapter placeImagePageAdapter;
@@ -184,8 +187,8 @@ public class PlaceDetailActivity extends AppCompatActivity implements OnMapReady
     }
 
     @Override
-    protected void onPostResume() {
-        super.onPostResume();
+    protected void onResume() {
+        super.onResume();
         mapView.onResume();
     }
 
@@ -227,6 +230,17 @@ public class PlaceDetailActivity extends AppCompatActivity implements OnMapReady
         uiSettings.setLocationButtonEnabled(false);
         uiSettings.setScaleBarEnabled(false);
         uiSettings.setZoomControlEnabled(false);
+        uiSettings.setCompassEnabled(false);
+        uiSettings.setAllGesturesEnabled(false);
+
+        naverMap.setOnMapClickListener(new NaverMap.OnMapClickListener() {
+            @Override
+            public void onMapClick(@NonNull PointF pointF, @NonNull LatLng latLng) {
+                Intent intent = new Intent(mapView.getContext(), MapActivity.class);
+                startActivity(intent);
+            }
+        });
+
 
         naverMap.setCameraPosition(new CameraPosition(new LatLng(37.622799, 128.739682), 17));
 

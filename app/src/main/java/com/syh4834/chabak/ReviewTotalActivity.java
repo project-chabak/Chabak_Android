@@ -41,7 +41,8 @@ public class ReviewTotalActivity extends AppCompatActivity {
     private void init() {
         rvReviewTotal = findViewById(R.id.rv_review_total);
 
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(rvReviewTotal.getContext()){
+        LinearLayoutManager linearLayoutManager
+                = new LinearLayoutManager(rvReviewTotal.getContext()){
             @Override
             public boolean canScrollVertically() {
                 return false;
@@ -54,7 +55,9 @@ public class ReviewTotalActivity extends AppCompatActivity {
         recyclerReviewAdapter = new RecyclerReviewAdapter();
         rvReviewTotal.setAdapter(recyclerReviewAdapter);
 
-        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(rvReviewTotal.getContext(), linearLayoutManager.getOrientation());
+        DividerItemDecoration dividerItemDecoration
+                = new DividerItemDecoration(rvReviewTotal.getContext(),
+                linearLayoutManager.getOrientation());
         //dividerItemDecoration.setDrawable(getResources().getDrawable(R.drawable.line_seperator));
         rvReviewTotal.addItemDecoration(dividerItemDecoration);
 
