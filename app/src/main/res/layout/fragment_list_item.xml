@@ -16,7 +16,9 @@
         android:layout_height="wrap_content"
         android:includeFontPadding="false"
         android:padding="2dp"
+        android:fontFamily="@font/nanum_barun_gothic_regular"
         android:text="가고싶은 그곳"
+        android:layout_marginTop="5dp"
         android:textColor="@android:color/black"
         android:textSize="30sp"
         android:textStyle="bold"
@@ -30,6 +32,7 @@
         android:layout_height="wrap_content"
         android:includeFontPadding="false"
         android:padding="2dp"
+        android:fontFamily="@font/nanum_barun_gothic_regular"
         android:text="경기도 파주시 와석순환로"
         android:textColor="@color/colorTextLight"
         android:textSize="13sp"
@@ -41,8 +44,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:includeFontPadding="false"
+        android:fontFamily="@font/nanum_barun_gothic_regular"
         android:text="4.5"
         android:textSize="13sp"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="5dp"
         app:layout_constraintBottom_toBottomOf="@+id/rate_image_view"
         app:layout_constraintLeft_toRightOf="@+id/rate_image_view"
         app:layout_constraintTop_toTopOf="@+id/rate_image_view"
@@ -67,14 +73,15 @@
         app:layout_constraintStart_toStartOf="@+id/text_view2"
         app:layout_constraintTop_toBottomOf="@+id/text_view2"
         tools:ignore="MissingConstraints" />
-
-    <ImageView
+    <CheckBox
         android:id="@+id/like_image_view"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:src="@drawable/like_unselected_btn"
+        android:background="@drawable/chb_like"
+        android:button="@null"
+        android:checked="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/content_image_view"
         app:layout_constraintTop_toBottomOf="@+id/text_view2"
-        tools:ignore="MissingConstraints" />
+        tools:ignore="MissingConstraints"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

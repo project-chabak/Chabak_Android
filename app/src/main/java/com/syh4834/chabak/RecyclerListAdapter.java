@@ -6,6 +6,7 @@ import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -51,7 +52,7 @@ public class RecyclerListAdapter extends RecyclerView.Adapter<RecyclerListAdapte
         private TextView textView2;
         private TextView rateText;
 
-        private ImageView likeImageView;
+        private CheckBox likeImageView;
         private ImageView rateImageView;
         private ImageView contentImageView;
 
@@ -72,7 +73,6 @@ public class RecyclerListAdapter extends RecyclerView.Adapter<RecyclerListAdapte
             textView1.setText(listData.getTitle());
             textView2.setText(listData.getContent());
             rateText.setText(listData.getRateText());
-            likeImageView.setImageResource(listData.getLikeImageView());
             rateImageView.setImageResource(listData.getRateImageView());
             contentImageView.setImageResource(listData.getContentImageView());
             contentImageView.setClipToOutline(true);
