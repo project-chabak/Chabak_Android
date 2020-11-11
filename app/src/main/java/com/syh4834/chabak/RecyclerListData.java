@@ -9,7 +9,6 @@ public class RecyclerListData {
     private String content;
     private String rateText;
 
-    private int likeImageView;
     private int rateImageView;
     private int contentImageView;
 
@@ -35,14 +34,6 @@ public class RecyclerListData {
 
     public void setContent(String content) {
         this.content = content;
-    }
-
-    public int getLikeImageView() {
-        return likeImageView;
-    }
-
-    public void setLikeImageView(int resId) {
-        this.likeImageView = resId;
     }
 
     public int getRateImageView() {

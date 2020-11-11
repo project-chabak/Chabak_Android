@@ -5,64 +5,180 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:padding="8dp"
     android:gravity="center_vertical"
     android:layout_marginBottom="8dp"
     android:background="@android:color/white">
-    <Button
-        android:id="@+id/btn_fillter"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        app:layout_constraintHorizontal_bias="0.97"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/recyclerView"
-        android:background="@drawable/btn_filter"
-        tools:ignore="MissingConstraints" />
-    <Button
-        android:id="@+id/btn_option_drop"
-        android:layout_width="15dp"
-        android:layout_height="10dp"
-        app:layout_constraintBottom_toBottomOf="@+id/btn_option"
-        app:layout_constraintLeft_toRightOf="@+id/btn_option"
-        app:layout_constraintTop_toTopOf="@+id/btn_option"
-        android:background="@drawable/btn_drop"
-        tools:ignore="MissingConstraints" />
-    <Button
-        android:id="@+id/btn_option"
-        style="@style/Widget.AppCompat.Button.Borderless"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/nanum_barun_gothic_regular"
-        app:layout_constraintHorizontal_bias="0.03"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:text="여행지선택"
-        android:textColor="@color/colorPrimary"
-        android:textSize="15sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/recyclerView"
-        tools:ignore="MissingConstraints" />
-    <TextView
-        android:id="@+id/text_view2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:includeFontPadding="false"
-        android:padding="10dp"
-        android:fontFamily="@font/nanum_barun_gothic_regular"
-        android:text="전체여행지"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:textColor="@color/colorTextLight"
-        tools:ignore="MissingConstraints" />
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="60dp"
-        app:layout_constraintTop_toBottomOf="@+id/text_view2"
-        android:background="#F0F0F0"/>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/list_main"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:background="#FFFFFF"
+            app:layout_constraintRight_toRightOf="parent"
+            tools:ignore="MissingConstraints">
+                <Button
+                    android:id="@+id/btn_fillter"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    app:layout_constraintHorizontal_bias="0.97"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintBottom_toTopOf="@+id/recyclerView"
+                    android:background="@drawable/btn_filter"
+                    tools:ignore="MissingConstraints" />
+                <Button
+                    android:id="@+id/btn_option_drop"
+                    android:layout_width="15dp"
+                    android:layout_height="10dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/btn_option"
+                    app:layout_constraintLeft_toRightOf="@+id/btn_option"
+                    app:layout_constraintTop_toTopOf="@+id/btn_option"
+                    android:background="@drawable/btn_drop"
+                    tools:ignore="MissingConstraints" />
+                <Button
+                    android:id="@+id/btn_option"
+                    style="@style/Widget.AppCompat.Button.Borderless"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nanum_barun_gothic_regular"
+                    app:layout_constraintHorizontal_bias="0.03"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    android:text="여행지선택"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toTopOf="@+id/recyclerView"
+                    tools:ignore="MissingConstraints" />
+                <TextView
+                    android:id="@+id/text_view2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:includeFontPadding="false"
+                    android:padding="10dp"
+                    android:fontFamily="@font/nanum_barun_gothic_regular"
+                    android:text="전체여행지"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    android:textColor="@color/colorTextLight"
+                    tools:ignore="MissingConstraints" />
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="60dp"
+                    app:layout_constraintTop_toBottomOf="@+id/text_view2"
+                    android:background="#F0F0F0"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/activity_filter"
+            android:layout_height="match_parent"
+            android:layout_width="300dp"
+            android:background="#FFFFFF"
+            app:layout_constraintRight_toRightOf="parent"
+            android:visibility="invisible"
+            tools:ignore="MissingConstraints">
+
+                <ImageView
+                    android:id="@+id/img_logo"
+                    android:layout_width="144dp"
+                    android:layout_height="99dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintHorizontal_bias="0.1"
+                    app:srcCompat="@drawable/logo_green_text" />
+                <Button
+                    android:layout_marginTop="30dp"
+                    android:id="@+id/btn_filter_adapter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/rg_filter"
+                    android:background="@drawable/btn_adapter"
+                    tools:ignore="MissingConstraints" />
+                <Button
+                    android:layout_marginTop="30dp"
+                    android:id="@+id/btn_close"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintHorizontal_bias="0.9"
+                    android:background="@drawable/close"
+                    tools:ignore="MissingConstraints" />
+
+                <TextView
+                    android:id="@+id/filter_sort"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nanum_barun_gothic_regular"
+                    android:padding="20dp"
+                    android:text="정렬"
+                    android:textColor="@color/colorTextDark"
+                    android:textSize="30sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/btn_close"
+                    tools:ignore="MissingConstraints" />
+
+                <RadioGroup
+                    android:id="@+id/rg_filter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/filter_sort"
+                    tools:ignore="MissingConstraints">
+
+                        <RadioButton
+                            android:id="@+id/rg_filter_top"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/nanum_barun_gothic_regular"
+                            android:padding="25dp"
+                            android:text="인기순"
+                            android:textColor="@color/colorSubIcon"
+                            android:textSize="30sp"
+                            android:textStyle="bold" />
+
+                        <RadioButton
+                            android:id="@+id/rg_filter_date"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/nanum_barun_gothic_regular"
+                            android:padding="25dp"
+                            android:text="등록일순"
+                            android:textColor="@color/colorSubIcon"
+                            android:textSize="30sp"
+                            android:textStyle="bold" />
+
+                        <RadioButton
+                            android:id="@+id/rg_filter_rate"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/nanum_barun_gothic_regular"
+                            android:padding="25dp"
+                            android:text="별점순"
+                            android:textColor="@color/colorSubIcon"
+                            android:textSize="30sp"
+                            android:textStyle="bold" />
+
+                        <RadioButton
+                            android:id="@+id/rg_filter_basic"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/nanum_barun_gothic_regular"
+                            android:padding="25dp"
+                            android:text="글자순"
+                            android:textColor="@color/colorSubIcon"
+                            android:textSize="30sp"
+                            android:textStyle="bold" />
+                </RadioGroup>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
