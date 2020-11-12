@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    >
+
+    <ImageView
+        android:id="@+id/img_logo"
+        android:layout_width="80dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center|top"
+        android:layout_marginTop="20dp"
+        app:srcCompat="@drawable/logo_green" />
+
+    <TextView
+        android:id="@+id/tv_usable_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginBottom="15dp"
+        android:fontFamily="@font/nanum_barun_gothic_regular"
+        android:gravity="center"
+        android:text="사용가능한 아이디입니다"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="13sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="32dp"
+        android:layout_gravity="bottom"
+        android:layout_marginTop="0dp"
+        android:layout_marginRight="0dp"
+        android:layout_marginBottom="15dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_use"
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/rec_primary_10dp"
+            android:fontFamily="@font/nanum_barun_gothic_regular"
+            android:text="사용하기"
+            android:textColor="@android:color/white"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/img_line_code_view"
+            app:layout_constraintStart_toStartOf="@+id/img_code_line_vert"
+            app:layout_constraintTop_toBottomOf="@+id/img_line_code_view" />
+
+        <Button
+            android:id="@+id/btn_cancle"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/rec_primary_transp_10dp"
+            android:fontFamily="@font/nanum_barun_gothic_regular"
+            android:text="취소"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+</LinearLayout>
+
