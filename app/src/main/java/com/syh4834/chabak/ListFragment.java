@@ -126,6 +126,10 @@ public class ListFragment extends Fragment {
                 }
             }
         });
+        btnOption.setOnClickListener(l -> {
+            Intent intent = new Intent(getActivity(), OptionActivity.class);
+            startActivity(intent);
+        });
         return view;
     }
 
