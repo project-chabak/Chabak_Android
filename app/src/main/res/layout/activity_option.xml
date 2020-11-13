@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ScrollView
+        android:id="@+id/option_scroll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:ignore="MissingConstraints">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/option_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/white"
+                android:minHeight="?attr/actionBarSize"
+                android:theme="?attr/actionBarTheme"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/text_view2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nanum_barun_gothic_regular"
+                android:includeFontPadding="false"
+                android:padding="10dp"
+                android:text="지역선택"
+                android:textColor="@color/colorTextLight"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/option_toolbar"
+                app:layout_constraintEnd_toEndOf="@+id/option_toolbar"
+                app:layout_constraintStart_toStartOf="@+id/option_toolbar"
+                app:layout_constraintTop_toTopOf="@+id/option_toolbar"
+                tools:ignore="MissingConstraints" />
+            <Button
+                android:id="@+id/btn_back"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="20dp"
+                android:layout_height="25dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginLeft="20dp"
+                android:background="@drawable/left_arrow"
+                app:layout_constraintBottom_toBottomOf="@+id/option_toolbar"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/option_toolbar" />
+
+            <RadioGroup
+                android:id="@+id/rg_region"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="#FFFFFF"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/option_toolbar"
+                tools:ignore="MissingConstraints">
+
+                <RadioButton
+                    android:id="@+id/rg_region_jj"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:button="@drawable/chb_filter_green"
+                    android:fontFamily="@font/nanum_barun_gothic_regular"
+                    android:padding="9dp"
+                    android:text="제주도"
+                    android:drawableRight="@drawable/sample_region"
+                    android:drawablePadding="200dp"
+                    android:textColor="@color/colorSubIcon"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
+
+                <RadioButton
+                    android:id="@+id/rg_region_sl"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:button="@drawable/chb_filter_green"
+                    android:fontFamily="@font/nanum_barun_gothic_regular"
+                    android:padding="9dp"
+                    android:text="서울특별시"
+                    android:drawableRight="@drawable/sample_region"
+                    android:drawablePadding="200dp"
+                    android:textColor="@color/colorSubIcon"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
+
+                <RadioButton
+                    android:id="@+id/rg_region_bs"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:button="@drawable/chb_filter_green"
+                    android:fontFamily="@font/nanum_barun_gothic_regular"
+                    android:padding="9dp"
+                    android:text="부산광역시"
+                    android:drawableRight="@drawable/sample_region"
+                    android:drawablePadding="200dp"
+                    android:textColor="@color/colorSubIcon"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
+
+                <RadioButton
+                    android:id="@+id/rg_region_gg"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:button="@drawable/chb_filter_green"
+                    android:fontFamily="@font/nanum_barun_gothic_regular"
+                    android:padding="9dp"
+                    android:drawableRight="@drawable/sample_region"
+                    android:drawablePadding="200dp"
+                    android:text="경기도"
+                    android:textColor="@color/colorSubIcon"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
+
+                <RadioButton
+                    android:id="@+id/rg_region_gw"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:button="@drawable/chb_filter_green"
+                    android:fontFamily="@font/nanum_barun_gothic_regular"
+                    android:padding="9dp"
+                    android:drawableRight="@drawable/sample_region"
+                    android:drawablePadding="200dp"
+                    android:text="강원도"
+                    android:textColor="@color/colorSubIcon"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
+
+                <RadioButton
+                    android:id="@+id/rg_region_cc"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:button="@drawable/chb_filter_green"
+                    android:fontFamily="@font/nanum_barun_gothic_regular"
+                    android:padding="9dp"
+                    android:drawableRight="@drawable/sample_region"
+                    android:drawablePadding="200dp"
+                    android:text="충청도"
+                    android:textColor="@color/colorSubIcon"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
+
+                <RadioButton
+                    android:id="@+id/rg_region_jl"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:button="@drawable/chb_filter_green"
+                    android:fontFamily="@font/nanum_barun_gothic_regular"
+                    android:padding="9dp"
+                    android:drawableRight="@drawable/sample_region"
+                    android:drawablePadding="200dp"
+                    android:text="전라도"
+                    android:textColor="@color/colorSubIcon"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
+
+                <RadioButton
+                    android:id="@+id/rg_region_gs"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:button="@drawable/chb_filter_green"
+                    android:fontFamily="@font/nanum_barun_gothic_regular"
+                    android:padding="9dp"
+                    android:drawableRight="@drawable/sample_region"
+                    android:drawablePadding="200dp"
+                    android:text="경상도"
+                    android:textColor="@color/colorSubIcon"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
+            </RadioGroup>
+
+            <RadioGroup
+                android:id="@+id/rg_option"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="@+id/btn_filter_adapter"
+                app:layout_constraintStart_toStartOf="@+id/btn_filter_adapter"
+                app:layout_constraintTop_toBottomOf="@+id/rg_region"
+                tools:ignore="MissingConstraints">
+
+                <RadioButton
+                    android:id="@+id/rg_option_toilet"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:button="@drawable/sample_region"
+                    android:fontFamily="@font/nanum_barun_gothic_regular"
+                    android:padding="20dp"
+                    android:text="화장실"
+                    android:textColor="@color/colorSubIcon"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
+
+                <RadioButton
+                    android:id="@+id/rg_region_mk"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:button="@drawable/sample_region"
+                    android:fontFamily="@font/nanum_barun_gothic_regular"
+                    android:padding="20dp"
+                    android:text="편의점"
+                    android:textColor="@color/colorSubIcon"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
+
+                <RadioButton
+                    android:id="@+id/rg_region_cook"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:button="@drawable/sample_region"
+                    android:fontFamily="@font/nanum_barun_gothic_regular"
+                    android:padding="20dp"
+                    android:text="취사가능"
+                    android:textColor="@color/colorSubIcon"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
+            </RadioGroup>
+
+            <Button
+                android:id="@+id/btn_filter_adapter"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rec_transp_10dp_green"
+                android:fontFamily="@font/nanum_barun_gothic_regular"
+                android:text="적용하기"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="30dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rg_option"
+                tools:ignore="MissingConstraints" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
