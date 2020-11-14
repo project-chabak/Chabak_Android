@@ -32,13 +32,14 @@ public class CheckIdFailDialog extends Dialog {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.dialog_check_id_success);
+        setContentView(R.layout.dialog_check_id_fail);
 
         btnOk = (Button) findViewById(R.id.btn_ok);
 
 
         //버튼 클릭 리스너 등록
         btnOk.setOnClickListener(l -> {
+            dismiss();
             checkIdFailDialogListener.onOkClicked();
         });
     }

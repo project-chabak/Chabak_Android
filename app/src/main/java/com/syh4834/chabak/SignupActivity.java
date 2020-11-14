@@ -21,6 +21,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.syh4834.chabak.api.AuthService;
+import com.syh4834.chabak.api.RequestSignup;
+import com.syh4834.chabak.api.ResponseSignup;
 import com.syh4834.chabak.api.ResponseSignupCheckID;
 
 import retrofit2.Call;
@@ -43,6 +45,12 @@ public class SignupActivity extends AppCompatActivity {
     TextView tvPwCheckError;
     ImageView imgIdCheck;
     ImageView imgPwCheck;
+
+    Retrofit retrofit = new Retrofit.Builder()
+            .baseUrl(AuthService.BASE_RUL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build();
+    AuthService authService = retrofit.create(AuthService.class);
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -74,12 +82,6 @@ public class SignupActivity extends AppCompatActivity {
             Log.e("버튼", id);
 
             if(!id.isEmpty()) {
-
-                Retrofit retrofit = new Retrofit.Builder()
-                        .baseUrl(AuthService.BASE_RUL)
-                        .addConverterFactory(GsonConverterFactory.create())
-                        .build();
-                AuthService authService = retrofit.create(AuthService.class);
                 authService.getCheckID(id).enqueue(new Callback<ResponseSignupCheckID>() {
                     @Override
                     public void onResponse(@NonNull Call<ResponseSignupCheckID> call, @NonNull Response<ResponseSignupCheckID> response) {
@@ -138,10 +140,10 @@ public class SignupActivity extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 if(edtPw.getText().toString().equals(edtPwCheck.getText().toString())) {
-                    tvPwCheckError.setVisibility(View.GONE);
+                    tvPwCheckError.setVisibility(View.INVISIBLE);
                     imgPwCheck.setVisibility(View.VISIBLE);
                 } else {
-                    imgPwCheck.setVisibility(View.GONE);
+                    imgPwCheck.setVisibility(View.INVISIBLE);
                     tvPwCheckError.setVisibility(View.VISIBLE);
                 }
             }
@@ -152,20 +154,46 @@ public class SignupActivity extends AppCompatActivity {
         });
 
         btnSignup.setOnClickListener(l -> {
-            int gender = 0;
+            int genderID = 0;
+            String gender = "";
             String nickname = edtNickname.getText().toString();
             String id = edtId.getText().toString();
             String pw = edtPw.getText().toString();
             String pwCheck = edtPwCheck.toString();
-            gender = rgGender.getCheckedRadioButtonId();
+            genderID = rgGender.getCheckedRadioButtonId();
+            if(genderID == 2131362112) {
+                gender = "M";
+            } else {
+                gender = "F";
+            }
+            Log.e("gender", gender);
             String birth = edtBirth.toString();
 
-            if (nickname.isEmpty() || id.isEmpty() || pw.isEmpty() || pwCheck.isEmpty() || gender == 0 || birth.isEmpty()) {
+            if (nickname.isEmpty() || id.isEmpty() || pw.isEmpty() || pwCheck.isEmpty() || genderID == -1 || birth.isEmpty()) {
                 Toast.makeText(this, "회원가입 조건에 맞게 모두 채워주세요", Toast.LENGTH_SHORT).show();
             } else {
                 if(edtId.isInEditMode() == true) {
+                    edtId.requestFocus();
                     Toast.makeText(this, "아이디 중복확인을 해주세요", Toast.LENGTH_SHORT).show();
+                } else if(imgPwCheck.getVisibility() == View.INVISIBLE) {
+                    edtPwCheck.requestFocus();
+                    Toast.makeText(this, "비밀번호 확인을 다시 시도해주세요", Toast.LENGTH_SHORT).show();
                 } else {
+                    authService.signup(new RequestSignup(id, pw, nickname, gender, birth)).enqueue(new Callback<ResponseSignup>() {
+                        @Override
+                        public void onResponse(Call<ResponseSignup> call, Response<ResponseSignup> response) {
+                            if (response.body().getSuccess()) {
+                                Intent intent = new Intent(SignupActivity.this, SignupSuccessActivity.class);
+                                startActivity(intent);
+                                finish();
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<ResponseSignup> call, Throwable t) {
+
+                        }
+                    });
                     Intent intent = new Intent(this, MainActivity.class);
                     startActivity(intent);
                     finish();
