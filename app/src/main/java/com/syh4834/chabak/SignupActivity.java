@@ -1,6 +1,5 @@
 package com.syh4834.chabak;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -8,7 +7,6 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -20,10 +18,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.syh4834.chabak.api.AuthService;
-import com.syh4834.chabak.api.RequestSignup;
-import com.syh4834.chabak.api.ResponseSignup;
-import com.syh4834.chabak.api.ResponseSignupCheckID;
+import com.syh4834.chabak.api.service.AuthService;
+import com.syh4834.chabak.api.request.RequestSignup;
+import com.syh4834.chabak.api.response.ResponseSignup;
+import com.syh4834.chabak.api.response.ResponseSignupCheckID;
 
 import retrofit2.Call;
 import retrofit2.Callback;

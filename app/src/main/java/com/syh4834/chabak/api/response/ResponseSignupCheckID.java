@@ -1,4 +1,4 @@
-package com.syh4834.chabak.api;
+package com.syh4834.chabak.api.response;
 
 public class ResponseSignupCheckID {
     private final int status;
