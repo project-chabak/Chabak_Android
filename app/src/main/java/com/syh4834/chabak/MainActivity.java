@@ -3,7 +3,9 @@ package com.syh4834.chabak;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -43,6 +45,12 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
         getSupportFragmentManager().beginTransaction().replace(R.id.main_container, homeFragment).commit(); //특정 Fragment를 첫화면으로 설정하고 싶을 경우 homeFragment->해당Fragment로 변경경
 
-       bottomNavigationView.setOnNavigationItemSelectedListener(this);
+        bottomNavigationView.setOnNavigationItemSelectedListener(this);
+
+//        token값 가져오기
+//        SharedPreferences sharedPreferences = getSharedPreferences("chabak", MODE_PRIVATE);
+//        String userToken = sharedPreferences.getString("token", null);
+//        Log.e("userToken", userToken);
+
     }
 }

@@ -1,4 +1,4 @@
-package com.syh4834.chabak.api;
+package com.syh4834.chabak.api.request;
 
 public class RequestSignup {
     /**
