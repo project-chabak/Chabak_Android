@@ -6,12 +6,132 @@
     android:layout_height="match_parent"
     tools:context=".MyPageFragment">
 
-    <TextView
-        android:layout_width="wrap_content"
+
+    <TableLayout
+        android:id="@+id/table_view"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="myPageFragment"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        >
+
+        <TableRow
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginRight="40dp"
+                android:gravity="center_vertical"
+                android:text="닉네임"
+                android:fontFamily="@font/nanum_barun_gothic_bold"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:gravity="center_vertical"
+                android:text="닉네임"
+                android:textStyle="bold"
+                android:fontFamily="@font/nanum_barun_gothic_bold"
+                />
+        </TableRow>
+
+        <TableRow
+            android:layout_marginTop="10dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginRight="40dp"
+                android:gravity="center_vertical"
+                android:text="아이디"
+                android:fontFamily="@font/nanum_barun_gothic_bold"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:gravity="center_vertical"
+                android:text="ID"
+                android:textStyle="bold"
+                android:fontFamily="@font/nanum_barun_gothic_bold"
+                />
+        </TableRow>
+
+        <TableRow
+            android:layout_marginTop="10dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginRight="40dp"
+                android:gravity="center_vertical"
+                android:text="생년월일"
+                android:fontFamily="@font/nanum_barun_gothic_bold"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:text="2000.00.00"
+                android:textStyle="bold"
+                android:fontFamily="@font/nanum_barun_gothic_bold"
+                />
+        </TableRow>
+
+        <TableRow
+            android:layout_marginTop="10dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginRight="40dp"
+                android:gravity="center_vertical"
+                android:text="성별"
+                android:fontFamily="@font/nanum_barun_gothic_bold"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:text="남자"
+                android:textStyle="bold"
+                android:fontFamily="@font/nanum_barun_gothic_bold"
+                />
+        </TableRow>
+
+        <TableRow
+            android:layout_marginTop="10dp">
+            <Button
+                android:id="@+id/btn_logout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="로그아웃"
+                />
+        </TableRow>
+
+        <TableRow
+            android:layout_marginTop="10dp">
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="회원탈퇴"
+                />
+        </TableRow>
+    </TableLayout>
+
+    <ImageView
+        android:layout_width="80dp"
+        android:layout_height="54dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginRight="10dp"
+        android:scaleType="fitXY"
+        app:srcCompat="@drawable/logo_green"
+        app:layout_constraintTop_toTopOf="@+id/table_view"
+        app:layout_constraintEnd_toEndOf="@+id/table_view"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
