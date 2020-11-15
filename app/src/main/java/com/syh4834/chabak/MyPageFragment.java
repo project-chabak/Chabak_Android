@@ -1,5 +1,7 @@
 package com.syh4834.chabak;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,6 +9,8 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.Toast;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -55,10 +59,48 @@ public class MyPageFragment extends Fragment {
         }
     }
 
+    // MyPageFragment inflater
+    View mView;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_my_page, container, false);
+        mView = inflater.inflate(R.layout.fragment_my_page, container, false);
+
+        // 버튼 객체 선언 및 초기화
+        Button btnLogout = (Button) mView.findViewById(R.id.btn_logout);
+
+        // 버튼 클릭 이벤트
+        btnLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // 로그아웃 팝업을 위한 AlertDialog.Builder
+                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+
+                builder.setTitle("로그아웃 하시겠습니까?");
+
+                builder.setPositiveButton("OK", new DialogInterface.OnClickListener(){
+                    @Override
+                    public void onClick(DialogInterface dialog, int id)
+                    {
+                        Toast.makeText(getContext(), "OK", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener(){
+                    @Override
+                    public void onClick(DialogInterface dialog, int id)
+                    {
+                        Toast.makeText(getContext(), "Cancel", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+                AlertDialog alertDialog = builder.create();
+                alertDialog.show();
+            }
+        });
+
+        return mView;
     }
 }
