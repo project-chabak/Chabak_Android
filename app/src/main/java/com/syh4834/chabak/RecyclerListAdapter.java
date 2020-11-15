@@ -17,13 +17,22 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 
 
 public class RecyclerListAdapter extends RecyclerView.Adapter<RecyclerListAdapter.ItemViewHolder> {
 
-    private ArrayList<RecyclerListData> listData = new ArrayList<>();
-
+    public ArrayList<RecyclerListData> listData = new ArrayList<>(); // 어뎁터데이터
+    public ArrayList<RecyclerListData> totalData = new ArrayList<>(); // 전체데이터
+    public ArrayList<RecyclerListData> jjListData = new ArrayList<>(); //  제주
+    public ArrayList<RecyclerListData> slListData = new ArrayList<>(); // 서울
+    public ArrayList<RecyclerListData> bsListData = new ArrayList<>(); // 부산
+    public ArrayList<RecyclerListData> ggListData = new ArrayList<>(); // 경기
+    public ArrayList<RecyclerListData> gwListData = new ArrayList<>(); // 강원
+    public ArrayList<RecyclerListData> ccListData = new ArrayList<>(); // 충청
+    public ArrayList<RecyclerListData> jlListData = new ArrayList<>(); // 전라
+    public ArrayList<RecyclerListData> gsListData = new ArrayList<>(); // 경상
 
     @NonNull
     @Override
@@ -45,6 +54,42 @@ public class RecyclerListAdapter extends RecyclerView.Adapter<RecyclerListAdapte
 
     void addItem(RecyclerListData recyclerListData) {
         listData.add(recyclerListData);
+    }
+
+    void addTotalItem(RecyclerListData recyclerListData) {
+        totalData.add(recyclerListData);
+    }
+
+    void addJjItem(RecyclerListData recyclerListData) {
+        jjListData.add(recyclerListData);
+    }
+
+    void addSlItem(RecyclerListData recyclerListData) {
+        slListData.add(recyclerListData);
+    }
+
+    void addBsItem(RecyclerListData recyclerListData) {
+        bsListData.add(recyclerListData);
+    }
+
+    void addGgItem(RecyclerListData recyclerListData) {
+        ggListData.add(recyclerListData);
+    }
+
+    void addGwItem(RecyclerListData recyclerListData) {
+        gwListData.add(recyclerListData);
+    }
+
+    void addCcItem(RecyclerListData recyclerListData) {
+        ccListData.add(recyclerListData);
+    }
+
+    void addJlItem(RecyclerListData recyclerListData) {
+        jlListData.add(recyclerListData);
+    }
+
+    void addGsItem(RecyclerListData recyclerListData) {
+        gsListData.add(recyclerListData);
     }
 
     static class ItemViewHolder extends RecyclerView.ViewHolder {

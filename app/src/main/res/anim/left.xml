@@ -2,10 +2,10 @@
 <set xmlns:android="http://schemas.android.com/apk/res/android">
 
     <translate
-        android:fromYDelta="0%p"
-        android:toYDelta="-100%p"
+        android:fromXDelta="100%p"
+        android:toXDelta="0%p"
         android:duration="250"
         android:repeatCount="0"
-        android:fillAfter="false"
+        android:fillAfter="true"
         ></translate>
 </set>
