@@ -18,7 +18,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.syh4834.chabak.api.service.AuthService;
+import com.syh4834.chabak.api.ChabakService;
 import com.syh4834.chabak.api.request.RequestSignup;
 import com.syh4834.chabak.api.response.ResponseSignup;
 import com.syh4834.chabak.api.response.ResponseSignupCheckID;
@@ -45,10 +45,10 @@ public class SignupActivity extends AppCompatActivity {
     ImageView imgPwCheck;
 
     Retrofit retrofit = new Retrofit.Builder()
-            .baseUrl(AuthService.BASE_RUL)
+            .baseUrl(ChabakService.BASE_RUL)
             .addConverterFactory(GsonConverterFactory.create())
             .build();
-    AuthService authService = retrofit.create(AuthService.class);
+    ChabakService chabakService = retrofit.create(ChabakService.class);
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -80,7 +80,7 @@ public class SignupActivity extends AppCompatActivity {
             Log.e("버튼", id);
 
             if(!id.isEmpty()) {
-                authService.getCheckID(id).enqueue(new Callback<ResponseSignupCheckID>() {
+                chabakService.getCheckID(id).enqueue(new Callback<ResponseSignupCheckID>() {
                     @Override
                     public void onResponse(@NonNull Call<ResponseSignupCheckID> call, @NonNull Response<ResponseSignupCheckID> response) {
                         if (response.body().getSuccess()) {
@@ -177,7 +177,7 @@ public class SignupActivity extends AppCompatActivity {
                     edtPwCheck.requestFocus();
                     Toast.makeText(this, "비밀번호 확인을 다시 시도해주세요", Toast.LENGTH_SHORT).show();
                 } else {
-                    authService.signup(new RequestSignup(id, pw, nickname, gender, birth)).enqueue(new Callback<ResponseSignup>() {
+                    chabakService.signup(new RequestSignup(id, pw, nickname, gender, birth)).enqueue(new Callback<ResponseSignup>() {
                         @Override
                         public void onResponse(Call<ResponseSignup> call, Response<ResponseSignup> response) {
                             if (response.body().getSuccess()) {

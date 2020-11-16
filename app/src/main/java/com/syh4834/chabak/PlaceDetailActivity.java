@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.annotation.UiThread;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.widget.NestedScrollView;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -13,35 +12,34 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
-import android.content.res.Resources;
 import android.graphics.PointF;
 import android.os.Build;
 import android.os.Bundle;
-import android.view.MotionEvent;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewTreeObserver;
-import android.view.animation.AnimationUtils;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.naver.maps.geometry.LatLng;
-import com.naver.maps.map.CameraAnimation;
 import com.naver.maps.map.CameraPosition;
-import com.naver.maps.map.CameraUpdate;
-import com.naver.maps.map.LocationTrackingMode;
 import com.naver.maps.map.MapView;
 import com.naver.maps.map.NaverMap;
-import com.naver.maps.map.NaverMapOptions;
 import com.naver.maps.map.OnMapReadyCallback;
 import com.naver.maps.map.UiSettings;
 import com.naver.maps.map.overlay.Marker;
 import com.naver.maps.map.overlay.OverlayImage;
+import com.syh4834.chabak.api.ChabakService;
+import com.syh4834.chabak.api.response.ResponsePlaceDetail;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class PlaceDetailActivity extends AppCompatActivity implements OnMapReadyCallback {
     private PlaceImagePageAdapter placeImagePageAdapter;
@@ -61,6 +59,12 @@ public class PlaceDetailActivity extends AppCompatActivity implements OnMapReady
 
     private MapView mapView;
 
+    Retrofit retrofit = new Retrofit.Builder()
+            .baseUrl(ChabakService.BASE_RUL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build();
+    ChabakService chabakService = retrofit.create(ChabakService.class);
+
 //    private Marker place;
 //    private Marker[] toilets;
 
@@ -69,6 +73,8 @@ public class PlaceDetailActivity extends AppCompatActivity implements OnMapReady
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_place_detail);
+
+        getPlaceData();
 
         vpPlaceImage = (ViewPager) findViewById(R.id.vp_place_image);
         nsvPlaceDetail = findViewById(R.id.nsv_place_detail);
@@ -141,6 +147,27 @@ public class PlaceDetailActivity extends AppCompatActivity implements OnMapReady
             @Override
             public void onPageScrollStateChanged(int state) {
 
+            }
+        });
+    }
+
+    private void getPlaceData() {
+        int placeIdx = 3;
+//        SharedPreferences sharedPreferences = getSharedPreferences("chabak", MODE_PRIVATE);
+//        String token = sharedPreferences.getString("token", null);
+        String token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWR4IjoxLCJpZCI6ImlkIiwibmlja25hbWUiOiIxMjMiLCJpYXQiOjE2MDQ5NzMxMDN9.80OjSRBho8176t0BgYu5tuEZ5pJGBh_tCjVn_Nsic_I";
+
+        chabakService.getPlaceDetail(placeIdx).enqueue(new Callback<ResponsePlaceDetail>() {
+            @Override
+            public void onResponse(Call<ResponsePlaceDetail> call, Response<ResponsePlaceDetail> response) {
+                if(response.body().getSuccess()) {
+                    Log.e("success", String.valueOf(response.body().getData()));
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponsePlaceDetail> call, Throwable t) {
+                Log.e("fail", "fail");
             }
         });
     }

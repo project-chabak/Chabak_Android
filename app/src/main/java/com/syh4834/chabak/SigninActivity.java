@@ -11,7 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.syh4834.chabak.api.service.AuthService;
+import com.syh4834.chabak.api.ChabakService;
 import com.syh4834.chabak.api.request.RequestSignin;
 import com.syh4834.chabak.api.response.ResponseSignin;
 import com.syh4834.chabak.api.data.SigninData;
@@ -29,10 +29,10 @@ public class SigninActivity extends AppCompatActivity {
     Button btnSignin;
 
     Retrofit retrofit = new Retrofit.Builder()
-            .baseUrl(AuthService.BASE_RUL)
+            .baseUrl(ChabakService.BASE_RUL)
             .addConverterFactory(GsonConverterFactory.create())
             .build();
-    AuthService authService = retrofit.create(AuthService.class);
+    ChabakService chabakService = retrofit.create(ChabakService.class);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,7 +58,7 @@ public class SigninActivity extends AppCompatActivity {
             } else if(pw.isEmpty()) {
                 Toast.makeText(SigninActivity.this, "비밀번호를 입력해주세요", Toast.LENGTH_SHORT).show();
             } else {
-                authService.signin(new RequestSignin(id, pw)).enqueue(new Callback<ResponseSignin>() {
+                chabakService.signin(new RequestSignin(id, pw)).enqueue(new Callback<ResponseSignin>() {
                     @Override
                     public void onResponse(Call<ResponseSignin> call, Response<ResponseSignin> response) {
                         Log.e("success", String.valueOf(response.body().getSuccess()));

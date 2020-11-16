@@ -20,7 +20,7 @@ public class InitialActivity extends AppCompatActivity {
         btnSignin = findViewById(R.id.btn_signin);
 
         btnSignup.setOnClickListener(l -> {
-            Intent intent = new Intent(this, SignupActivity.class);
+            Intent intent = new Intent(this, PlaceDetailActivity.class);
             startActivity(intent);
         });
 
