@@ -25,7 +25,7 @@ public class InitialActivity extends AppCompatActivity {
         });
 
         btnSignin.setOnClickListener(l -> {
-            Intent intent = new Intent(this, SigninActivity.class);
+            Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
         });
     }
