@@ -3,6 +3,7 @@ package com.syh4834.chabak.api;
 import com.syh4834.chabak.api.request.RequestSignin;
 import com.syh4834.chabak.api.request.RequestSignup;
 import com.syh4834.chabak.api.response.ResponsePlaceDetail;
+import com.syh4834.chabak.api.response.ResponsePlaceReview;
 import com.syh4834.chabak.api.response.ResponseSignin;
 import com.syh4834.chabak.api.response.ResponseSignup;
 import com.syh4834.chabak.api.response.ResponseSignupCheckID;
@@ -33,4 +34,8 @@ public interface ChabakService {
     @Headers("Content-Type: application/json")
     @GET("/place/detail/{placeIdx}")
     Call<ResponsePlaceDetail> getPlaceDetail(@Header("token") String token, @Path("placeIdx") int placeIdx);
+
+    @Headers("Content-Type: application/json")
+    @GET("/review/{placeIdx}")
+    Call<ResponsePlaceReview> getPlaceReview(@Header("token") String token, @Path("placeIdx") int placeIdx, @Query("order") String order);
 }

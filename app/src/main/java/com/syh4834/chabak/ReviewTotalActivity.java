@@ -7,9 +7,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import com.syh4834.chabak.api.data.PlaceReviewData;
+
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -33,16 +37,16 @@ public class ReviewTotalActivity extends AppCompatActivity {
             finish();
         });
 
-        init();
-        getData();
+        ArrayList<PlaceReviewData> reviewList= getIntent().getParcelableArrayListExtra("reviews");
+
+        setPlaceReview(reviewList);
 
     }
 
-    private void init() {
+    private void setPlaceReview(ArrayList<PlaceReviewData> reviewList) {
         rvReviewTotal = findViewById(R.id.rv_review_total);
 
-        LinearLayoutManager linearLayoutManager
-                = new LinearLayoutManager(rvReviewTotal.getContext()){
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(rvReviewTotal.getContext()){
             @Override
             public boolean canScrollVertically() {
                 return false;
@@ -50,25 +54,28 @@ public class ReviewTotalActivity extends AppCompatActivity {
         };
         rvReviewTotal.setLayoutManager(linearLayoutManager);
 
-
-
         recyclerReviewAdapter = new RecyclerReviewAdapter();
         rvReviewTotal.setAdapter(recyclerReviewAdapter);
 
-        DividerItemDecoration dividerItemDecoration
-                = new DividerItemDecoration(rvReviewTotal.getContext(),
-                linearLayoutManager.getOrientation());
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(rvReviewTotal.getContext(), linearLayoutManager.getOrientation());
         //dividerItemDecoration.setDrawable(getResources().getDrawable(R.drawable.line_seperator));
         rvReviewTotal.addItemDecoration(dividerItemDecoration);
 
-    }
+        //List<String> listWriter = Arrays.asList("작성자1", "작성자2", "작성자3", "작성자4");
 
-    private void getData() {
-        List<String> listWriter = Arrays.asList("작성자1", "작성자2", "작성자3", "작성자4", "작성자5", "작성자6", "작성자7", "작성자8", "작성자9", "작성자10", "작성자11", "작성자12");
+        for(int i = 0; i < reviewList.size(); i++) {
+            Log.e("size", String.valueOf(reviewList.size()));
+            Log.e("reviewList2", reviewList.get(1).getNickname());
 
-        for(int i = 0; i < listWriter.size();  i++) {
             RecyclerReviewData recyclerReviewData = new RecyclerReviewData();
-            recyclerReviewData.setWriter(listWriter.get(i));
+            recyclerReviewData.setWriter(reviewList.get(i).getNickname());
+            recyclerReviewData.setReviewIdx(reviewList.get(i).getReviewIdx());
+            recyclerReviewData.setContent(reviewList.get(i).getReviewContent());
+            recyclerReviewData.setDate(reviewList.get(i).getReviewDateString());
+            recyclerReviewData.setStar(reviewList.get(i).getReviewStar());
+            recyclerReviewData.setLikeCnt(reviewList.get(i).getReviewLikeCnt());
+            recyclerReviewData.setPicture(reviewList.get(i).getReviewImg());
+            recyclerReviewData.setUserLike(reviewList.get(i).getUserLikeInt());
 
             recyclerReviewAdapter.addItem(recyclerReviewData);
         }

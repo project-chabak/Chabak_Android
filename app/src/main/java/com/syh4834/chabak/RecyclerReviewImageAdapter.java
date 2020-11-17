@@ -11,6 +11,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+
 import java.util.ArrayList;
 
 public class RecyclerReviewImageAdapter extends RecyclerView.Adapter<RecyclerReviewImageAdapter.ItemViewHolder> {
@@ -50,8 +52,9 @@ public class RecyclerReviewImageAdapter extends RecyclerView.Adapter<RecyclerRev
             imgReviewPicture.setClipToOutline(true);
         }
 
-        void onBind(RecyclerReviewImageData recyclerReviewData) {
-            imgReviewPicture.setImageResource(recyclerReviewData.getPicture());
+        void onBind(RecyclerReviewImageData recyclerReviewImageData) {
+            Glide.with(itemView).load(recyclerReviewImageData.getPicture()).into(imgReviewPicture);
+            //imgReviewPicture.setImageResource(recyclerReviewImageData.getPicture());
         }
     }
 }

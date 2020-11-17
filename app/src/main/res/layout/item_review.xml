@@ -21,6 +21,7 @@
         android:id="@+id/img_picture"
         android:layout_width="17dp"
         android:layout_height="17dp"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="@+id/tv_writer"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/tv_writer"
@@ -33,7 +34,7 @@
         android:layout_marginTop="10dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_writer"
-        app:srcCompat="@drawable/star_yellow" />
+        app:srcCompat="@drawable/star_gray" />
 
     <ImageView
         android:id="@+id/img_star_02"
@@ -44,7 +45,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/img_star_01"
         app:layout_constraintStart_toEndOf="@+id/img_star_01"
         app:layout_constraintTop_toTopOf="@+id/img_star_01"
-        app:srcCompat="@drawable/star_yellow" />
+        app:srcCompat="@drawable/star_gray" />
 
     <ImageView
         android:id="@+id/img_star_03"
@@ -55,7 +56,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/img_star_02"
         app:layout_constraintStart_toEndOf="@+id/img_star_02"
         app:layout_constraintTop_toTopOf="@+id/img_star_02"
-        app:srcCompat="@drawable/star_yellow" />
+        app:srcCompat="@drawable/star_gray" />
 
     <ImageView
         android:id="@+id/img_star_04"
@@ -85,7 +86,8 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/nanum_barun_gothic_regular"
         android:text="2020.10.03"
-        android:textColor="@color/colorSubIcon"
+        android:textColor="@color/colorTextLight"
+        android:textSize="11sp"
         app:layout_constraintBottom_toBottomOf="@+id/img_star_05"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/img_star_05" />

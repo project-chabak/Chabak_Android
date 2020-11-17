@@ -13,8 +13,10 @@
         android:fillViewport="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/cl_place_detail"
@@ -486,7 +488,95 @@
                 android:background="@drawable/edit"
                 app:layout_constraintBottom_toBottomOf="@+id/tv_review"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/tv_review"/>
+                app:layout_constraintTop_toTopOf="@+id/tv_review" />
+
+            <LinearLayout
+                android:id="@+id/linear_no_review"
+                android:layout_width="0dp"
+                android:layout_height="180dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="30dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toTopOf="@id/img_rec_seperator_04"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/img_review_star">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="2dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/imageView"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginRight="3dp"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/star_gray" />
+
+                    <ImageView
+                        android:id="@+id/imageView2"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginRight="3dp"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/star_gray" />
+
+                    <ImageView
+                        android:id="@+id/imageView3"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginRight="3dp"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/star_gray" />
+
+                    <ImageView
+                        android:id="@+id/imageView4"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginRight="3dp"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/star_gray" />
+
+                    <ImageView
+                        android:id="@+id/imageView5"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/star_gray" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_first_review"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="5dp"
+                    android:fontFamily="@font/nanum_barun_gothic_regular"
+                    android:gravity="center"
+                    android:text="첫 후기를 작성해보세요!"
+                    android:textColor="@color/colorTextLight"
+                    android:textSize="14sp" />
+
+                <Button
+                    android:id="@+id/btn_go_review"
+                    style="@style/Widget.AppCompat.Button.Borderless"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/rec_primary_10dp"
+                    android:fontFamily="@font/nanum_barun_gothic_regular"
+                    android:text="리뷰하러가기"
+                    android:textColor="@android:color/white"
+                    android:textSize="11sp" />
+            </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_review"
@@ -497,6 +587,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginRight="20dp"
+                android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/img_review_star" />
@@ -510,12 +601,15 @@
                 android:layout_marginTop="30dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginRight="20dp"
+                android:layout_marginBottom="30dp"
                 android:background="@drawable/rec_gray_transp_5dp"
                 android:fontFamily="@font/nanum_barun_gothic_regular"
                 android:text="-3개 리뷰 더보기"
                 android:textColor="@color/colorSubIcon"
                 android:textSize="15sp"
                 android:textStyle="bold"
+                android:visibility="gone"
+                app:layout_constraintBottom_toTopOf="@id/img_rec_seperator_04"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/rv_review" />
@@ -524,22 +618,20 @@
                 android:id="@+id/img_rec_seperator_04"
                 android:layout_width="0dp"
                 android:layout_height="7dp"
-                android:layout_marginTop="30dp"
+                android:layout_marginBottom="20dp"
+                app:layout_constraintBottom_toTopOf="@id/img_logo_detail_view"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/btn_review_more"
                 app:srcCompat="@drawable/rec_seperator" />
 
             <ImageView
                 android:id="@+id/img_logo_detail_view"
                 android:layout_width="93dp"
                 android:layout_height="50dp"
-                android:layout_marginTop="20dp"
                 android:layout_marginBottom="20dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/img_rec_seperator_04"
                 app:srcCompat="@drawable/logo_green_text" />
 
 
