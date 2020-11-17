@@ -455,8 +455,8 @@
 
             <ImageView
                 android:id="@+id/img_review_star"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="30dp"
@@ -473,8 +473,8 @@
                 android:layout_marginTop="3dp"
                 android:fontFamily="@font/nanum_barun_gothic_bold"
                 android:text="4.7(25)"
-                android:textColor="@color/colorTextDark"
-                android:textSize="17sp"
+                android:textColor="@android:color/black"
+                android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="@+id/img_review_star"
                 app:layout_constraintStart_toEndOf="@id/img_review_star"
                 app:layout_constraintTop_toTopOf="@id/img_review_star" />
@@ -490,13 +490,58 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/tv_review" />
 
+            <RadioGroup
+                android:id="@+id/rg_review_order"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginRight="20dp"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btn_edit">
+
+                <RadioButton
+                    android:id="@+id/rb_range_rec"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="12dp"
+                    android:layout_weight="1"
+                    android:button="@drawable/radio_range"
+                    android:checked="true"
+                    android:clickable="true"
+                    android:fontFamily="@font/nanum_barun_gothic_regular"
+                    android:text="  추천순"
+                    android:textColor="@color/text_selector"
+                    android:textColorHighlight="@color/colorPrimary"
+                    android:textColorHint="@color/colorPrimary"
+                    android:textColorLink="@color/colorPrimary"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <RadioButton
+                    android:id="@+id/rb_range_latest"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:button="@drawable/radio_range"
+                    android:clickable="true"
+                    android:fontFamily="@font/nanum_barun_gothic_regular"
+                    android:text="  최신순"
+                    android:textColor="@color/text_selector"
+                    android:textColorHighlight="@color/colorPrimary"
+                    android:textColorLink="@color/colorPrimary"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+            </RadioGroup>
+
             <LinearLayout
                 android:id="@+id/linear_no_review"
                 android:layout_width="0dp"
                 android:layout_height="180dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginLeft="20dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginBottom="30dp"
@@ -505,7 +550,7 @@
                 app:layout_constraintBottom_toTopOf="@id/img_rec_seperator_04"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/img_review_star">
+                app:layout_constraintTop_toBottomOf="@id/rg_review_order">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -584,13 +629,13 @@
                 android:layout_height="match_parent"
                 android:layout_marginStart="20dp"
                 android:layout_marginLeft="20dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginRight="20dp"
                 android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/img_review_star" />
+                app:layout_constraintTop_toBottomOf="@id/rg_review_order" />
 
             <Button
                 android:id="@+id/btn_review_more"

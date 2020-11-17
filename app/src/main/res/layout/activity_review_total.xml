@@ -74,8 +74,8 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="15dp"
                 android:fontFamily="@font/nanum_barun_gothic_bold"
-                android:text="27"
-                android:textColor="@color/colorPrimary"
+                android:text=""
+                android:textColor="@color/colorPrimaryDark"
                 android:textSize="24sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
@@ -97,7 +97,7 @@
                 app:layout_constraintTop_toTopOf="@+id/tv_review_count" />
 
             <RadioGroup
-                android:id="@+id/radioGroup"
+                android:id="@+id/rg_review_order"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
@@ -152,8 +152,28 @@
                 android:layout_marginRight="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/radioGroup" />
+                app:layout_constraintBottom_toTopOf="@id/img_rec_seperator_04"
+                app:layout_constraintTop_toBottomOf="@id/rg_review_order" />
 
+            <ImageView
+                android:id="@+id/img_rec_seperator_04"
+                android:layout_width="0dp"
+                android:layout_height="7dp"
+                android:layout_marginBottom="20dp"
+                app:layout_constraintBottom_toTopOf="@id/img_logo_detail_view"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:srcCompat="@drawable/rec_seperator" />
+
+            <ImageView
+                android:id="@+id/img_logo_detail_view"
+                android:layout_width="93dp"
+                android:layout_height="50dp"
+                android:layout_marginBottom="20dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:srcCompat="@drawable/logo_green_text" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 
