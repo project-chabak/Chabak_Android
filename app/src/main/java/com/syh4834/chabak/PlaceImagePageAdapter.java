@@ -43,13 +43,6 @@ public class PlaceImagePageAdapter extends PagerAdapter {
 
         Glide.with(container).load(placeImages[position]).into(imgPlace);
 
-//
-//        for(int i = 0; i < placeImages.length; i++) {
-//            //이미지 로드 라이브러리
-//            Log.e("placeImage"+ i, placeImages[i]);
-//            Glide.with(container).load(placeImages[i]).into(imgPlace);
-//        }
-
         container.addView(v);
         return v;
     }
