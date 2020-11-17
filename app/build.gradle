@@ -48,7 +48,7 @@ dependencies {
     //textview 더보기 라이브러리
     implementation 'kr.co.prnd:readmore-textview:1.0.0'
 
-    //retrofit 통신 라이브러리
+    //retrofit2 통신 라이브러리
     implementation 'com.squareup.retrofit2:retrofit:2.6.2'
     implementation 'com.squareup.retrofit2:converter-gson:2.6.2'
 

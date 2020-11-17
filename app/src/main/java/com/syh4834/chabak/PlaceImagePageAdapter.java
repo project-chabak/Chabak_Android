@@ -11,13 +11,16 @@ import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.viewpager.widget.PagerAdapter;
 
+import com.bumptech.glide.Glide;
+
 public class PlaceImagePageAdapter extends PagerAdapter {
-    private int [] placeImages = {R.drawable.place_image_01, R.drawable.place_image_01};
+    private String[] placeImages;
     private LayoutInflater inflater;
     private Context context;
 
-    public PlaceImagePageAdapter(Context context) {
+    public PlaceImagePageAdapter(Context context, String[] placeImages) {
         this.context = context;
+        this.placeImages = placeImages;
     }
 
     @Override
@@ -36,13 +39,12 @@ public class PlaceImagePageAdapter extends PagerAdapter {
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View v = inflater.inflate(R.layout.slider_place_image, container, false);
         ImageView imgPlace = (ImageView)v.findViewById(R.id.img_place);
-        TextView tvImageNum = (TextView)v.findViewById(R.id.tv_image_num);
 
-        imgPlace.setImageResource(placeImages[position]);
+        for(int i = 0; i < placeImages.length; i++) {
+            //이미지 로드 라이브러리
+            Glide.with(container).load(placeImages[i]).into(imgPlace);
+        }
 
-//        String text = (position + 1) + " / n";
-//
-//        tvImageNum.setText(text);
         container.addView(v);
         return v;
     }

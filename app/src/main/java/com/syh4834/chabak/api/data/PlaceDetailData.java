@@ -4,115 +4,249 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class PlaceDetailData {
-    private int placeIdx;
-    private int placeCategoryIdx;
-    private String placeAddress;
-    private String placeTitle;
-    private String placeDate;
-    private int placeStar;
-    private int placeReviewCnt;
-    private int placeLikeCnt;
-    private String placeContent;
-    private int placeStore;
-    private int placeCooking;
-    private double placeLatitude;
     private double placeLongitude;
-    private String placeThumbnail;
+
     private double placeAvgStar;
+
+    private int placeLikeCnt;
+
+    private int placeStore;
+
+    private String placeCategoryIdx;
+
+    private String placeAddress;
+
+    private int placeStar;
+
+    private double placeLatitude;
+
+    private String placeThumbnail;
+
+    private String[] placeImg;
+
+    private PlaceToiletData[] placeToilet;
+
+    private String placeTitle;
+
+    private String placeReviewCnt;
+
     private String placeCategoryName;
-    private Array placeImg;
-    private ArrayList<Toilet_list> placeToilet;
 
-    public PlaceDetailData(int placeIdx, int placeCategoryIdx, String placeAddress, String placeTitle, String placeDate, int placeStar, int placeReviewCnt, int placeLikeCnt, String placeContent, int placeStore, int placeCooking, double placeLatitude, double placeLongitude, String placeThumbnail, double placeAvgStar, String placeCategoryName, Array placeImg, ArrayList<Toilet_list> placeToilet) {
-        this.placeIdx = placeIdx;
-        this.placeCategoryIdx = placeCategoryIdx;
-        this.placeAddress = placeAddress;
-        this.placeTitle = placeTitle;
-        this.placeDate = placeDate;
-        this.placeStar = placeStar;
-        this.placeReviewCnt = placeReviewCnt;
-        this.placeLikeCnt = placeLikeCnt;
-        this.placeContent = placeContent;
-        this.placeStore = placeStore;
-        this.placeCooking = placeCooking;
-        this.placeLatitude = placeLatitude;
-        this.placeLongitude = placeLongitude;
-        this.placeThumbnail = placeThumbnail;
-        this.placeAvgStar = placeAvgStar;
-        this.placeCategoryName = placeCategoryName;
-        this.placeImg = placeImg;
-        this.placeToilet = placeToilet;
-    }
+    private String placeContent;
 
-    public int getPlaceIdx() {
-        return placeIdx;
-    }
+    private Boolean userLike;
 
-    public int getPlaceCategoryIdx() {
-        return placeCategoryIdx;
-    }
+    private String placeIdx;
 
-    public String getPlaceAddress() {
-        return placeAddress;
-    }
+    private int placeCooking;
 
-    public String getPlaceTitle() {
-        return placeTitle;
-    }
+    private String placeName;
 
-    public String getPlaceDate() {
-        return placeDate;
-    }
+    private String placeDate;
 
-    public int getPlaceStar() {
-        return placeStar;
-    }
-
-    public int getPlaceReviewCnt() {
-        return placeReviewCnt;
-    }
-
-    public int getPlaceLikeCnt() {
-        return placeLikeCnt;
-    }
-
-    public String getPlaceContent() {
-        return placeContent;
-    }
-
-    public int getPlaceStore() {
-        return placeStore;
-    }
-
-    public int getPlaceCooking() {
-        return placeCooking;
-    }
-
-    public double getPlaceLatitude() {
-        return placeLatitude;
-    }
-
-    public double getPlaceLongitude() {
+    public double getPlaceLongitude ()
+    {
         return placeLongitude;
     }
 
-    public String getPlaceThumbnail() {
-        return placeThumbnail;
+    public void setPlaceLongitude (double placeLongitude)
+    {
+        this.placeLongitude = placeLongitude;
     }
 
-    public double getPlaceAvgStar() {
+    public double getPlaceAvgStar ()
+    {
         return placeAvgStar;
     }
 
-    public String getPlaceCategoryName() {
-        return placeCategoryName;
+    public void setPlaceAvgStar (double placeAvgStar)
+    {
+        this.placeAvgStar = placeAvgStar;
     }
 
-    public Array getPlaceImg() {
+    public int getPlaceLikeCnt ()
+    {
+        return placeLikeCnt;
+    }
+
+    public void setPlaceLikeCnt (int placeLikeCnt)
+    {
+        this.placeLikeCnt = placeLikeCnt;
+    }
+
+    public int getPlaceStore ()
+    {
+        return placeStore;
+    }
+
+    public void setPlaceStore (int placeStore)
+    {
+        this.placeStore = placeStore;
+    }
+
+    public String getPlaceCategoryIdx ()
+    {
+        return placeCategoryIdx;
+    }
+
+    public void setPlaceCategoryIdx (String placeCategoryIdx)
+    {
+        this.placeCategoryIdx = placeCategoryIdx;
+    }
+
+    public String getPlaceAddress ()
+    {
+        return placeAddress;
+    }
+
+    public void setPlaceAddress (String placeAddress)
+    {
+        this.placeAddress = placeAddress;
+    }
+
+    public int getPlaceStar ()
+    {
+        return placeStar;
+    }
+
+    public void setPlaceStar (int placeStar)
+    {
+        this.placeStar = placeStar;
+    }
+
+    public double getPlaceLatitude ()
+    {
+        return placeLatitude;
+    }
+
+    public void setPlaceLatitude (double placeLatitude)
+    {
+        this.placeLatitude = placeLatitude;
+    }
+
+    public String getPlaceThumbnail ()
+    {
+        return placeThumbnail;
+    }
+
+    public void setPlaceThumbnail (String placeThumbnail)
+    {
+        this.placeThumbnail = placeThumbnail;
+    }
+
+    public String[] getPlaceImg ()
+    {
         return placeImg;
     }
 
-    public ArrayList<Toilet_list> getPlaceToilet() {
+    public void setPlaceImg (String[] placeImg)
+    {
+        this.placeImg = placeImg;
+    }
+
+    public PlaceToiletData[] getPlaceToilet ()
+    {
         return placeToilet;
+    }
+
+    public void setPlaceToilet (PlaceToiletData[] placeToilet)
+    {
+        this.placeToilet = placeToilet;
+    }
+
+    public String getPlaceTitle ()
+    {
+        return placeTitle;
+    }
+
+    public void setPlaceTitle (String placeTitle)
+    {
+        this.placeTitle = placeTitle;
+    }
+
+    public String getPlaceReviewCnt ()
+    {
+        return placeReviewCnt;
+    }
+
+    public void setPlaceReviewCnt (String placeReviewCnt)
+    {
+        this.placeReviewCnt = placeReviewCnt;
+    }
+
+    public String getPlaceCategoryName ()
+    {
+        return placeCategoryName;
+    }
+
+    public void setPlaceCategoryName (String placeCategoryName)
+    {
+        this.placeCategoryName = placeCategoryName;
+    }
+
+    public String getPlaceContent ()
+    {
+        return placeContent.replace("\\n", "\n");
+    }
+
+    public void setPlaceContent (String placeContent)
+    {
+        this.placeContent = placeContent;
+    }
+
+    public Boolean getUserLike ()
+    {
+        return userLike;
+    }
+
+    public void setUserLike (Boolean userLike)
+    {
+        this.userLike = userLike;
+    }
+
+    public String getPlaceIdx ()
+    {
+        return placeIdx;
+    }
+
+    public void setPlaceIdx (String placeIdx)
+    {
+        this.placeIdx = placeIdx;
+    }
+
+    public int getPlaceCooking ()
+    {
+        return placeCooking;
+    }
+
+    public void setPlaceCooking (int placeCooking)
+    {
+        this.placeCooking = placeCooking;
+    }
+
+    public String getPlaceName ()
+    {
+        return placeName;
+    }
+
+    public void setPlaceName (String placeName)
+    {
+        this.placeName = placeName;
+    }
+
+    public String getPlaceDate ()
+    {
+        return placeDate;
+    }
+
+    public void setPlaceDate (String placeDate)
+    {
+        this.placeDate = placeDate;
+    }
+
+    @Override
+    public String toString()
+    {
+        return "ClassPojo [placeLongitude = "+placeLongitude+", placeAvgStar = "+placeAvgStar+", placeLikeCnt = "+placeLikeCnt+", placeStore = "+placeStore+", placeCategoryIdx = "+placeCategoryIdx+", placeAddress = "+placeAddress+", placeStar = "+placeStar+", placeLatitude = "+placeLatitude+", placeThumbnail = "+placeThumbnail+", placeImg = "+placeImg+", placeToilet = "+placeToilet+", placeTitle = "+placeTitle+", placeReviewCnt = "+placeReviewCnt+", placeCategoryName = "+placeCategoryName+", placeContent = "+placeContent+", userLike = "+userLike+", placeIdx = "+placeIdx+", placeCooking = "+placeCooking+", placeName = "+placeName+", placeDate = "+placeDate+"]";
     }
 }

@@ -44,7 +44,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <CheckBox
-                android:id="@+id/chb_like_white"
+                android:id="@+id/chb_like"
                 android:layout_width="22dp"
                 android:layout_height="22dp"
                 android:layout_marginEnd="20dp"
@@ -273,7 +273,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/nanum_barun_gothic_regular"
-                android:text="취사가능여부"
+                android:text="취사가능"
                 android:textColor="@color/colorTextDark"
                 android:textSize="15sp"
                 app:layout_constraintBottom_toBottomOf="@+id/img_cooking"
@@ -367,7 +367,7 @@
                 android:layout_marginRight="20dp"
                 android:fontFamily="@font/nanum_barun_gothic_regular"
                 android:lineSpacingExtra="5sp"
-                android:text="장소 소개가 들어갈 예정입니다. 장소 소개가 들어갈 예정입니다. 장소 소개가 들어갈 예정입니다. 장소 소개가 들어갈 예정입니다. 장소 소개가 들어갈 예정입니다. 장소 소개가 들어갈 예정입니다. 장소 소개가 들어갈 예정입니다. 장소 소개가 들어갈 예정입니다.
+                android:text="장소 소개가 들어갈 예정입니다.\n장소 소개가 들어갈 예정입니다. 장소 소개가 들어갈 예정입니다. 장소 소개가 들어갈 예정입니다. 장소 소개가 들어갈 예정입니다. 장소 소개가 들어갈 예정입니다. 장소 소개가 들어갈 예정입니다. 장소 소개가 들어갈 예정입니다.
 장소 소개가 들어갈 예정입니다. 장소 소개가 들어갈 예정입니다. 장소 소개가 들어갈 예정입니다. 장소 소개가 들어갈 예정입니다. 장소 소개가 들어갈 예정입니다. 장소 소개가 들어갈 예정입니다. 장소 소개가 들어갈 예정입니다. 장소 소개가 들어갈 예정입니다."
                 android:textColor="@color/colorTextDark"
                 android:textSize="15sp"
@@ -594,7 +594,7 @@
             app:layout_constraintTop_toTopOf="@id/toolbar" />
 
         <CheckBox
-            android:id="@+id/chb_like"
+            android:id="@+id/chb_toolbar_like"
             android:layout_width="22dp"
             android:layout_height="22dp"
             android:layout_marginEnd="20dp"

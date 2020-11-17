@@ -12,13 +12,18 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.PointF;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Parcelable;
+import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.naver.maps.geometry.LatLng;
@@ -30,8 +35,11 @@ import com.naver.maps.map.UiSettings;
 import com.naver.maps.map.overlay.Marker;
 import com.naver.maps.map.overlay.OverlayImage;
 import com.syh4834.chabak.api.ChabakService;
+import com.syh4834.chabak.api.data.PlaceDetailData;
+import com.syh4834.chabak.api.data.PlaceToiletData;
 import com.syh4834.chabak.api.response.ResponsePlaceDetail;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -42,10 +50,31 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class PlaceDetailActivity extends AppCompatActivity implements OnMapReadyCallback {
+    private PlaceDetailData placeDetailData;
+    private PlaceToiletData[] placeToiletData;
+
     private PlaceImagePageAdapter placeImagePageAdapter;
     private ViewPager vpPlaceImage;
+
+    private TextView tvToolbarTitle;
     private TextView tvImageNum;
-    private String pageNum;
+    private TextView tvTitle;
+    private TextView tvPlaceName;
+    private TextView tvStar;
+    private TextView tvReviewCount;
+    private TextView tvLike;
+    private TextView tvAddress;
+    private TextView tvPlaceIntroContent;
+    private TextView tvLocationDetail;
+    private TextView tvReview;
+
+    private CheckBox chbLike;
+    private CheckBox chbToolbarLike;
+
+    private ImageView imgToiletBanned;
+    private ImageView imgCookingBanned;
+    private ImageView imgStoreBanned;
+
     private ConstraintLayout clToolbar;
     private NestedScrollView nsvPlaceDetail;
 
@@ -65,21 +94,34 @@ public class PlaceDetailActivity extends AppCompatActivity implements OnMapReady
             .build();
     ChabakService chabakService = retrofit.create(ChabakService.class);
 
-//    private Marker place;
-//    private Marker[] toilets;
-
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_place_detail);
 
-        getPlaceData();
-
         vpPlaceImage = (ViewPager) findViewById(R.id.vp_place_image);
         nsvPlaceDetail = findViewById(R.id.nsv_place_detail);
         tvImageNum = findViewById(R.id.tv_image_num);
         clToolbar = findViewById(R.id.cl_toolbar);
+
+        tvToolbarTitle = findViewById(R.id.tv_toolbar_title);
+        tvTitle = findViewById(R.id.tv_title);
+        tvPlaceName = findViewById(R.id.tv_place_name);
+        tvStar = findViewById(R.id.tv_star);
+        tvReviewCount = findViewById(R.id.tv_review_count);
+        tvLike = findViewById(R.id.tv_like);
+        tvAddress = findViewById(R.id.tv_address);
+        tvPlaceIntroContent = findViewById(R.id.tv_place_intro_content);
+        tvLocationDetail = findViewById(R.id.tv_location_detail);
+        tvReview = findViewById(R.id.tv_review);
+
+        chbLike = findViewById(R.id.chb_like);
+        chbToolbarLike = findViewById(R.id.chb_toolbar_like);
+
+        imgToiletBanned = findViewById(R.id.img_toilet_banned);
+        imgCookingBanned = findViewById(R.id.img_cooking_banned);
+        imgStoreBanned = findViewById(R.id.img_store_banned);
 
         btnReviewMore = findViewById(R.id.btn_review_more);
         btnBackWhite = findViewById(R.id.btn_back_white);
@@ -90,14 +132,9 @@ public class PlaceDetailActivity extends AppCompatActivity implements OnMapReady
         mapView.onCreate(savedInstanceState);
         mapView.setClipToOutline(true);
 
+        getPlaceData();
+
         mapView.getMapAsync(this::onMapReady);
-
-        placeImagePageAdapter = new PlaceImagePageAdapter(this);
-        vpPlaceImage.setAdapter(placeImagePageAdapter);
-        int totalPage = placeImagePageAdapter.getCount();
-
-        pageNum = 1 + " / " + totalPage;
-        tvImageNum.setText(pageNum);
 
         init();
         getData();
@@ -140,8 +177,7 @@ public class PlaceDetailActivity extends AppCompatActivity implements OnMapReady
 
             @Override
             public void onPageSelected(int position) {
-                pageNum = position+1 + " / " + totalPage;
-                tvImageNum.setText(pageNum);
+                tvImageNum.setText(position+1 + " / " + placeDetailData.getPlaceImg().length);
             }
 
             @Override
@@ -152,16 +188,17 @@ public class PlaceDetailActivity extends AppCompatActivity implements OnMapReady
     }
 
     private void getPlaceData() {
-        int placeIdx = 3;
+        int placeIdx = 4;
 //        SharedPreferences sharedPreferences = getSharedPreferences("chabak", MODE_PRIVATE);
 //        String token = sharedPreferences.getString("token", null);
         String token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWR4IjoxLCJpZCI6ImlkIiwibmlja25hbWUiOiIxMjMiLCJpYXQiOjE2MDQ5NzMxMDN9.80OjSRBho8176t0BgYu5tuEZ5pJGBh_tCjVn_Nsic_I";
 
-        chabakService.getPlaceDetail(placeIdx).enqueue(new Callback<ResponsePlaceDetail>() {
+        chabakService.getPlaceDetail(token, placeIdx).enqueue(new Callback<ResponsePlaceDetail>() {
             @Override
             public void onResponse(Call<ResponsePlaceDetail> call, Response<ResponsePlaceDetail> response) {
                 if(response.body().getSuccess()) {
-                    Log.e("success", String.valueOf(response.body().getData()));
+                    placeDetailData = response.body().getData();
+                    setPlaceDetail(placeDetailData);
                 }
             }
 
@@ -170,6 +207,43 @@ public class PlaceDetailActivity extends AppCompatActivity implements OnMapReady
                 Log.e("fail", "fail");
             }
         });
+    }
+
+    private void setPlaceDetail(PlaceDetailData placeDetailData) {
+        placeImagePageAdapter = new PlaceImagePageAdapter(this, placeDetailData.getPlaceImg());
+        vpPlaceImage.setAdapter(placeImagePageAdapter);
+
+        //좋아요 상태인 여행지로 테스트해보기
+        if(placeDetailData.getUserLike() == true) {
+            chbToolbarLike.setChecked(true);
+            chbLike.setChecked(true);
+        }
+
+        tvToolbarTitle.setText(placeDetailData.getPlaceName());
+        tvImageNum.setText("1 / " + placeDetailData.getPlaceImg().length);
+        tvTitle.setText(placeDetailData.getPlaceTitle());
+        tvPlaceName.setText(placeDetailData.getPlaceName());
+        tvStar.setText(String.valueOf(placeDetailData.getPlaceAvgStar()));
+        tvReviewCount.setText("("+String.valueOf(placeDetailData.getPlaceReviewCnt())+")");
+        tvLike.setText(String.valueOf(placeDetailData.getPlaceLikeCnt()) +"명이 저장한 차박여행지");
+        tvAddress.setText(placeDetailData.getPlaceAddress());
+        tvPlaceIntroContent.setText(placeDetailData.getPlaceContent());
+        tvLocationDetail.setText(placeDetailData.getPlaceAddress());
+        tvReview.setText(String.valueOf(placeDetailData.getPlaceAvgStar())+"("+String.valueOf(placeDetailData.getPlaceReviewCnt()+")"));
+
+        Log.e("data", placeDetailData.toString());
+
+        if(placeDetailData.getPlaceToilet().length == 0) {
+            imgToiletBanned.setVisibility(View.VISIBLE);
+        }
+
+        if(placeDetailData.getPlaceCooking() == 0) {
+            imgCookingBanned.setVisibility(View.VISIBLE);
+        }
+
+        if(placeDetailData.getPlaceStore() == 0) {
+            imgStoreBanned.setVisibility(View.VISIBLE);
+        }
     }
 
     private void init() {
@@ -260,42 +334,42 @@ public class PlaceDetailActivity extends AppCompatActivity implements OnMapReady
         uiSettings.setCompassEnabled(false);
         uiSettings.setAllGesturesEnabled(false);
 
+        setMap(naverMap);
+
         naverMap.setOnMapClickListener(new NaverMap.OnMapClickListener() {
+            ArrayList<PlaceToiletData> toiletArray = new ArrayList<PlaceToiletData>(Arrays.asList(placeToiletData));
             @Override
             public void onMapClick(@NonNull PointF pointF, @NonNull LatLng latLng) {
                 Intent intent = new Intent(mapView.getContext(), MapActivity.class);
+                intent.putExtra("placeLatitude", placeDetailData.getPlaceLatitude());
+                intent.putExtra("placeLongitude", placeDetailData.getPlaceLongitude());
+                intent.putParcelableArrayListExtra("toilets", (ArrayList<? extends Parcelable>) toiletArray);
                 startActivity(intent);
             }
         });
-
-
-        naverMap.setCameraPosition(new CameraPosition(new LatLng(37.622799, 128.739682), 17));
-
-
-        setMarker(naverMap);
-
     }
 
-    protected void setMarker(NaverMap naverMap) {
+    protected void setMap(NaverMap naverMap) {
+        double placeLatitude = placeDetailData.getPlaceLatitude();
+        double placeLongitude = placeDetailData.getPlaceLongitude();
+        placeToiletData = placeDetailData.getPlaceToilet();
 
-        //통신 후에는 for문으로 수정
-        Marker[] toilets = new Marker[2];
-        toilets[0] = new Marker();
-        toilets[0].setPosition(new LatLng(37.622729,128.7396937));
-        toilets[0].setIcon(OverlayImage.fromResource(R.drawable.marker_toilet));
-        toilets[0].setWidth(80);
-        toilets[0].setHeight(80);
-        toilets[0].setMap(naverMap);
+        naverMap.setCameraPosition(new CameraPosition(new LatLng(placeLatitude, placeLongitude), 16));
 
-        toilets[1] = new Marker();
-        toilets[1].setPosition(new LatLng(37.622607, 128.739371));
-        toilets[1].setIcon(OverlayImage.fromResource(R.drawable.marker_toilet));
-        toilets[1].setWidth(80);
-        toilets[1].setHeight(80);
-        toilets[1].setMap(naverMap);
+        //화장실 마커
+        Marker[] toilets = new Marker[placeToiletData.length];
+        for(int i = 0; i<placeToiletData.length; i++) {
+            toilets[i] = new Marker();
+            toilets[i].setPosition(new LatLng(placeToiletData[i].getToiletLatitude(), placeToiletData[i].getToiletLongitude()));
+            toilets[i].setIcon(OverlayImage.fromResource(R.drawable.marker_toilet));
+            toilets[i].setWidth(80);
+            toilets[i].setHeight(80);
+            toilets[i].setMap(naverMap);
+        }
 
+        //여행지 마커
         Marker place = new Marker();
-        place.setPosition(new LatLng(37.622799, 128.739682));
+        place.setPosition(new LatLng(placeLatitude, placeLongitude));
         place.setIcon(OverlayImage.fromResource(R.drawable.marker_place));
         place.setWidth(250);
         place.setHeight(250);

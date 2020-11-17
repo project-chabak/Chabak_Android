@@ -14,13 +14,8 @@ public class ResponseSignin {
         this.message = message;
         this.data = data;
     }
-
     public int getStatus() { return status; }
-
     public boolean getSuccess() { return success; }
-
     public String getMessage() { return message; }
-
     public SigninData getData() { return data; }
-
 }

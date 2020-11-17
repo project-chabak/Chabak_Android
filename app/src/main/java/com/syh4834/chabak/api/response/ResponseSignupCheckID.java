@@ -10,11 +10,7 @@ public class ResponseSignupCheckID {
         this.success = success;
         this.message = message;
     }
-
     public int getStatus() { return status; }
-
     public boolean getSuccess() { return success; }
-
     public String getMessage() { return message; }
-
 }
