@@ -49,19 +49,9 @@ public class PlaceDetailData {
         return placeLongitude;
     }
 
-    public void setPlaceLongitude (double placeLongitude)
-    {
-        this.placeLongitude = placeLongitude;
-    }
-
     public double getPlaceAvgStar ()
     {
         return placeAvgStar;
-    }
-
-    public void setPlaceAvgStar (double placeAvgStar)
-    {
-        this.placeAvgStar = placeAvgStar;
     }
 
     public int getPlaceLikeCnt ()
@@ -69,29 +59,9 @@ public class PlaceDetailData {
         return placeLikeCnt;
     }
 
-    public void setPlaceLikeCnt (int placeLikeCnt)
-    {
-        this.placeLikeCnt = placeLikeCnt;
-    }
-
     public int getPlaceStore ()
     {
         return placeStore;
-    }
-
-    public void setPlaceStore (int placeStore)
-    {
-        this.placeStore = placeStore;
-    }
-
-    public String getPlaceCategoryIdx ()
-    {
-        return placeCategoryIdx;
-    }
-
-    public void setPlaceCategoryIdx (String placeCategoryIdx)
-    {
-        this.placeCategoryIdx = placeCategoryIdx;
     }
 
     public String getPlaceAddress ()
@@ -99,39 +69,9 @@ public class PlaceDetailData {
         return placeAddress;
     }
 
-    public void setPlaceAddress (String placeAddress)
-    {
-        this.placeAddress = placeAddress;
-    }
-
-    public int getPlaceStar ()
-    {
-        return placeStar;
-    }
-
-    public void setPlaceStar (int placeStar)
-    {
-        this.placeStar = placeStar;
-    }
-
     public double getPlaceLatitude ()
     {
         return placeLatitude;
-    }
-
-    public void setPlaceLatitude (double placeLatitude)
-    {
-        this.placeLatitude = placeLatitude;
-    }
-
-    public String getPlaceThumbnail ()
-    {
-        return placeThumbnail;
-    }
-
-    public void setPlaceThumbnail (String placeThumbnail)
-    {
-        this.placeThumbnail = placeThumbnail;
     }
 
     public String[] getPlaceImg ()
@@ -139,19 +79,9 @@ public class PlaceDetailData {
         return placeImg;
     }
 
-    public void setPlaceImg (String[] placeImg)
-    {
-        this.placeImg = placeImg;
-    }
-
     public PlaceToiletData[] getPlaceToilet ()
     {
         return placeToilet;
-    }
-
-    public void setPlaceToilet (PlaceToiletData[] placeToilet)
-    {
-        this.placeToilet = placeToilet;
     }
 
     public String getPlaceTitle ()
@@ -159,29 +89,9 @@ public class PlaceDetailData {
         return placeTitle;
     }
 
-    public void setPlaceTitle (String placeTitle)
-    {
-        this.placeTitle = placeTitle;
-    }
-
     public String getPlaceReviewCnt ()
     {
         return placeReviewCnt;
-    }
-
-    public void setPlaceReviewCnt (String placeReviewCnt)
-    {
-        this.placeReviewCnt = placeReviewCnt;
-    }
-
-    public String getPlaceCategoryName ()
-    {
-        return placeCategoryName;
-    }
-
-    public void setPlaceCategoryName (String placeCategoryName)
-    {
-        this.placeCategoryName = placeCategoryName;
     }
 
     public String getPlaceContent ()
@@ -189,19 +99,9 @@ public class PlaceDetailData {
         return placeContent.replace("\\n", "\n");
     }
 
-    public void setPlaceContent (String placeContent)
-    {
-        this.placeContent = placeContent;
-    }
-
     public Boolean getUserLike ()
     {
         return userLike;
-    }
-
-    public void setUserLike (Boolean userLike)
-    {
-        this.userLike = userLike;
     }
 
     public String getPlaceIdx ()
@@ -209,39 +109,14 @@ public class PlaceDetailData {
         return placeIdx;
     }
 
-    public void setPlaceIdx (String placeIdx)
-    {
-        this.placeIdx = placeIdx;
-    }
-
     public int getPlaceCooking ()
     {
         return placeCooking;
     }
 
-    public void setPlaceCooking (int placeCooking)
-    {
-        this.placeCooking = placeCooking;
-    }
-
     public String getPlaceName ()
     {
         return placeName;
-    }
-
-    public void setPlaceName (String placeName)
-    {
-        this.placeName = placeName;
-    }
-
-    public String getPlaceDate ()
-    {
-        return placeDate;
-    }
-
-    public void setPlaceDate (String placeDate)
-    {
-        this.placeDate = placeDate;
     }
 
     @Override
