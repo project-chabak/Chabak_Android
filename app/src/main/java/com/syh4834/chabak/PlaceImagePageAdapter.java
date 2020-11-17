@@ -1,6 +1,7 @@
 package com.syh4834.chabak;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,10 +41,14 @@ public class PlaceImagePageAdapter extends PagerAdapter {
         View v = inflater.inflate(R.layout.slider_place_image, container, false);
         ImageView imgPlace = (ImageView)v.findViewById(R.id.img_place);
 
-        for(int i = 0; i < placeImages.length; i++) {
-            //이미지 로드 라이브러리
-            Glide.with(container).load(placeImages[i]).into(imgPlace);
-        }
+        Glide.with(container).load(placeImages[position]).into(imgPlace);
+
+//
+//        for(int i = 0; i < placeImages.length; i++) {
+//            //이미지 로드 라이브러리
+//            Log.e("placeImage"+ i, placeImages[i]);
+//            Glide.with(container).load(placeImages[i]).into(imgPlace);
+//        }
 
         container.addView(v);
         return v;
