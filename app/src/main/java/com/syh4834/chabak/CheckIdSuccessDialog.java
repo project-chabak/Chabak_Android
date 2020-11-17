@@ -7,8 +7,6 @@ import android.os.Bundle;
 import android.widget.Button;
 
 public class CheckIdSuccessDialog extends Dialog {
-
-    //init
     private Button btnUse;
     private Button btnCancle;
     private Context context;
@@ -39,7 +37,6 @@ public class CheckIdSuccessDialog extends Dialog {
 
         btnUse = (Button) findViewById(R.id.btn_use);
         btnCancle = (Button) findViewById(R.id.btn_cancle);
-
 
         //버튼 클릭 리스너 등록
         btnUse.setOnClickListener(l -> {

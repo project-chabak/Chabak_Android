@@ -3,7 +3,7 @@ package com.syh4834.chabak.api.request;
 public class RequestSignup {
     /**
      * {
-     *    "id" : "abc@gmail.com",
+     *    "id" : "id",
      *    "nickname" : "닉네임",
      *    "password" : "1234567",
      *    "gender" : "M" or "F",

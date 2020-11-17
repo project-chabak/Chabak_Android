@@ -16,16 +16,16 @@ public class InitialActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_initial);
 
-        btnSignup = findViewById(R.id.btn_signup);
         btnSignin = findViewById(R.id.btn_signin);
-
-        btnSignup.setOnClickListener(l -> {
-            Intent intent = new Intent(this, PlaceDetailActivity.class);
-            startActivity(intent);
-        });
+        btnSignup = findViewById(R.id.btn_signup);
 
         btnSignin.setOnClickListener(l -> {
             Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+        });
+
+        btnSignup.setOnClickListener(l -> {
+            Intent intent = new Intent(this, PlaceDetailActivity.class);
             startActivity(intent);
         });
     }

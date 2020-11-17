@@ -32,5 +32,5 @@ public interface ChabakService {
 
     @Headers("Content-Type: application/json")
     @GET("/place/detail/{placeIdx}")
-    Call<ResponsePlaceDetail> getPlaceDetail(@Path("placeIdx") int placeIdx);
+    Call<ResponsePlaceDetail> getPlaceDetail(@Header("token") String token, @Path("placeIdx") int placeIdx);
 }

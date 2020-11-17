@@ -6,8 +6,6 @@ import android.os.Bundle;
 import android.widget.Button;
 
 public class CheckIdFailDialog extends Dialog {
-
-    //init
     private Button btnOk;
     private Context context;
 

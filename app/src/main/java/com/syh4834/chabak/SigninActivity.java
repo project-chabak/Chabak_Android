@@ -62,7 +62,6 @@ public class SigninActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<ResponseSignin> call, Response<ResponseSignin> response) {
                         Log.e("success", String.valueOf(response.body().getSuccess()));
-                        //서버 success false 위키 오류
                         if (response.body().getSuccess()) {
                             SigninData data = response.body().getData();
                             String token = data.getToken();
@@ -72,7 +71,7 @@ public class SigninActivity extends AppCompatActivity {
                             editor.putString("token", token);
                             editor.commit();
 
-                            Log.e("token", token);
+//                            Log.e("token", token);
                             Intent intent = new Intent(SigninActivity.this, MainActivity.class);
                             startActivity(intent);
                             finishAffinity();
