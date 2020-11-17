@@ -61,8 +61,6 @@ public class RecyclerReviewAdapter extends RecyclerView.Adapter<RecyclerReviewAd
 
         private RecyclerView rvReviewPicture;
         private RecyclerReviewImageAdapter recyclerReviewImageAdapter;
-        //private RecyclerReviewData recyclerReviewData;
-
 
         ItemViewHolder(View itemView) {
             super(itemView);
@@ -109,7 +107,7 @@ public class RecyclerReviewAdapter extends RecyclerView.Adapter<RecyclerReviewAd
                     imgStar01.setImageResource(R.drawable.star_yellow);
             }
 
-            if (recyclerReviewData.getUserLikeInt() == 1) {
+            if (recyclerReviewData.getUserLike()) {
                 chbGood.setChecked(true);
             }
 
@@ -122,10 +120,6 @@ public class RecyclerReviewAdapter extends RecyclerView.Adapter<RecyclerReviewAd
                 recyclerReviewImageData.setPicture(listPictures[i]);
 
                 recyclerReviewImageAdapter.addItem(recyclerReviewImageData);
-
-                if(i == 2) {
-                    break;
-                }
             }
             recyclerReviewImageAdapter.notifyDataSetChanged();
         }

@@ -115,6 +115,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_review_content">
 
@@ -124,8 +125,8 @@
         android:id="@+id/chb_good"
         android:layout_width="23dp"
         android:layout_height="23dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="17dp"
         android:autoText="false"
         android:background="@drawable/chb_good"
         android:button="@null"

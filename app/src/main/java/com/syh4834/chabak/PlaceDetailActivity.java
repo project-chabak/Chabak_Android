@@ -17,7 +17,6 @@ import android.graphics.PointF;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
-import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewTreeObserver;
@@ -25,9 +24,9 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
 import android.widget.TextView;
 
-import com.bumptech.glide.annotation.GlideModule;
 import com.naver.maps.geometry.LatLng;
 import com.naver.maps.map.CameraPosition;
 import com.naver.maps.map.MapView;
@@ -89,10 +88,16 @@ public class PlaceDetailActivity extends AppCompatActivity implements OnMapReady
     private Button btnBack;
     private Button btnEdit;
 
+    private RadioButton rbRangeRec;
+    private RadioButton rbRangeLatest;
+
     private RecyclerView rvReview;
     private RecyclerReviewAdapter recyclerReviewAdapter;
 
     private MapView mapView;
+
+    int placeIdx;
+    String token;
 
     Retrofit retrofit = new Retrofit.Builder()
             .baseUrl(ChabakService.BASE_RUL)
@@ -137,11 +142,21 @@ public class PlaceDetailActivity extends AppCompatActivity implements OnMapReady
         btnBack = findViewById(R.id.btn_back);
         btnEdit = findViewById(R.id.btn_edit);
 
+        rbRangeRec = findViewById(R.id.rb_range_rec);
+        rbRangeLatest = findViewById(R.id.rb_range_latest);
+
         mapView = findViewById(R.id.map_view);
         mapView.onCreate(savedInstanceState);
         mapView.setClipToOutline(true);
 
+//        placeIdx = getIntent().getIntExtra("placeIdx", 0);
+        placeIdx = 7;
+//        SharedPreferences sharedPreferences = getSharedPreferences("chabak", MODE_PRIVATE);
+//        token = sharedPreferences.getString("token", null);
+        token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWR4IjoxLCJpZCI6ImlkIiwibmlja25hbWUiOiIxMjMiLCJpYXQiOjE2MDQ5NzMxMDN9.80OjSRBho8176t0BgYu5tuEZ5pJGBh_tCjVn_Nsic_I";
+
         getPlaceData();
+        getPlaceReviewData("like");
 
         mapView.getMapAsync(this::onMapReady);
 
@@ -162,6 +177,14 @@ public class PlaceDetailActivity extends AppCompatActivity implements OnMapReady
         btnEdit.setOnClickListener(l -> {
             Intent intent = new Intent(this, ReviewRegisterActivity.class);
             startActivity(intent);
+        });
+
+        rbRangeRec.setOnClickListener(l -> {
+            getPlaceReviewData("like");
+        });
+
+        rbRangeLatest.setOnClickListener(l -> {
+            getPlaceReviewData("new");
         });
 
         btnBack.setOnClickListener(l -> {
@@ -191,18 +214,11 @@ public class PlaceDetailActivity extends AppCompatActivity implements OnMapReady
     }
 
     private void getPlaceData() {
-        int placeIdx = 7;
-//        SharedPreferences sharedPreferences = getSharedPreferences("chabak", MODE_PRIVATE);
-//        String token = sharedPreferences.getString("token", null);
-        String token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWR4IjoxLCJpZCI6ImlkIiwibmlja25hbWUiOiIxMjMiLCJpYXQiOjE2MDQ5NzMxMDN9.80OjSRBho8176t0BgYu5tuEZ5pJGBh_tCjVn_Nsic_I";
-
         chabakService.getPlaceDetail(token, placeIdx).enqueue(new Callback<ResponsePlaceDetail>() {
             @Override
             public void onResponse(Call<ResponsePlaceDetail> call, Response<ResponsePlaceDetail> response) {
                 if(response.body().getSuccess()) {
                     placeDetailData = response.body().getData();
-                    Log.e("data", placeDetailData.toString());
-
                     setPlaceDetail(placeDetailData);
                 }
             }
@@ -212,8 +228,9 @@ public class PlaceDetailActivity extends AppCompatActivity implements OnMapReady
                 Log.e("fail", "fail");
             }
         });
+    }
 
-        String order = "new";
+    private void getPlaceReviewData(String order) {
         chabakService.getPlaceReview(token, placeIdx, order).enqueue(new Callback<ResponsePlaceReview>() {
             @Override
             public void onResponse(Call<ResponsePlaceReview> call, Response<ResponsePlaceReview> response) {
@@ -222,18 +239,18 @@ public class PlaceDetailActivity extends AppCompatActivity implements OnMapReady
                     btnReviewMore.setVisibility(View.VISIBLE);
 
                     btnReviewMore.setOnClickListener(l -> {
-                        ArrayList<PlaceReviewData> reviewList2 = new ArrayList<PlaceReviewData>(Arrays.asList(placeReviewData));
-                        Log.e("arrayList", String.valueOf(reviewList2));
+                        //ArrayList<PlaceReviewData> reviewList = new ArrayList<PlaceReviewData>(Arrays.asList(placeReviewData));
 
                         Intent intent = new Intent(PlaceDetailActivity.this, ReviewTotalActivity.class);
-                        intent.putParcelableArrayListExtra("reviews", (ArrayList<? extends Parcelable>) reviewList2);
+                        //intent.putParcelableArrayListExtra("reviews", (ArrayList<? extends Parcelable>) reviewList);
+                        intent.putExtra("placeIdx", placeIdx);
                         startActivity(intent);
                     });
 
                     if(placeReviewData.length > 0) {
                         if(placeReviewData.length > 3) {
 //                            btnReviewMore.setVisibility(View.VISIBLE);
-                                btnReviewMore.setText(placeReviewData.length -3);
+                            btnReviewMore.setText(placeReviewData.length -3);
 
                         }
                         linearNoReview.setVisibility(View.GONE);
@@ -255,7 +272,6 @@ public class PlaceDetailActivity extends AppCompatActivity implements OnMapReady
         placeImagePageAdapter = new PlaceImagePageAdapter(this, placeDetailData.getPlaceImg());
         vpPlaceImage.setAdapter(placeImagePageAdapter);
 
-        //좋아요 상태인 여행지로 테스트해보기
         if(placeDetailData.getUserLike() == true) {
             chbToolbarLike.setChecked(true);
             chbLike.setChecked(true);
@@ -272,8 +288,6 @@ public class PlaceDetailActivity extends AppCompatActivity implements OnMapReady
         tvPlaceIntroContent.setText(placeDetailData.getPlaceContent());
         tvLocationDetail.setText(placeDetailData.getPlaceAddress());
         tvReview.setText(String.valueOf(placeDetailData.getPlaceAvgStar())+"("+String.valueOf(placeDetailData.getPlaceReviewCnt()+")"));
-
-        Log.e("data", placeDetailData.toString());
 
         if(placeDetailData.getPlaceToilet().length == 0) {
             imgToiletBanned.setVisibility(View.VISIBLE);
@@ -314,7 +328,7 @@ public class PlaceDetailActivity extends AppCompatActivity implements OnMapReady
             recyclerReviewData.setStar(placeReviewData[i].getReviewStar());
             recyclerReviewData.setLikeCnt(placeReviewData[i].getReviewLikeCnt());
             recyclerReviewData.setPicture(placeReviewData[i].getReviewImg());
-            recyclerReviewData.setUserLike(placeReviewData[i].getUserLikeInt());
+            recyclerReviewData.setUserLike(placeReviewData[i].getUserLike());
 
             recyclerReviewAdapter.addItem(recyclerReviewData);
 

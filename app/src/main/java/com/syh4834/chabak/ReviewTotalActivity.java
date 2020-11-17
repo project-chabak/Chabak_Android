@@ -7,15 +7,19 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Button;
-import android.widget.ImageView;
+import android.widget.RadioButton;
+import android.widget.TextView;
 
+import com.syh4834.chabak.api.ChabakService;
 import com.syh4834.chabak.api.data.PlaceReviewData;
+import com.syh4834.chabak.api.response.ResponsePlaceReview;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ReviewTotalActivity extends AppCompatActivity {
 
@@ -24,26 +28,80 @@ public class ReviewTotalActivity extends AppCompatActivity {
 
     private Button btnBack;
 
+    private RadioButton rbRangeRec;
+    private RadioButton rbRangeLatest;
+
+    private TextView tvReviewCount;
+
+    private PlaceReviewData[] placeReviewData;
+
+    int placeIdx;
+    String token;
+
+    Retrofit retrofit = new Retrofit.Builder()
+            .baseUrl(ChabakService.BASE_RUL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build();
+    ChabakService chabakService = retrofit.create(ChabakService.class);
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_review_total);
 
         rvReviewTotal = findViewById(R.id.rv_review_total);
+
+        tvReviewCount = findViewById(R.id.tv_review_count);
+
         btnBack = findViewById(R.id.btn_back);
+
+        rbRangeRec = findViewById(R.id.rb_range_rec);
+        rbRangeLatest = findViewById(R.id.rb_range_latest);
+
+        placeIdx = getIntent().getIntExtra("placeIdx", 0);
+//        SharedPreferences sharedPreferences = getSharedPreferences("chabak", MODE_PRIVATE);
+//        token = sharedPreferences.getString("token", null);
+        token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWR4IjoxLCJpZCI6ImlkIiwibmlja25hbWUiOiIxMjMiLCJpYXQiOjE2MDQ5NzMxMDN9.80OjSRBho8176t0BgYu5tuEZ5pJGBh_tCjVn_Nsic_I";
+
+        getPlaceReviewData("like");
 
         btnBack.setOnClickListener(l -> {
             Intent intent = new Intent(this, PlaceDetailActivity.class);
             finish();
         });
 
-        ArrayList<PlaceReviewData> reviewList= getIntent().getParcelableArrayListExtra("reviews");
+        rbRangeRec.setOnClickListener(l -> {
+            getPlaceReviewData("like");
+        });
 
-        setPlaceReview(reviewList);
+        rbRangeLatest.setOnClickListener(l -> {
+            getPlaceReviewData("new");
+        });
+        //ArrayList<PlaceReviewData> reviewList= getIntent().getParcelableArrayListExtra("reviews");
 
+        //setPlaceReview(reviewList);
     }
 
-    private void setPlaceReview(ArrayList<PlaceReviewData> reviewList) {
+    private void getPlaceReviewData(String order) {
+        chabakService.getPlaceReview(token, placeIdx, order).enqueue(new Callback<ResponsePlaceReview>() {
+            @Override
+            public void onResponse(Call<ResponsePlaceReview> call, Response<ResponsePlaceReview> response) {
+                if(response.body().getSuccess()) {
+                    placeReviewData = response.body().getData();
+                    setPlaceReview(placeReviewData);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponsePlaceReview> call, Throwable t) {
+
+            }
+        });
+    }
+
+
+    private void setPlaceReview(PlaceReviewData[] placeReviewData) {
+        tvReviewCount.setText(String.valueOf(placeReviewData.length));
         rvReviewTotal = findViewById(R.id.rv_review_total);
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(rvReviewTotal.getContext()){
@@ -58,28 +116,21 @@ public class ReviewTotalActivity extends AppCompatActivity {
         rvReviewTotal.setAdapter(recyclerReviewAdapter);
 
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(rvReviewTotal.getContext(), linearLayoutManager.getOrientation());
-        //dividerItemDecoration.setDrawable(getResources().getDrawable(R.drawable.line_seperator));
         rvReviewTotal.addItemDecoration(dividerItemDecoration);
 
-        //List<String> listWriter = Arrays.asList("작성자1", "작성자2", "작성자3", "작성자4");
-
-        for(int i = 0; i < reviewList.size(); i++) {
-            Log.e("size", String.valueOf(reviewList.size()));
-            Log.e("reviewList2", reviewList.get(1).getNickname());
-
+        for(int i = 0; i < placeReviewData.length; i++) {
             RecyclerReviewData recyclerReviewData = new RecyclerReviewData();
-            recyclerReviewData.setWriter(reviewList.get(i).getNickname());
-            recyclerReviewData.setReviewIdx(reviewList.get(i).getReviewIdx());
-            recyclerReviewData.setContent(reviewList.get(i).getReviewContent());
-            recyclerReviewData.setDate(reviewList.get(i).getReviewDateString());
-            recyclerReviewData.setStar(reviewList.get(i).getReviewStar());
-            recyclerReviewData.setLikeCnt(reviewList.get(i).getReviewLikeCnt());
-            recyclerReviewData.setPicture(reviewList.get(i).getReviewImg());
-            recyclerReviewData.setUserLike(reviewList.get(i).getUserLikeInt());
+            recyclerReviewData.setWriter(placeReviewData[i].getNickname());
+            recyclerReviewData.setReviewIdx(placeReviewData[i].getReviewIdx());
+            recyclerReviewData.setContent(placeReviewData[i].getReviewContent());
+            recyclerReviewData.setDate(placeReviewData[i].getReviewDate());
+            recyclerReviewData.setStar(placeReviewData[i].getReviewStar());
+            recyclerReviewData.setLikeCnt(placeReviewData[i].getReviewLikeCnt());
+            recyclerReviewData.setPicture(placeReviewData[i].getReviewImg());
+            recyclerReviewData.setUserLike(placeReviewData[i].getUserLike());
 
             recyclerReviewAdapter.addItem(recyclerReviewData);
         }
-
         recyclerReviewAdapter.notifyDataSetChanged();
     }
 }

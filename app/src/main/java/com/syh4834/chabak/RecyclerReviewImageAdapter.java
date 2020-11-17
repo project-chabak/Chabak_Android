@@ -54,7 +54,6 @@ public class RecyclerReviewImageAdapter extends RecyclerView.Adapter<RecyclerRev
 
         void onBind(RecyclerReviewImageData recyclerReviewImageData) {
             Glide.with(itemView).load(recyclerReviewImageData.getPicture()).into(imgReviewPicture);
-            //imgReviewPicture.setImageResource(recyclerReviewImageData.getPicture());
         }
     }
 }

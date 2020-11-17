@@ -1,18 +1,15 @@
 package com.syh4834.chabak;
 
-import java.util.ArrayList;
-
 public class RecyclerReviewData {
 
     private String writer;
     private int reviewIdx;
     private int star;
     private String content;
-    //private ArrayList<RecyclerReviewImageData> picture;
     private String[] picture;
     private int likeCnt;
     private String date;
-    private int userLikeInt;
+    private boolean userLike;
 
     public String getWriter() {
         return writer;
@@ -42,14 +39,6 @@ public class RecyclerReviewData {
         this.content = content;
     }
 
-//    public ArrayList<RecyclerReviewImageData> getPicture() {
-//        return picture;
-//    }
-//
-//    public void setPicture(ArrayList picture) {
-//        this.picture = picture;
-//    }
-
     public String[] getPicture() {
         return picture;
     }
@@ -74,7 +63,7 @@ public class RecyclerReviewData {
         this.date = date;
     }
 
-    public int getUserLikeInt() { return  userLikeInt; }
+    public boolean getUserLike() { return  userLike; }
 
-    public void setUserLike(int userLikeInt) { this.userLikeInt = userLikeInt; }
+    public void setUserLike(boolean userLike) { this.userLike = userLike; }
 }
