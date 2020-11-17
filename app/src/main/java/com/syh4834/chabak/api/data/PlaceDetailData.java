@@ -16,7 +16,7 @@ public class PlaceDetailData {
 
     private String placeAddress;
 
-    private int placeStar;
+    private double placeStar;
 
     private double placeLatitude;
 

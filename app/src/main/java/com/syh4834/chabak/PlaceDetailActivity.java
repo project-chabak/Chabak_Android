@@ -24,8 +24,10 @@ import android.view.ViewTreeObserver;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.annotation.GlideModule;
 import com.naver.maps.geometry.LatLng;
 import com.naver.maps.map.CameraPosition;
 import com.naver.maps.map.MapView;
@@ -36,8 +38,10 @@ import com.naver.maps.map.overlay.Marker;
 import com.naver.maps.map.overlay.OverlayImage;
 import com.syh4834.chabak.api.ChabakService;
 import com.syh4834.chabak.api.data.PlaceDetailData;
+import com.syh4834.chabak.api.data.PlaceReviewData;
 import com.syh4834.chabak.api.data.PlaceToiletData;
 import com.syh4834.chabak.api.response.ResponsePlaceDetail;
+import com.syh4834.chabak.api.response.ResponsePlaceReview;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -51,6 +55,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class PlaceDetailActivity extends AppCompatActivity implements OnMapReadyCallback {
     private PlaceDetailData placeDetailData;
+    private PlaceReviewData[] placeReviewData;
     private PlaceToiletData[] placeToiletData;
 
     private PlaceImagePageAdapter placeImagePageAdapter;
@@ -75,6 +80,7 @@ public class PlaceDetailActivity extends AppCompatActivity implements OnMapReady
     private ImageView imgCookingBanned;
     private ImageView imgStoreBanned;
 
+    private LinearLayout linearNoReview;
     private ConstraintLayout clToolbar;
     private NestedScrollView nsvPlaceDetail;
 
@@ -100,10 +106,13 @@ public class PlaceDetailActivity extends AppCompatActivity implements OnMapReady
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_place_detail);
 
+        rvReview = findViewById(R.id.rv_review);
+
         vpPlaceImage = (ViewPager) findViewById(R.id.vp_place_image);
         nsvPlaceDetail = findViewById(R.id.nsv_place_detail);
         tvImageNum = findViewById(R.id.tv_image_num);
         clToolbar = findViewById(R.id.cl_toolbar);
+        linearNoReview = findViewById(R.id.linear_no_review);
 
         tvToolbarTitle = findViewById(R.id.tv_toolbar_title);
         tvTitle = findViewById(R.id.tv_title);
@@ -136,9 +145,6 @@ public class PlaceDetailActivity extends AppCompatActivity implements OnMapReady
 
         mapView.getMapAsync(this::onMapReady);
 
-        init();
-        getData();
-
         nsvPlaceDetail.getViewTreeObserver().addOnScrollChangedListener(new ViewTreeObserver.OnScrollChangedListener() {
             @Override
             public void onScrollChanged() {
@@ -151,10 +157,7 @@ public class PlaceDetailActivity extends AppCompatActivity implements OnMapReady
             }
         });
 
-        btnReviewMore.setOnClickListener(l -> {
-            Intent intent = new Intent(this, ReviewTotalActivity.class);
-            startActivity(intent);
-        });
+
 
         btnEdit.setOnClickListener(l -> {
             Intent intent = new Intent(this, ReviewRegisterActivity.class);
@@ -188,7 +191,7 @@ public class PlaceDetailActivity extends AppCompatActivity implements OnMapReady
     }
 
     private void getPlaceData() {
-        int placeIdx = 4;
+        int placeIdx = 7;
 //        SharedPreferences sharedPreferences = getSharedPreferences("chabak", MODE_PRIVATE);
 //        String token = sharedPreferences.getString("token", null);
         String token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWR4IjoxLCJpZCI6ImlkIiwibmlja25hbWUiOiIxMjMiLCJpYXQiOjE2MDQ5NzMxMDN9.80OjSRBho8176t0BgYu5tuEZ5pJGBh_tCjVn_Nsic_I";
@@ -198,6 +201,8 @@ public class PlaceDetailActivity extends AppCompatActivity implements OnMapReady
             public void onResponse(Call<ResponsePlaceDetail> call, Response<ResponsePlaceDetail> response) {
                 if(response.body().getSuccess()) {
                     placeDetailData = response.body().getData();
+                    Log.e("data", placeDetailData.toString());
+
                     setPlaceDetail(placeDetailData);
                 }
             }
@@ -205,6 +210,43 @@ public class PlaceDetailActivity extends AppCompatActivity implements OnMapReady
             @Override
             public void onFailure(Call<ResponsePlaceDetail> call, Throwable t) {
                 Log.e("fail", "fail");
+            }
+        });
+
+        String order = "new";
+        chabakService.getPlaceReview(token, placeIdx, order).enqueue(new Callback<ResponsePlaceReview>() {
+            @Override
+            public void onResponse(Call<ResponsePlaceReview> call, Response<ResponsePlaceReview> response) {
+                if(response.body().getSuccess()) {
+                    placeReviewData = response.body().getData();
+                    btnReviewMore.setVisibility(View.VISIBLE);
+
+                    btnReviewMore.setOnClickListener(l -> {
+                        ArrayList<PlaceReviewData> reviewList2 = new ArrayList<PlaceReviewData>(Arrays.asList(placeReviewData));
+                        Log.e("arrayList", String.valueOf(reviewList2));
+
+                        Intent intent = new Intent(PlaceDetailActivity.this, ReviewTotalActivity.class);
+                        intent.putParcelableArrayListExtra("reviews", (ArrayList<? extends Parcelable>) reviewList2);
+                        startActivity(intent);
+                    });
+
+                    if(placeReviewData.length > 0) {
+                        if(placeReviewData.length > 3) {
+//                            btnReviewMore.setVisibility(View.VISIBLE);
+                                btnReviewMore.setText(placeReviewData.length -3);
+
+                        }
+                        linearNoReview.setVisibility(View.GONE);
+                        rvReview.setVisibility(View.VISIBLE);
+
+                        setPlaceReview(placeReviewData);
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponsePlaceReview> call, Throwable t) {
+
             }
         });
     }
@@ -246,7 +288,7 @@ public class PlaceDetailActivity extends AppCompatActivity implements OnMapReady
         }
     }
 
-    private void init() {
+    private void setPlaceReview(PlaceReviewData[] placeReviewData) {
         rvReview = findViewById(R.id.rv_review);
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(rvReview.getContext()){
@@ -257,25 +299,28 @@ public class PlaceDetailActivity extends AppCompatActivity implements OnMapReady
         };
         rvReview.setLayoutManager(linearLayoutManager);
 
-
-
         recyclerReviewAdapter = new RecyclerReviewAdapter();
         rvReview.setAdapter(recyclerReviewAdapter);
 
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(rvReview.getContext(), linearLayoutManager.getOrientation());
-        //dividerItemDecoration.setDrawable(getResources().getDrawable(R.drawable.line_seperator));
         rvReview.addItemDecoration(dividerItemDecoration);
 
-    }
-
-    private void getData() {
-        List<String> listWriter = Arrays.asList("작성자1", "작성자2", "작성자3", "작성자4");
-
-        for(int i = 0; i < 3; i++) {
+        for(int i = 0; i < placeReviewData.length; i++) {
             RecyclerReviewData recyclerReviewData = new RecyclerReviewData();
-            recyclerReviewData.setWriter(listWriter.get(i));
+            recyclerReviewData.setWriter(placeReviewData[i].getNickname());
+            recyclerReviewData.setReviewIdx(placeReviewData[i].getReviewIdx());
+            recyclerReviewData.setContent(placeReviewData[i].getReviewContent());
+            recyclerReviewData.setDate(placeReviewData[i].getReviewDate());
+            recyclerReviewData.setStar(placeReviewData[i].getReviewStar());
+            recyclerReviewData.setLikeCnt(placeReviewData[i].getReviewLikeCnt());
+            recyclerReviewData.setPicture(placeReviewData[i].getReviewImg());
+            recyclerReviewData.setUserLike(placeReviewData[i].getUserLikeInt());
 
             recyclerReviewAdapter.addItem(recyclerReviewData);
+
+            if(i == 2) {
+                break;
+            }
         }
 
         recyclerReviewAdapter.notifyDataSetChanged();

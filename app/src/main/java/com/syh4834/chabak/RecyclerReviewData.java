@@ -5,11 +5,14 @@ import java.util.ArrayList;
 public class RecyclerReviewData {
 
     private String writer;
+    private int reviewIdx;
     private int star;
     private String content;
-    private ArrayList<RecyclerReviewImageData> picture;
-    private int goodCount;
+    //private ArrayList<RecyclerReviewImageData> picture;
+    private String[] picture;
+    private int likeCnt;
     private String date;
+    private int userLikeInt;
 
     public String getWriter() {
         return writer;
@@ -18,6 +21,10 @@ public class RecyclerReviewData {
     public void setWriter(String writer) {
         this.writer = writer;
     }
+
+    public int getReviewIdx() { return reviewIdx; }
+
+    public void setReviewIdx(int reviewIdx) { this.reviewIdx = reviewIdx; }
 
     public int getStar() {
         return star;
@@ -35,20 +42,28 @@ public class RecyclerReviewData {
         this.content = content;
     }
 
-    public ArrayList<RecyclerReviewImageData> getPicture() {
+//    public ArrayList<RecyclerReviewImageData> getPicture() {
+//        return picture;
+//    }
+//
+//    public void setPicture(ArrayList picture) {
+//        this.picture = picture;
+//    }
+
+    public String[] getPicture() {
         return picture;
     }
 
-    public void setPicture(ArrayList picture) {
+    public void setPicture(String[] picture) {
         this.picture = picture;
     }
 
-    public int getGoodCount() {
-        return goodCount;
+    public int getLikeCnt() {
+        return likeCnt;
     }
 
-    public void setGoodCount(int goodCount) {
-        this.goodCount = goodCount;
+    public void setLikeCnt(int likeCnt) {
+        this.likeCnt = likeCnt;
     }
 
     public String getDate() {
@@ -58,4 +73,8 @@ public class RecyclerReviewData {
     public void setDate(String date) {
         this.date = date;
     }
+
+    public int getUserLikeInt() { return  userLikeInt; }
+
+    public void setUserLike(int userLikeInt) { this.userLikeInt = userLikeInt; }
 }
