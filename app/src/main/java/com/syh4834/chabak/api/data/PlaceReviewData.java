@@ -34,6 +34,7 @@ public class PlaceReviewData {
         dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.KOREAN);
         dateFormat.setTimeZone(TimeZone.getTimeZone("Asia/Seoul"));
         //reviewDateString = dateFormat.format(reviewDate);
+        Log.e("reviewDate", String.valueOf(reviewDate));
 
         return dateFormat.format(reviewDate);
     }

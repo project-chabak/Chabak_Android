@@ -16,6 +16,8 @@ import androidx.annotation.RequiresApi;
 import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+
 import java.util.ArrayList;
 
 import static android.view.View.INVISIBLE;
@@ -63,6 +65,10 @@ public class RecyclerReviewUploadImgAdapter extends RecyclerView.Adapter<Recycle
         notifyDataSetChanged();
     }
 
+    ArrayList<RecyclerReviewUploadImgData> getItem() {
+        return listUploadImg;
+    }
+
     public void setOnItemClickListener(OnItemClickListener listner) {
         this.listener = listner;
     }
@@ -87,7 +93,8 @@ public class RecyclerReviewUploadImgAdapter extends RecyclerView.Adapter<Recycle
         }
 
         void onBind(RecyclerReviewUploadImgData recyclerReviewUploadImgData) {
-            imgReviewUpload.setImageURI(recyclerReviewUploadImgData.getUploadImg());
+            Glide.with(itemView).load(recyclerReviewUploadImgData.getUploadImg()).into(imgReviewUpload);
+            //imgReviewUpload.setImageURI(recyclerReviewUploadImgData.getUploadImg());
         }
     }
 }

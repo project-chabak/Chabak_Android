@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.PointF;
 import android.os.Build;
 import android.os.Bundle;
@@ -44,7 +43,6 @@ import com.syh4834.chabak.api.response.ResponsePlaceReview;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -175,7 +173,11 @@ public class PlaceDetailActivity extends AppCompatActivity implements OnMapReady
 
 
         btnEdit.setOnClickListener(l -> {
-            Intent intent = new Intent(this, ReviewRegisterActivity.class);
+            Intent intent = new Intent(this, ReviewUploadActivity.class);
+            intent.putExtra("placeIdx",placeIdx);
+            intent.putExtra("placeTitle", placeDetailData.getPlaceTitle());
+            intent.putExtra("placeName", placeDetailData.getPlaceName());
+            intent.putExtra("placeImg", placeImagePageAdapter.getThumbnail());
             startActivity(intent);
         });
 
@@ -236,22 +238,21 @@ public class PlaceDetailActivity extends AppCompatActivity implements OnMapReady
             public void onResponse(Call<ResponsePlaceReview> call, Response<ResponsePlaceReview> response) {
                 if(response.body().getSuccess()) {
                     placeReviewData = response.body().getData();
-                    btnReviewMore.setVisibility(View.VISIBLE);
-
-                    btnReviewMore.setOnClickListener(l -> {
-                        //ArrayList<PlaceReviewData> reviewList = new ArrayList<PlaceReviewData>(Arrays.asList(placeReviewData));
-
-                        Intent intent = new Intent(PlaceDetailActivity.this, ReviewTotalActivity.class);
-                        //intent.putParcelableArrayListExtra("reviews", (ArrayList<? extends Parcelable>) reviewList);
-                        intent.putExtra("placeIdx", placeIdx);
-                        startActivity(intent);
-                    });
 
                     if(placeReviewData.length > 0) {
                         if(placeReviewData.length > 3) {
-//                            btnReviewMore.setVisibility(View.VISIBLE);
-                            btnReviewMore.setText(placeReviewData.length -3);
+                            btnReviewMore.setText(String.valueOf(placeReviewData.length -3 + "개 리뷰더보기"));
 
+                            btnReviewMore.setVisibility(View.VISIBLE);
+                            btnReviewMore.setOnClickListener(l -> {
+                                //ArrayList<PlaceReviewData> reviewList = new ArrayList<PlaceReviewData>(Arrays.asList(placeReviewData));
+
+                                Intent intent = new Intent(PlaceDetailActivity.this, ReviewTotalActivity.class);
+                                //intent.putParcelableArrayListExtra("reviews", (ArrayList<? extends Parcelable>) reviewList);
+                                intent.putExtra("placeIdx", placeIdx);
+                                intent.putExtra("reviewCnt", placeReviewData.length);
+                                startActivity(intent);
+                            });
                         }
                         linearNoReview.setVisibility(View.GONE);
                         rvReview.setVisibility(View.VISIBLE);

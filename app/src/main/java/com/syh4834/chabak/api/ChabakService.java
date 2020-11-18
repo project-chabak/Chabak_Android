@@ -7,13 +7,18 @@ import com.syh4834.chabak.api.response.ResponsePlaceReview;
 import com.syh4834.chabak.api.response.ResponseSignin;
 import com.syh4834.chabak.api.response.ResponseSignup;
 import com.syh4834.chabak.api.response.ResponseSignupCheckID;
+import com.syh4834.chabak.api.response.ResponseUploadReview;
 
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Headers;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.Part;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
@@ -38,4 +43,8 @@ public interface ChabakService {
     @Headers("Content-Type: application/json")
     @GET("/review/{placeIdx}")
     Call<ResponsePlaceReview> getPlaceReview(@Header("token") String token, @Path("placeIdx") int placeIdx, @Query("order") String order);
+
+    @Multipart
+    @POST("/review/write")
+    Call<ResponseUploadReview> uploadReview(@Header("token")String token, @Part("placeIdx") RequestBody placeIdx, @Part("content") RequestBody content, @Part("star") RequestBody star, @Part MultipartBody.Part[] imgs);
 }

@@ -19,7 +19,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".SignupSuccessActivity"></activity>
         <activity android:name=".MapActivity" />
-        <activity android:name=".ReviewRegisterActivity" />
+        <activity android:name=".ReviewUploadActivity" />
         <activity android:name=".ReviewTotalActivity" />
 
         <meta-data
