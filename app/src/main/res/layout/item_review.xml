@@ -147,12 +147,12 @@
         android:text="10"
         android:textColor="@color/colorTextLight"
         android:textSize="11sp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView"
-        app:layout_constraintStart_toEndOf="@+id/textView"
-        app:layout_constraintTop_toTopOf="@+id/textView" />
+        app:layout_constraintBottom_toBottomOf="@+id/tv_good"
+        app:layout_constraintStart_toEndOf="@+id/tv_good"
+        app:layout_constraintTop_toTopOf="@+id/tv_good" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/tv_good"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="3dp"

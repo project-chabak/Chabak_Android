@@ -1,6 +1,10 @@
 package com.syh4834.chabak;
 
 
+import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,20 +12,30 @@ import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.ColorRes;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.sql.Time;
+import com.syh4834.chabak.api.ChabakService;
+import com.syh4834.chabak.api.request.RequestLikePlace;
+import com.syh4834.chabak.api.request.RequestLikeReview;
+import com.syh4834.chabak.api.response.ResponseLike;
+
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.TimeZone;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 
 public class RecyclerReviewAdapter extends RecyclerView.Adapter<RecyclerReviewAdapter.ItemViewHolder> {
 
     private ArrayList<RecyclerReviewData> listData = new ArrayList<>();
+    private static String token;
+
 
     @NonNull
     @Override
@@ -44,11 +58,16 @@ public class RecyclerReviewAdapter extends RecyclerView.Adapter<RecyclerReviewAd
         listData.add(recyclerReviewData);
     }
 
+    void setToken(String token) {
+        this.token = token;
+    }
+
     static class ItemViewHolder extends RecyclerView.ViewHolder {
         private TextView tvWriter;
         private TextView tvReviewDate;
         private TextView tvReviewContent;
         private TextView tvGoodCount;
+        private TextView tvGood;
 
         private ImageView imgPicture;
         private ImageView imgStar01;
@@ -62,12 +81,15 @@ public class RecyclerReviewAdapter extends RecyclerView.Adapter<RecyclerReviewAd
         private RecyclerView rvReviewPicture;
         private RecyclerReviewImageAdapter recyclerReviewImageAdapter;
 
+        int reviewGoodCnt;
+
         ItemViewHolder(View itemView) {
             super(itemView);
 
             tvWriter = itemView.findViewById(R.id.tv_writer);
             tvReviewDate = itemView.findViewById(R.id.tv_review_date);
             tvReviewContent = itemView.findViewById(R.id.tv_review_content);
+            tvGood = itemView.findViewById(R.id.tv_good);
             tvGoodCount = itemView.findViewById(R.id.tv_good_count);
 
             imgPicture = itemView.findViewById(R.id.img_picture);
@@ -89,10 +111,17 @@ public class RecyclerReviewAdapter extends RecyclerView.Adapter<RecyclerReviewAd
         }
 
         void onBind(RecyclerReviewData recyclerReviewData) {
+            Retrofit retrofit = new Retrofit.Builder()
+                    .baseUrl(ChabakService.BASE_RUL)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+            ChabakService chabakService = retrofit.create(ChabakService.class);
+
             tvWriter.setText(recyclerReviewData.getWriter());
             tvReviewDate.setText(recyclerReviewData.getDate());
             tvReviewContent.setText(recyclerReviewData.getContent());
-            tvGoodCount.setText(String.valueOf(recyclerReviewData.getLikeCnt()));
+            reviewGoodCnt = recyclerReviewData.getLikeCnt();
+            tvGoodCount.setText(String.valueOf(reviewGoodCnt));
 
             switch(recyclerReviewData.getStar()) {
                 case 5:
@@ -109,7 +138,58 @@ public class RecyclerReviewAdapter extends RecyclerView.Adapter<RecyclerReviewAd
 
             if (recyclerReviewData.getUserLike()) {
                 chbGood.setChecked(true);
+                tvGood.setTextColor(Color.parseColor("#3C836E"));
+                tvGoodCount.setTextColor(Color.parseColor("#3C836E"));
             }
+
+            chbGood.setOnClickListener(l -> {
+                if(chbGood.isChecked()) {
+                    chabakService.likeReview(token, new RequestLikeReview(recyclerReviewData.getReviewIdx())).enqueue(new Callback<ResponseLike>() {
+                        @Override
+                        public void onResponse(Call<ResponseLike> call, Response<ResponseLike> response) {
+                            if (response.body().getSuccess()) {
+                                chbGood.setChecked(true);
+                                reviewGoodCnt++;
+                                tvGoodCount.setText(String.valueOf(reviewGoodCnt));
+                                tvGood.setTextColor(Color.parseColor("#3C836E"));
+                                tvGoodCount.setTextColor(Color.parseColor("#3C836E"));
+                                Log.e("reviewLike", "success");
+                            } else {
+                                Log.e("reviewLike", "fail");
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<ResponseLike> call, Throwable t) {
+                            Log.e("fail","fail");
+
+                        }
+                    });
+                } else {
+                    chabakService.cancleLikedReview(token, new RequestLikeReview(recyclerReviewData.getReviewIdx())).enqueue(new Callback<ResponseLike>() {
+                        @Override
+                        public void onResponse(Call<ResponseLike> call, Response<ResponseLike> response) {
+                            if (response.body().getSuccess()) {
+                                chbGood.setChecked(false);
+                                reviewGoodCnt--;
+                                tvGoodCount.setText(String.valueOf(reviewGoodCnt));
+                                tvGood.setTextColor(Color.parseColor("#656565"));
+                                tvGoodCount.setTextColor(Color.parseColor("#656565"));
+
+                                Log.e("cancleLikedReview", "success");
+                            } else {
+                                Log.e("cancleLikedReview", "fail");
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<ResponseLike> call, Throwable t) {
+                            Log.e("fail","fail");
+
+                        }
+                    });
+                }
+            });
 
             String[] listPictures = recyclerReviewData.getPicture();
             if(listPictures.length > 0) {
