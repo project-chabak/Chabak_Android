@@ -36,6 +36,7 @@ public class ReviewTotalActivity extends AppCompatActivity {
     private PlaceReviewData[] placeReviewData;
 
     int placeIdx;
+    int reviewCnt;
     String token;
 
     Retrofit retrofit = new Retrofit.Builder()
@@ -59,6 +60,9 @@ public class ReviewTotalActivity extends AppCompatActivity {
         rbRangeLatest = findViewById(R.id.rb_range_latest);
 
         placeIdx = getIntent().getIntExtra("placeIdx", 0);
+        reviewCnt = getIntent().getIntExtra("reviewCnt", 0);
+
+        tvReviewCount.setText(String.valueOf(reviewCnt));
 //        SharedPreferences sharedPreferences = getSharedPreferences("chabak", MODE_PRIVATE);
 //        token = sharedPreferences.getString("token", null);
         token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWR4IjoxLCJpZCI6ImlkIiwibmlja25hbWUiOiIxMjMiLCJpYXQiOjE2MDQ5NzMxMDN9.80OjSRBho8176t0BgYu5tuEZ5pJGBh_tCjVn_Nsic_I";
@@ -101,7 +105,6 @@ public class ReviewTotalActivity extends AppCompatActivity {
 
 
     private void setPlaceReview(PlaceReviewData[] placeReviewData) {
-        tvReviewCount.setText(String.valueOf(placeReviewData.length));
         rvReviewTotal = findViewById(R.id.rv_review_total);
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(rvReviewTotal.getContext()){

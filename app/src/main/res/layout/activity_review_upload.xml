@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ReviewRegisterActivity">
+    tools:context=".ReviewUploadActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -333,7 +333,7 @@
 
 
     <Button
-        android:id="@+id/btn_review_register"
+        android:id="@+id/btn_review_upload"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
