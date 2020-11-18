@@ -1,6 +1,7 @@
 package com.syh4834.chabak;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.annotation.UiThread;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.PointF;
 import android.os.Build;
 import android.os.Bundle;
@@ -19,6 +21,7 @@ import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewTreeObserver;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageView;
@@ -38,7 +41,9 @@ import com.syh4834.chabak.api.ChabakService;
 import com.syh4834.chabak.api.data.PlaceDetailData;
 import com.syh4834.chabak.api.data.PlaceReviewData;
 import com.syh4834.chabak.api.data.PlaceToiletData;
+import com.syh4834.chabak.api.request.RequestLikePlace;
 import com.syh4834.chabak.api.response.ResponsePlaceDetail;
+import com.syh4834.chabak.api.response.ResponseLike;
 import com.syh4834.chabak.api.response.ResponsePlaceReview;
 
 import java.util.ArrayList;
@@ -51,6 +56,8 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class PlaceDetailActivity extends AppCompatActivity implements OnMapReadyCallback {
+    private int REQUEST_REVIEW_UPLOAD = 10011;
+
     private PlaceDetailData placeDetailData;
     private PlaceReviewData[] placeReviewData;
     private PlaceToiletData[] placeToiletData;
@@ -94,7 +101,12 @@ public class PlaceDetailActivity extends AppCompatActivity implements OnMapReady
 
     private MapView mapView;
 
+    int likeCnt;
+    int reviewCnt;
     int placeIdx;
+
+    double reviewAvg;
+
     String token;
 
     Retrofit retrofit = new Retrofit.Builder()
@@ -151,6 +163,7 @@ public class PlaceDetailActivity extends AppCompatActivity implements OnMapReady
         placeIdx = 7;
 //        SharedPreferences sharedPreferences = getSharedPreferences("chabak", MODE_PRIVATE);
 //        token = sharedPreferences.getString("token", null);
+//        Log.e("token", token);
         token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWR4IjoxLCJpZCI6ImlkIiwibmlja25hbWUiOiIxMjMiLCJpYXQiOjE2MDQ5NzMxMDN9.80OjSRBho8176t0BgYu5tuEZ5pJGBh_tCjVn_Nsic_I";
 
         getPlaceData();
@@ -170,7 +183,52 @@ public class PlaceDetailActivity extends AppCompatActivity implements OnMapReady
             }
         });
 
+        chbLike.setOnClickListener(l -> {
+            if(chbLike.isChecked()) {
+                chabakService.likePlace(token, new RequestLikePlace(placeIdx)).enqueue(new Callback<ResponseLike>() {
+                    @Override
+                    public void onResponse(Call<ResponseLike> call, Response<ResponseLike> response) {
+                        if (response.body().getSuccess()) {
+                            likeCnt++;
+                            tvLike.setText(String.valueOf(likeCnt) +"명이 저장한 차박여행지");
+                            chbToolbarLike.setChecked(true);
+                            Log.e("placeLike", "success");
+                        } else {
+                            Log.e("placeLike", "fail");
+                        }
+                    }
 
+                    @Override
+                    public void onFailure(Call<ResponseLike> call, Throwable t) {
+                        Log.e("fail","fail");
+
+                    }
+                });
+            } else {
+                chabakService.cancleLikedPlace(token, new RequestLikePlace(placeIdx)).enqueue(new Callback<ResponseLike>() {
+                    @Override
+                    public void onResponse(Call<ResponseLike> call, Response<ResponseLike> response) {
+                        if (response.body().getSuccess()) {
+                            likeCnt--;
+                            tvLike.setText(String.valueOf(likeCnt) +"명이 저장한 차박여행지");
+                            chbToolbarLike.setChecked(false);
+                            Log.e("placeLike", "success");
+                        } else {
+                            Log.e("placeLike", "fail");
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ResponseLike> call, Throwable t) {
+
+                    }
+                });
+            }
+        });
+
+        chbToolbarLike.setOnClickListener(l -> {
+            chbLike.performClick();
+        });
 
         btnEdit.setOnClickListener(l -> {
             Intent intent = new Intent(this, ReviewUploadActivity.class);
@@ -178,7 +236,7 @@ public class PlaceDetailActivity extends AppCompatActivity implements OnMapReady
             intent.putExtra("placeTitle", placeDetailData.getPlaceTitle());
             intent.putExtra("placeName", placeDetailData.getPlaceName());
             intent.putExtra("placeImg", placeImagePageAdapter.getThumbnail());
-            startActivity(intent);
+            startActivityForResult(intent, REQUEST_REVIEW_UPLOAD);
         });
 
         rbRangeRec.setOnClickListener(l -> {
@@ -250,6 +308,9 @@ public class PlaceDetailActivity extends AppCompatActivity implements OnMapReady
                                 Intent intent = new Intent(PlaceDetailActivity.this, ReviewTotalActivity.class);
                                 //intent.putParcelableArrayListExtra("reviews", (ArrayList<? extends Parcelable>) reviewList);
                                 intent.putExtra("placeIdx", placeIdx);
+                                intent.putExtra("placeTitle", placeDetailData.getPlaceTitle());
+                                intent.putExtra("placeName", placeDetailData.getPlaceName());
+                                intent.putExtra("placeImg", placeImagePageAdapter.getThumbnail());
                                 intent.putExtra("reviewCnt", placeReviewData.length);
                                 startActivity(intent);
                             });
@@ -283,11 +344,14 @@ public class PlaceDetailActivity extends AppCompatActivity implements OnMapReady
         tvTitle.setText(placeDetailData.getPlaceTitle());
         tvPlaceName.setText(placeDetailData.getPlaceName());
         tvStar.setText(String.valueOf(placeDetailData.getPlaceAvgStar()));
+        reviewCnt = placeDetailData.getPlaceReviewCnt();
         tvReviewCount.setText("("+String.valueOf(placeDetailData.getPlaceReviewCnt())+")");
+        likeCnt = placeDetailData.getPlaceLikeCnt();
         tvLike.setText(String.valueOf(placeDetailData.getPlaceLikeCnt()) +"명이 저장한 차박여행지");
         tvAddress.setText(placeDetailData.getPlaceAddress());
         tvPlaceIntroContent.setText(placeDetailData.getPlaceContent());
         tvLocationDetail.setText(placeDetailData.getPlaceAddress());
+        reviewAvg = placeDetailData.getPlaceAvgStar();
         tvReview.setText(String.valueOf(placeDetailData.getPlaceAvgStar())+"("+String.valueOf(placeDetailData.getPlaceReviewCnt()+")"));
 
         if(placeDetailData.getPlaceToilet().length == 0) {
@@ -320,6 +384,8 @@ public class PlaceDetailActivity extends AppCompatActivity implements OnMapReady
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(rvReview.getContext(), linearLayoutManager.getOrientation());
         rvReview.addItemDecoration(dividerItemDecoration);
 
+        recyclerReviewAdapter.setToken(token);
+
         for(int i = 0; i < placeReviewData.length; i++) {
             RecyclerReviewData recyclerReviewData = new RecyclerReviewData();
             recyclerReviewData.setWriter(placeReviewData[i].getNickname());
@@ -345,6 +411,28 @@ public class PlaceDetailActivity extends AppCompatActivity implements OnMapReady
     protected void onStart() {
         super.onStart();
         mapView.onStart();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(resultCode == -1) {
+            reviewCnt++;
+            //통신 후 수정
+            //reviewAvg = (totalStar + data.getIntExtra("reviewStar", 0)) / (reviewCng+1)
+            //reviewAvg = reviewAvg + (data.getIntExtra("reviewStar", 0) - reviewAvg) /
+            //reviewAvg = Math.round(reviewAvg*10) / 10.0;
+            String reviewAvgString;
+            tvReviewCount.setText("(" + String.valueOf(reviewCnt) + ")");
+            tvStar.setText(String.valueOf(reviewAvg));
+            tvReview.setText(String.valueOf(reviewAvg) + "(" + String.valueOf(reviewCnt) + ")");
+            rbRangeLatest.performClick();
+
+            UploadReviewSuccessDialog uploadReviewSuccessDialog = new UploadReviewSuccessDialog(PlaceDetailActivity.this);
+            uploadReviewSuccessDialog.getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT);
+            uploadReviewSuccessDialog.show();
+        }
     }
 
     @Override

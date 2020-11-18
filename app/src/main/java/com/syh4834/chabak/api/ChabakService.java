@@ -1,8 +1,11 @@
 package com.syh4834.chabak.api;
 
+import com.syh4834.chabak.api.request.RequestLikePlace;
+import com.syh4834.chabak.api.request.RequestLikeReview;
 import com.syh4834.chabak.api.request.RequestSignin;
 import com.syh4834.chabak.api.request.RequestSignup;
 import com.syh4834.chabak.api.response.ResponsePlaceDetail;
+import com.syh4834.chabak.api.response.ResponseLike;
 import com.syh4834.chabak.api.response.ResponsePlaceReview;
 import com.syh4834.chabak.api.response.ResponseSignin;
 import com.syh4834.chabak.api.response.ResponseSignup;
@@ -10,10 +13,12 @@ import com.syh4834.chabak.api.response.ResponseSignupCheckID;
 import com.syh4834.chabak.api.response.ResponseUploadReview;
 
 import okhttp3.MultipartBody;
+import okhttp3.Request;
 import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.HTTP;
 import retrofit2.http.Header;
 import retrofit2.http.Headers;
 import retrofit2.http.Multipart;
@@ -39,6 +44,22 @@ public interface ChabakService {
     @Headers("Content-Type: application/json")
     @GET("/place/detail/{placeIdx}")
     Call<ResponsePlaceDetail> getPlaceDetail(@Header("token") String token, @Path("placeIdx") int placeIdx);
+
+    @Headers("Content-Type: application/json")
+    @POST("/place/like")
+    Call<ResponseLike> likePlace(@Header("token") String token, @Body RequestLikePlace requestLikePlace);
+
+    @Headers("Content-Type: application/json")
+    @HTTP(method = "DELETE", path = "/place/like", hasBody = true)
+    Call<ResponseLike> cancleLikedPlace(@Header("token") String token, @Body RequestLikePlace requestLikePlace);
+
+    @Headers("Content-Type: application/json")
+    @POST("/review/like")
+    Call<ResponseLike> likeReview(@Header("token") String token, @Body RequestLikeReview requestLikeReview);
+
+    @Headers("Content-Type: application/json")
+    @HTTP(method = "DELETE", path = "/review/like", hasBody = true)
+    Call<ResponseLike> cancleLikedReview(@Header("token") String token, @Body RequestLikeReview requestLikeReview);
 
     @Headers("Content-Type: application/json")
     @GET("/review/{placeIdx}")

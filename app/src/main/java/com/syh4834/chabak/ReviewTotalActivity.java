@@ -1,5 +1,6 @@
 package com.syh4834.chabak;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -7,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.TextView;
@@ -22,11 +24,13 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ReviewTotalActivity extends AppCompatActivity {
+    private int REQUEST_REVIEW_TOTAL_UPLOAD = 10012;
 
     private RecyclerView rvReviewTotal;
     private RecyclerReviewAdapter recyclerReviewAdapter;
 
     private Button btnBack;
+    private Button btnEdit;
 
     private RadioButton rbRangeRec;
     private RadioButton rbRangeLatest;
@@ -37,6 +41,7 @@ public class ReviewTotalActivity extends AppCompatActivity {
 
     int placeIdx;
     int reviewCnt;
+
     String token;
 
     Retrofit retrofit = new Retrofit.Builder()
@@ -55,23 +60,33 @@ public class ReviewTotalActivity extends AppCompatActivity {
         tvReviewCount = findViewById(R.id.tv_review_count);
 
         btnBack = findViewById(R.id.btn_back);
+        btnEdit = findViewById(R.id.btn_edit);
 
         rbRangeRec = findViewById(R.id.rb_range_rec);
         rbRangeLatest = findViewById(R.id.rb_range_latest);
 
         placeIdx = getIntent().getIntExtra("placeIdx", 0);
-        reviewCnt = getIntent().getIntExtra("reviewCnt", 0);
 
+        reviewCnt = getIntent().getIntExtra("reviewCnt", 0);
         tvReviewCount.setText(String.valueOf(reviewCnt));
 //        SharedPreferences sharedPreferences = getSharedPreferences("chabak", MODE_PRIVATE);
 //        token = sharedPreferences.getString("token", null);
-        token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWR4IjoxLCJpZCI6ImlkIiwibmlja25hbWUiOiIxMjMiLCJpYXQiOjE2MDQ5NzMxMDN9.80OjSRBho8176t0BgYu5tuEZ5pJGBh_tCjVn_Nsic_I";
+        token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWR4IjozLCJpZCI6ImlkVGVzdCIsIm5pY2tuYW1lIjoibmlja25hbWUiLCJpYXQiOjE2MDU2NzcyNDZ9.fKU9vfikGOMQ158oW7kyLhTR4ZRZPDMvvmpseFhK8sA";
 
         getPlaceReviewData("like");
 
         btnBack.setOnClickListener(l -> {
             Intent intent = new Intent(this, PlaceDetailActivity.class);
             finish();
+        });
+
+        btnEdit.setOnClickListener(l -> {
+            Intent intent = new Intent(this, ReviewUploadActivity.class);
+            intent.putExtra("placeIdx",getIntent().getIntExtra("placeIdx", 0));
+            intent.putExtra("placeTitle", getIntent().getStringExtra("placeTitle"));
+            intent.putExtra("placeName", getIntent().getStringExtra("placeName"));
+            intent.putExtra("placeImg", getIntent().getStringExtra("placeImg"));
+            startActivityForResult(intent, REQUEST_REVIEW_TOTAL_UPLOAD);
         });
 
         rbRangeRec.setOnClickListener(l -> {
@@ -135,5 +150,20 @@ public class ReviewTotalActivity extends AppCompatActivity {
             recyclerReviewAdapter.addItem(recyclerReviewData);
         }
         recyclerReviewAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(resultCode == -1) {
+            reviewCnt++;
+            tvReviewCount.setText(String.valueOf(reviewCnt));
+            rbRangeLatest.performClick();
+
+            UploadReviewSuccessDialog uploadReviewSuccessDialog = new UploadReviewSuccessDialog(ReviewTotalActivity.this);
+            uploadReviewSuccessDialog.getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT);
+            uploadReviewSuccessDialog.show();
+        }
     }
 }

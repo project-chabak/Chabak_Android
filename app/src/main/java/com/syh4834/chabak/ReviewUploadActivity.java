@@ -11,17 +11,20 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.syh4834.chabak.api.ChabakService;
@@ -57,6 +60,7 @@ public class ReviewUploadActivity extends AppCompatActivity {
     private EditText edtReviewComment;
 
     private Button btnReviewUpload;
+    private Button btnBack;
 
     private RecyclerView rvReviewUploadImg;
     private RecyclerReviewUploadImgData recyclerReviewUploadImgData;
@@ -64,6 +68,7 @@ public class ReviewUploadActivity extends AppCompatActivity {
 
     private String token;
     private int placeIdx;
+    private int reviewStar;
 
     private Bitmap img;
 
@@ -90,18 +95,25 @@ public class ReviewUploadActivity extends AppCompatActivity {
         edtReviewComment = findViewById(R.id.edt_review_comment);
 
         btnReviewUpload = findViewById(R.id.btn_review_upload);
+        btnBack = findViewById(R.id.btn_back);
 
         recyclerReviewUploadImgAdapter = new RecyclerReviewUploadImgAdapter();
 
         placeIdx = getIntent().getIntExtra("placeIdx", 0);
 //        SharedPreferences sharedPreferences = getSharedPreferences("chabak", MODE_PRIVATE);
 //        token = sharedPreferences.getString("token", null);
-        token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWR4IjoxLCJpZCI6ImlkIiwibmlja25hbWUiOiIxMjMiLCJpYXQiOjE2MDQ5NzMxMDN9.80OjSRBho8176t0BgYu5tuEZ5pJGBh_tCjVn_Nsic_I";
+        token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWR4IjozLCJpZCI6ImlkVGVzdCIsIm5pY2tuYW1lIjoibmlja25hbWUiLCJpYXQiOjE2MDU2NzcyNDZ9.fKU9vfikGOMQ158oW7kyLhTR4ZRZPDMvvmpseFhK8sA";
 
         tvPlaceTitle.setText(getIntent().getStringExtra("placeTitle"));
         tvPlaceName.setText(getIntent().getStringExtra("placeName"));
-
         Glide.with(this).load(getIntent().getStringExtra("placeImg")).into(imgPlace);
+
+        btnBack.setOnClickListener(l -> {
+            Intent intent = new Intent();
+            setResult(RESULT_CANCELED, intent);
+            finish();
+        });
+
         recyclerInit();
 
         recyclerReviewUploadImgAdapter.setOnItemClickListener(new RecyclerReviewUploadImgAdapter.OnItemClickListener() {
@@ -117,7 +129,7 @@ public class ReviewUploadActivity extends AppCompatActivity {
         });
 
         btnReviewUpload.setOnClickListener(l -> {
-            int reviewStar = 0;
+            reviewStar = 0;
             switch(rgReview.getCheckedRadioButtonId()) {
                 case 2131362146:
                     reviewStar = 1;
@@ -135,49 +147,58 @@ public class ReviewUploadActivity extends AppCompatActivity {
                     reviewStar = 5;
             }
 
-            MultipartBody.Part[] imgs = new MultipartBody.Part[recyclerReviewUploadImgAdapter.getItemCount()];
-            ArrayList<RecyclerReviewUploadImgData> recyclerReviewUploadImgArray = recyclerReviewUploadImgAdapter.getItem();
+            if(reviewStar == 0) {
+                Toast.makeText(this, "차박여행지에 대한 점수를 표시해주세요", Toast.LENGTH_SHORT).show();
+            } else if(edtReviewComment.getText().length() == 0) {
+                Toast.makeText(this, "리뷰를 적어주세요", Toast.LENGTH_SHORT).show();
+            } else {
+                MultipartBody.Part[] imgs = new MultipartBody.Part[recyclerReviewUploadImgAdapter.getItemCount()];
+                ArrayList<RecyclerReviewUploadImgData> recyclerReviewUploadImgArray = recyclerReviewUploadImgAdapter.getItem();
 
-            for (int i = 1; i < recyclerReviewUploadImgAdapter.getItemCount(); i++) {
-                File uploadFile = new File(recyclerReviewUploadImgArray.get(i).getUploadImg());
-                InputStream in = null;
-                try {
-                    in = getContentResolver().openInputStream(Uri.fromFile(uploadFile));
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                }
-                img = BitmapFactory.decodeStream(in);
-                try {
-                    in.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
-                ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                img.compress(Bitmap.CompressFormat.JPEG, 20, baos);
-
-                RequestBody imgBody = RequestBody.create(MediaType.parse("image/*"),  baos.toByteArray());
-
-                imgs[i] = MultipartBody.Part.createFormData("imgs", uploadFile.getName(), imgBody);
-            }
-
-            chabakService.uploadReview(token,
-                    RequestBody.create(MediaType.parse("text.plain"), String.valueOf(placeIdx)),
-                    RequestBody.create(MediaType.parse("text.plain"), edtReviewComment.getText().toString()),
-                    RequestBody.create(MediaType.parse("text.plain"), String.valueOf(reviewStar)),
-                    imgs).enqueue(new Callback<ResponseUploadReview>() {
-                @Override
-                public void onResponse(Call<ResponseUploadReview> call, Response<ResponseUploadReview> response) {
-                    if(response.body().getSuccess()) {
-                        Log.e("upload", "success");
+                for (int i = 1; i < recyclerReviewUploadImgAdapter.getItemCount(); i++) {
+                    File uploadFile = new File(recyclerReviewUploadImgArray.get(i).getUploadImg());
+                    InputStream in = null;
+                    try {
+                        in = getContentResolver().openInputStream(Uri.fromFile(uploadFile));
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
                     }
+                    img = BitmapFactory.decodeStream(in);
+                    try {
+                        in.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                    img.compress(Bitmap.CompressFormat.JPEG, 20, baos);
+
+                    RequestBody imgBody = RequestBody.create(MediaType.parse("image/*"),  baos.toByteArray());
+
+                    imgs[i] = MultipartBody.Part.createFormData("imgs", uploadFile.getName(), imgBody);
                 }
 
-                @Override
-                public void onFailure(Call<ResponseUploadReview> call, Throwable t) {
-                    Log.e("upload", "fail");
-                }
-            });
+                chabakService.uploadReview(token,
+                        RequestBody.create(MediaType.parse("text.plain"), String.valueOf(placeIdx)),
+                        RequestBody.create(MediaType.parse("text.plain"), edtReviewComment.getText().toString()),
+                        RequestBody.create(MediaType.parse("text.plain"), String.valueOf(reviewStar)),
+                        imgs).enqueue(new Callback<ResponseUploadReview>() {
+                    @Override
+                    public void onResponse(Call<ResponseUploadReview> call, Response<ResponseUploadReview> response) {
+                        if(response.body().getSuccess()) {
+                            Intent intent = new Intent();
+                            intent.putExtra("reviewStar", reviewStar);
+                            setResult(RESULT_OK, intent);
+                            finish();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ResponseUploadReview> call, Throwable t) {
+                        Log.e("upload", "fail");
+                    }
+                });
+            }
         });
     }
 
@@ -235,3 +256,5 @@ public class ReviewUploadActivity extends AppCompatActivity {
         }
     }
 }
+
+//backPressed 필요하면 추가하기

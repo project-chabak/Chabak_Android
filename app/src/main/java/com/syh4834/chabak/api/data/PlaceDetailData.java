@@ -28,7 +28,7 @@ public class PlaceDetailData {
 
     private String placeTitle;
 
-    private String placeReviewCnt;
+    private int placeReviewCnt;
 
     private String placeCategoryName;
 
@@ -89,7 +89,7 @@ public class PlaceDetailData {
         return placeTitle;
     }
 
-    public String getPlaceReviewCnt ()
+    public int getPlaceReviewCnt ()
     {
         return placeReviewCnt;
     }
