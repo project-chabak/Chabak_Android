@@ -614,13 +614,13 @@
                     android:id="@+id/btn_go_review"
                     style="@style/Widget.AppCompat.Button.Borderless"
                     android:layout_width="wrap_content"
-                    android:layout_height="30dp"
+                    android:layout_height="35dp"
                     android:layout_marginTop="5dp"
                     android:background="@drawable/rec_primary_10dp"
                     android:fontFamily="@font/nanum_barun_gothic_regular"
                     android:text="리뷰하러가기"
                     android:textColor="@android:color/white"
-                    android:textSize="11sp" />
+                    android:textSize="12sp" />
             </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
