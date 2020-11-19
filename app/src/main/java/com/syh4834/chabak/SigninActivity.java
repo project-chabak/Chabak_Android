@@ -99,4 +99,9 @@ public class SigninActivity extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    public void onBackPressed() {
+        btnBack.performClick();
+    }
 }

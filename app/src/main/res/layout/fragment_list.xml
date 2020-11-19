@@ -296,7 +296,7 @@
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintHorizontal_bias="0.9"
-                    android:background="@drawable/close"
+                    android:background="@drawable/banned"
                     tools:ignore="MissingConstraints" />
 
                 <TextView

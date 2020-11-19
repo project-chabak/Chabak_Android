@@ -164,7 +164,6 @@ public class SignupActivity extends AppCompatActivity {
             } else {
                 gender = "F";
             }
-            Log.e("gender", gender);
             String birth = edtBirth.toString();
 
             if (nickname.isEmpty() || id.isEmpty() || pw.isEmpty() || pwCheck.isEmpty() || genderID == -1 || birth.isEmpty()) {
@@ -198,6 +197,9 @@ public class SignupActivity extends AppCompatActivity {
                 }
             }
         });
-
+    }
+    @Override
+    public void onBackPressed() {
+        btnBack.performClick();
     }
 }

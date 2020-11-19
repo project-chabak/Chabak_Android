@@ -202,6 +202,7 @@ public class ReviewUploadActivity extends AppCompatActivity {
         });
     }
 
+
     private String getRealPathFromURI(Uri contentURI) {
         String [] proj={MediaStore.Images.Media.DATA};
         Cursor cursor = managedQuery( contentURI,
@@ -255,6 +256,13 @@ public class ReviewUploadActivity extends AppCompatActivity {
             recyclerReviewUploadImgAdapter.notifyDataSetChanged();
         }
     }
+
+    @Override
+    public void onBackPressed() {
+        btnBack.performClick();
+    }
 }
+
+
 
 //backPressed 필요하면 추가하기

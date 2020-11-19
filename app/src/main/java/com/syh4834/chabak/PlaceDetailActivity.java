@@ -57,6 +57,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class PlaceDetailActivity extends AppCompatActivity implements OnMapReadyCallback {
     private int REQUEST_REVIEW_UPLOAD = 10011;
+    private int REQUEST_REVIEW_TOTAL = 10013;
 
     private PlaceDetailData placeDetailData;
     private PlaceReviewData[] placeReviewData;
@@ -104,6 +105,7 @@ public class PlaceDetailActivity extends AppCompatActivity implements OnMapReady
     int likeCnt;
     int reviewCnt;
     int placeIdx;
+    int placeStar;
 
     double reviewAvg;
 
@@ -192,16 +194,13 @@ public class PlaceDetailActivity extends AppCompatActivity implements OnMapReady
                             likeCnt++;
                             tvLike.setText(String.valueOf(likeCnt) +"명이 저장한 차박여행지");
                             chbToolbarLike.setChecked(true);
-                            Log.e("placeLike", "success");
                         } else {
-                            Log.e("placeLike", "fail");
                         }
                     }
 
                     @Override
                     public void onFailure(Call<ResponseLike> call, Throwable t) {
                         Log.e("fail","fail");
-
                     }
                 });
             } else {
@@ -212,9 +211,7 @@ public class PlaceDetailActivity extends AppCompatActivity implements OnMapReady
                             likeCnt--;
                             tvLike.setText(String.valueOf(likeCnt) +"명이 저장한 차박여행지");
                             chbToolbarLike.setChecked(false);
-                            Log.e("placeLike", "success");
                         } else {
-                            Log.e("placeLike", "fail");
                         }
                     }
 
@@ -299,7 +296,7 @@ public class PlaceDetailActivity extends AppCompatActivity implements OnMapReady
 
                     if(placeReviewData.length > 0) {
                         if(placeReviewData.length > 3) {
-                            btnReviewMore.setText(String.valueOf(placeReviewData.length -3 + "개 리뷰더보기"));
+                            btnReviewMore.setText(String.valueOf(placeDetailData.getPlaceReviewCnt() -3 + "개 리뷰더보기"));
 
                             btnReviewMore.setVisibility(View.VISIBLE);
                             btnReviewMore.setOnClickListener(l -> {
@@ -312,7 +309,7 @@ public class PlaceDetailActivity extends AppCompatActivity implements OnMapReady
                                 intent.putExtra("placeName", placeDetailData.getPlaceName());
                                 intent.putExtra("placeImg", placeImagePageAdapter.getThumbnail());
                                 intent.putExtra("reviewCnt", placeReviewData.length);
-                                startActivity(intent);
+                                startActivityForResult(intent, REQUEST_REVIEW_TOTAL);
                             });
                         }
                         linearNoReview.setVisibility(View.GONE);
@@ -338,11 +335,15 @@ public class PlaceDetailActivity extends AppCompatActivity implements OnMapReady
             chbToolbarLike.setChecked(true);
             chbLike.setChecked(true);
         }
+        reviewCnt = placeDetailData.getPlaceReviewCnt();
+        reviewAvg = placeDetailData.getPlaceAvgStar();
+        placeStar = placeDetailData.getPlaceStar();
 
         tvToolbarTitle.setText(placeDetailData.getPlaceName());
         tvImageNum.setText("1 / " + placeDetailData.getPlaceImg().length);
         tvTitle.setText(placeDetailData.getPlaceTitle());
         tvPlaceName.setText(placeDetailData.getPlaceName());
+        placeStar = placeDetailData.getPlaceStar();
         tvStar.setText(String.valueOf(placeDetailData.getPlaceAvgStar()));
         reviewCnt = placeDetailData.getPlaceReviewCnt();
         tvReviewCount.setText("("+String.valueOf(placeDetailData.getPlaceReviewCnt())+")");
@@ -416,22 +417,33 @@ public class PlaceDetailActivity extends AppCompatActivity implements OnMapReady
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == REQUEST_REVIEW_UPLOAD) {
+            if (resultCode == RESULT_OK) {
+                reviewCnt++;
+                placeStar = placeStar + data.getIntExtra("reviewStar", 0);
+                reviewAvg = (double) placeStar / (double) reviewCnt;
+                reviewAvg = Math.round(reviewAvg * 10) / 10.0;
 
-        if(resultCode == -1) {
-            reviewCnt++;
-            //통신 후 수정
-            //reviewAvg = (totalStar + data.getIntExtra("reviewStar", 0)) / (reviewCng+1)
-            //reviewAvg = reviewAvg + (data.getIntExtra("reviewStar", 0) - reviewAvg) /
-            //reviewAvg = Math.round(reviewAvg*10) / 10.0;
-            String reviewAvgString;
-            tvReviewCount.setText("(" + String.valueOf(reviewCnt) + ")");
-            tvStar.setText(String.valueOf(reviewAvg));
-            tvReview.setText(String.valueOf(reviewAvg) + "(" + String.valueOf(reviewCnt) + ")");
-            rbRangeLatest.performClick();
+                tvReviewCount.setText("(" + String.valueOf(reviewCnt) + ")");
+                tvStar.setText(String.valueOf(reviewAvg));
+                tvReview.setText(String.valueOf(reviewAvg) + "(" + String.valueOf(reviewCnt) + ")");
+                rbRangeLatest.performClick();
 
-            UploadReviewSuccessDialog uploadReviewSuccessDialog = new UploadReviewSuccessDialog(PlaceDetailActivity.this);
-            uploadReviewSuccessDialog.getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT);
-            uploadReviewSuccessDialog.show();
+                UploadReviewSuccessDialog uploadReviewSuccessDialog = new UploadReviewSuccessDialog(PlaceDetailActivity.this);
+                uploadReviewSuccessDialog.getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT);
+                uploadReviewSuccessDialog.show();
+            }
+        } else if(requestCode == REQUEST_REVIEW_TOTAL) {
+            if(resultCode == RESULT_OK) {
+                placeStar = placeStar + data.getIntExtra("reviewStar", 0);
+                reviewCnt = data.getIntExtra("reviewCnt", 0);
+                reviewAvg = (double) placeStar / (double) reviewCnt;
+                reviewAvg = Math.round(reviewAvg * 10) / 10.0;
+
+                tvReviewCount.setText("(" + String.valueOf(reviewCnt) + ")");
+                tvStar.setText(String.valueOf(reviewAvg));
+                tvReview.setText(String.valueOf(reviewAvg) + "(" + String.valueOf(reviewCnt) + ")");
+            }
         }
     }
 
@@ -522,5 +534,10 @@ public class PlaceDetailActivity extends AppCompatActivity implements OnMapReady
         place.setWidth(250);
         place.setHeight(250);
         place.setMap(naverMap);
+    }
+
+    @Override
+    public void onBackPressed() {
+        btnBack.performClick();
     }
 }
