@@ -268,7 +268,7 @@
                 app:layout_constraintEnd_toEndOf="@+id/img_toilet"
                 app:layout_constraintStart_toStartOf="@+id/img_toilet"
                 app:layout_constraintTop_toTopOf="@+id/img_toilet"
-                app:srcCompat="@drawable/close" />
+                app:srcCompat="@drawable/banned" />
 
             <TextView
                 android:id="@+id/tv_cooking"
@@ -300,7 +300,7 @@
                 app:layout_constraintEnd_toEndOf="@+id/img_cooking"
                 app:layout_constraintStart_toStartOf="@+id/img_cooking"
                 app:layout_constraintTop_toTopOf="@+id/img_cooking"
-                app:srcCompat="@drawable/close" />
+                app:srcCompat="@drawable/banned" />
 
             <TextView
                 android:id="@+id/tv_store"
@@ -332,7 +332,7 @@
                 app:layout_constraintEnd_toEndOf="@+id/img_store"
                 app:layout_constraintStart_toStartOf="@+id/img_store"
                 app:layout_constraintTop_toTopOf="@+id/img_store"
-                app:srcCompat="@drawable/close" />
+                app:srcCompat="@drawable/banned" />
 
             <ImageView
                 android:id="@+id/img_rec_seperator_01"

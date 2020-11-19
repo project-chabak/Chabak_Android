@@ -28,8 +28,7 @@ public class UploadReviewSuccessDialog extends Dialog {
             @Override
             public void run() {
                 dismiss();
-                Log.e("upload", "success");
             }
-        }, 3000);
+        }, 4000);
     }
 }

@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.RadioButton;
@@ -41,6 +42,7 @@ public class ReviewTotalActivity extends AppCompatActivity {
 
     int placeIdx;
     int reviewCnt;
+    int reviewStar = 0;
 
     String token;
 
@@ -77,6 +79,13 @@ public class ReviewTotalActivity extends AppCompatActivity {
 
         btnBack.setOnClickListener(l -> {
             Intent intent = new Intent(this, PlaceDetailActivity.class);
+            if(reviewStar > 0) {
+                intent.putExtra("reviewStar", reviewStar);
+                intent.putExtra("reviewCnt", reviewCnt);
+                setResult(RESULT_OK, intent);
+            } else {
+                setResult(RESULT_CANCELED, intent);
+            }
             finish();
         });
 
@@ -158,6 +167,7 @@ public class ReviewTotalActivity extends AppCompatActivity {
 
         if(resultCode == -1) {
             reviewCnt++;
+            reviewStar = data.getIntExtra("reviewStar", 0);
             tvReviewCount.setText(String.valueOf(reviewCnt));
             rbRangeLatest.performClick();
 
@@ -165,5 +175,10 @@ public class ReviewTotalActivity extends AppCompatActivity {
             uploadReviewSuccessDialog.getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT);
             uploadReviewSuccessDialog.show();
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        btnBack.performClick();
     }
 }
