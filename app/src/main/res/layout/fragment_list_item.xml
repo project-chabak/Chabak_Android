@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="300dp"
+    android:layout_height="wrap_content"
     android:padding="2dp"
     android:gravity="center_vertical"
     android:layout_marginBottom="8dp"
@@ -14,15 +14,15 @@
         android:id="@+id/text_view1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:fontFamily="@font/nanum_barun_gothic_regular"
         android:includeFontPadding="false"
         android:padding="2dp"
-        android:fontFamily="@font/nanum_barun_gothic_regular"
         android:text="가고싶은 그곳"
-        android:layout_marginTop="5dp"
         android:textColor="@android:color/black"
         android:textSize="30sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@+id/content_image_view"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/content_image_view"
         tools:ignore="MissingConstraints" />
 
@@ -57,8 +57,8 @@
 
     <ImageView
         android:id="@+id/content_image_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="300dp"
+        android:layout_height="200dp"
         android:background="@drawable/rec_transp_10dp"
         app:srcCompat="@drawable/sample_image"
         app:layout_constraintLeft_toLeftOf="parent"
