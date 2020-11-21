@@ -5,7 +5,8 @@ import com.syh4834.chabak.api.request.RequestLikeReview;
 import com.syh4834.chabak.api.request.RequestSignin;
 import com.syh4834.chabak.api.request.RequestSignup;
 import com.syh4834.chabak.api.response.ResponsePlaceDetail;
-import com.syh4834.chabak.api.response.ResponseLike;
+import com.syh4834.chabak.api.response.ResponsePlaceLike;
+import com.syh4834.chabak.api.response.ResponsePlaceList;
 import com.syh4834.chabak.api.response.ResponsePlaceReview;
 import com.syh4834.chabak.api.response.ResponseSignin;
 import com.syh4834.chabak.api.response.ResponseSignup;
@@ -68,4 +69,12 @@ public interface ChabakService {
     @Multipart
     @POST("/review/write")
     Call<ResponseUploadReview> uploadReview(@Header("token")String token, @Part("placeIdx") RequestBody placeIdx, @Part("content") RequestBody content, @Part("star") RequestBody star, @Part MultipartBody.Part[] imgs);
+
+    @Headers("Content-Type: application/json")
+    @GET("/place")
+    Call<ResponsePlaceList> getPlaceList(@Header("token") String token);
+
+    @Headers("Content-Type: application/json")
+    @GET("/place/like")
+    Call<ResponsePlaceLike> getPlaceLike(@Header("token") String token);
 }

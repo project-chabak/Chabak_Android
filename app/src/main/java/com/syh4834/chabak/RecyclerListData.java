@@ -5,16 +5,12 @@ import java.util.ArrayList;
 
 public class RecyclerListData {
 
+    private boolean userLike;
     private String title;
     private String content;
-    private String rateText;
-    private String date;
-    private String region;
-    private int goodCount;
-    private int reviewCount;
-
+    private double rateText;
     private int rateImageView;
-    private int contentImageView;
+    private String contentImageView;
 
     public String getTitle() {
         return title;
@@ -22,34 +18,12 @@ public class RecyclerListData {
 
     public void setTitle(String title) { this.title = title; }
 
-    public String getRateText() {
+    public double getRateText() {
         return rateText;
     }
 
-    public void setGetRateText(String rateText) {
+    public void setGetRateText(double rateText) {
         this.rateText = rateText;
-    }
-
-    public String getRegion() {
-        return region;
-    }
-
-    public void setRegion(String region) { this.region = region; }
-
-    public int getGoodCount() {
-        return goodCount;
-    }
-
-    public void setGoodCount(int goodCount) {
-        this.goodCount = goodCount;
-    }
-
-    public int getReviewCount() {
-        return reviewCount;
-    }
-
-    public void setReviewCount(int reviewCount) {
-        this.reviewCount = reviewCount;
     }
 
     public String getContent() {
@@ -60,12 +34,6 @@ public class RecyclerListData {
         this.content = content;
     }
 
-    public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) { this.date = date; }
-
     public int getRateImageView() {
         return rateImageView;
     }
@@ -74,11 +42,19 @@ public class RecyclerListData {
         this.rateImageView = resId;
     }
 
-    public int getContentImageView() {
+    public String getContentImageView() {
         return contentImageView;
     }
 
-    public void setContentImageView(int resId) {
+    public void setContentImageView(String resId) {
         this.contentImageView = resId;
+    }
+
+    public boolean getUserLike() {
+        return userLike;
+    }
+
+    public void setUserLike(boolean userLike) {
+        this.userLike = userLike;
     }
 }
