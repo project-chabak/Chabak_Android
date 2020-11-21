@@ -12,11 +12,11 @@ public class PlaceDetailData {
 
     private int placeStore;
 
-    private String placeCategoryIdx;
+    private int placeCategoryIdx;
 
     private String placeAddress;
 
-    private double placeStar;
+    private int placeStar;
 
     private double placeLatitude;
 
@@ -28,7 +28,7 @@ public class PlaceDetailData {
 
     private String placeTitle;
 
-    private String placeReviewCnt;
+    private int placeReviewCnt;
 
     private String placeCategoryName;
 
@@ -36,7 +36,7 @@ public class PlaceDetailData {
 
     private Boolean userLike;
 
-    private String placeIdx;
+    private int placeIdx;
 
     private int placeCooking;
 
@@ -69,6 +69,8 @@ public class PlaceDetailData {
         return placeAddress;
     }
 
+    public int getPlaceStar () { return placeStar; }
+
     public double getPlaceLatitude ()
     {
         return placeLatitude;
@@ -89,7 +91,7 @@ public class PlaceDetailData {
         return placeTitle;
     }
 
-    public String getPlaceReviewCnt ()
+    public int getPlaceReviewCnt ()
     {
         return placeReviewCnt;
     }
@@ -104,7 +106,7 @@ public class PlaceDetailData {
         return userLike;
     }
 
-    public String getPlaceIdx ()
+    public int getPlaceIdx ()
     {
         return placeIdx;
     }
