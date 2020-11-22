@@ -195,6 +195,7 @@ public class RecyclerReviewAdapter extends RecyclerView.Adapter<RecyclerReviewAd
             if(listPictures.length > 0) {
                 imgPicture.setVisibility(View.VISIBLE);
             }
+            // 이미지 첨부
             for(int i =0; i<listPictures.length; i++) {
                 RecyclerReviewImageData recyclerReviewImageData = new RecyclerReviewImageData();
                 recyclerReviewImageData.setPicture(listPictures[i]);

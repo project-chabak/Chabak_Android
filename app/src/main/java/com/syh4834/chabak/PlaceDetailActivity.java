@@ -275,6 +275,7 @@ public class PlaceDetailActivity extends AppCompatActivity implements OnMapReady
             @Override
             public void onResponse(Call<ResponsePlaceDetail> call, Response<ResponsePlaceDetail> response) {
                 if(response.body().getSuccess()) {
+                    Log.e("성공!","성공!");
                     placeDetailData = response.body().getData();
                     setPlaceDetail(placeDetailData);
                 }
