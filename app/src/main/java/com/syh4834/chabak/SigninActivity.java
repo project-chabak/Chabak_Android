@@ -72,7 +72,7 @@ public class SigninActivity extends AppCompatActivity {
                             editor.commit();
 
 //                            Log.e("token", token);
-                            Intent intent = new Intent(SigninActivity.this, PlaceDetailActivity.class);
+                            Intent intent = new Intent(SigninActivity.this, MainActivity.class);
                             startActivity(intent);
                             finishAffinity();
                         } else {

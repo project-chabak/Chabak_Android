@@ -4,6 +4,7 @@ import com.syh4834.chabak.api.request.RequestLikePlace;
 import com.syh4834.chabak.api.request.RequestLikeReview;
 import com.syh4834.chabak.api.request.RequestSignin;
 import com.syh4834.chabak.api.request.RequestSignup;
+import com.syh4834.chabak.api.response.ResponseLike;
 import com.syh4834.chabak.api.response.ResponsePlaceDetail;
 import com.syh4834.chabak.api.response.ResponsePlaceLike;
 import com.syh4834.chabak.api.response.ResponsePlaceList;
