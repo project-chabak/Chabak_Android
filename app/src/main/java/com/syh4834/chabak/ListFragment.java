@@ -49,8 +49,21 @@ public class ListFragment extends Fragment {
     private RecyclerView recyclerView;
     private RecyclerListAdapter adapter;
     private RecyclerView.LayoutManager layoutManager;
-    private int sortSelect=-1;
-    private int optionSelect=-1;
+    public ArrayList<Integer> regionList = new ArrayList<>();
+    private String order="star";
+    private int regionTotalIdx=0;
+    private int regionJjIdx=0;
+    private int regionSlIdx=0;
+    private int regionBsIdx=0;
+    private int regionGgIdx=0;
+    private int regionGwIdx=0;
+    private int regionCcIdx=0;
+    private int regionJlIdx=0;
+    private int regionGsIdx=0;
+    private int toiletIdx=0;
+    private int cookingIdx=0;
+    private int storeIdx=0;
+
 
     Button btnFilter;
     Button btnOption;
@@ -109,8 +122,8 @@ public class ListFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_list, container, false);
 
         // 서버로부터 요청할 변수
-        String order = "new";
-        String category = "강원도";
+        regionList.add(0); // 전국으로 초기화
+
 
         // sharedPreferences 값으로 사용자의 토큰을 얻어온다.
 //        SharedPreferences sharedPreferences = getSharedPreferences("chabak", MODE_PRIVATE);
@@ -280,7 +293,10 @@ public class ListFragment extends Fragment {
                 if (isOptionPageOpen) {
                     slidingdownPanel.startAnimation(translateUpAnim);
                     if(optionRegion().equals("전국")){
-                        //getPlaceListData(); // 데이터 받기
+                        optionCheck();
+                        regionList.clear();
+                        regionList.add(0);
+                        //getPlaceListData(regionList); // 데이터 받기
                         btnOption.setText(optionRegion());
                         if(chbOptionJj.isChecked()){
                             chbOptionJj.setChecked(false);
@@ -306,21 +322,25 @@ public class ListFragment extends Fragment {
                         if(chbOptionGs.isChecked()){
                             chbOptionGs.setChecked(false);
                         }
+
                         adapter.notifyDataSetChanged();
                     }
                     else{
                         if(btnOptionCounter()==1){
-                            //getPlaceListData(); //데이터 받기
+                            optionCheck();
+                            //getPlaceListData(setRegionList()); //데이터 받기
                             btnOption.setText(optionRegion());
                             adapter.notifyDataSetChanged();
                         }
                         else if(btnOptionCounter()==0){
-                            //getPlaceListData();
+                            optionCheck();
+                            //getPlaceListData(setRegionList());
                             btnOption.setText("여행지 선택");
                             adapter.notifyDataSetChanged();
                         }
                         else{
-                            //getPlaceListData();
+                            optionCheck();
+                            //getPlaceListData(setRegionList());
                             btnOption.setText(optionRegion()+" 외 "+String.valueOf(btnOptionCounter()-1));
                             adapter.notifyDataSetChanged();
                         }
@@ -330,16 +350,16 @@ public class ListFragment extends Fragment {
         });
         // 필터정렬
         filterTopSort.setOnClickListener(l -> {
-            sortSelect = 1;
+            order = "like";
         });
         filterDateSort.setOnClickListener(l -> {
-            sortSelect = 2;
+            order = "new";
         });
         filterRateHighSort.setOnClickListener(l -> {
-            sortSelect = 3;
+            order = "star";
         });
         filterBasicSort.setOnClickListener(l -> {
-            sortSelect = 5;
+            order = "review";
         });
         // 정렬버튼
         btnFilterAdapter.setOnClickListener(new View.OnClickListener() {
@@ -350,23 +370,32 @@ public class ListFragment extends Fragment {
                     slidingPanel.setVisibility(View.GONE);
                     btnFilter.setVisibility(View.VISIBLE);
                     backgroundView.setAlpha((float) 1.0);
-                    if (sortSelect == 5) {
-                        adapter.notifyDataSetChanged();
-                    } else if (sortSelect == 3) {
-                        adapter.notifyDataSetChanged();
-                    } else if (sortSelect == 4) {
-                        adapter.notifyDataSetChanged();
-                    } else if (sortSelect == 2) {
-                        adapter.notifyDataSetChanged();
-                    } else if (sortSelect == 1) {
-                        adapter.notifyDataSetChanged();
-                    }
+                    getPlaceListData(regionList);
                 }
             }
         });
         return view;
     }
-
+    private void optionCheck(){
+        if(chbOptionToilet.isChecked()){
+            toiletIdx=1;
+        }
+        else{
+            toiletIdx=0;
+        }
+        if(chbOptionCooking.isChecked()){
+            cookingIdx=1;
+        }
+        else{
+            cookingIdx=0;
+        }
+        if(chbOptionStore.isChecked()){
+            storeIdx=1;
+        }
+        else{
+            storeIdx=0;
+        }
+    }
     private String optionRegion(){
         String region = "";
         if(chbOptionTotal.isChecked()){
@@ -399,6 +428,46 @@ public class ListFragment extends Fragment {
         return region;
     }
 
+    private ArrayList<Integer> setRegionList(){
+        regionList.clear();
+        if(chbOptionTotal.isChecked()){
+            regionTotalIdx=0;
+            regionList.add(regionTotalIdx);
+        }
+        if(chbOptionJj.isChecked()){
+            regionJjIdx=8;
+            regionList.add(regionJjIdx);
+        }
+        if(chbOptionSl.isChecked()){
+            regionSlIdx=6;
+            regionList.add(regionSlIdx);
+        }
+        if(chbOptionBs.isChecked()){
+            regionBsIdx=7;
+            regionList.add(regionBsIdx);
+        }
+        if(chbOptionGg.isChecked()){
+            regionGgIdx=1;
+            regionList.add(regionGgIdx);
+        }
+        if(chbOptionGw.isChecked()){
+            regionGwIdx=2;
+            regionList.add(regionGwIdx);
+        }
+        if(chbOptionCc.isChecked()){
+            regionCcIdx=3;
+            regionList.add(regionCcIdx);
+        }
+        if(chbOptionJl.isChecked()){
+            regionJlIdx=4;
+            regionList.add(regionJlIdx);
+        }
+        if(chbOptionGs.isChecked()) {
+            regionGsIdx=5;
+            regionList.add(regionGsIdx);
+        }
+        return regionList;
+    }
     private int btnOptionCounter(){
         int cnt=0;
         if(chbOptionTotal.isChecked()){
@@ -437,7 +506,7 @@ public class ListFragment extends Fragment {
         layoutManager = new LinearLayoutManager(recyclerView.getContext());
         recyclerView.setLayoutManager(layoutManager);
         adapter = new RecyclerListAdapter();
-        chabakService.getPlaceList(token).enqueue(new Callback<ResponsePlaceList>() {
+        chabakService.getPlaceList(token,order,regionList,toiletIdx,cookingIdx,storeIdx).enqueue(new Callback<ResponsePlaceList>() {
             @Override
             public void onResponse(Call<ResponsePlaceList> call, Response<ResponsePlaceList> response) {
                 if(response.body().getSuccess()) {
@@ -457,9 +526,9 @@ public class ListFragment extends Fragment {
 
 
     // 아래는 정렬할때 하는 것
-    private  void getPlaceListData(int categoryIdx){
+    private  void getPlaceListData(ArrayList<Integer> regionList){
         adapter.listData.clear();
-        chabakService.getPlaceList(token).enqueue(new Callback<ResponsePlaceList>() {
+        chabakService.getPlaceList(token,order,regionList,toiletIdx,cookingIdx,storeIdx).enqueue(new Callback<ResponsePlaceList>() {
             @Override
             public void onResponse(Call<ResponsePlaceList> call, Response<ResponsePlaceList> response) {
                 if(response.body().getSuccess()) {

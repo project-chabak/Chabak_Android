@@ -11,6 +11,8 @@ import com.syh4834.chabak.api.response.ResponseSignup;
 import com.syh4834.chabak.api.response.ResponseSignupCheckID;
 import com.syh4834.chabak.api.response.ResponseUploadReview;
 
+import java.util.ArrayList;
+
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.Call;
@@ -52,7 +54,7 @@ public interface ChabakService {
 
     @Headers("Content-Type: application/json")
     @GET("/place")
-    Call<ResponsePlaceList> getPlaceList(@Header("token") String token);
+    Call<ResponsePlaceList> getPlaceList(@Header("token") String token, @Query("order") String order, @Query("category") ArrayList<Integer> category, @Query("toilet") int toilet, @Query("cooking") int cooking, @Query("store") int store);
 
     @Headers("Content-Type: application/json")
     @GET("/place/like")
