@@ -14,6 +14,7 @@ public class InitialActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_initial);
 
         btnSignin = findViewById(R.id.btn_signin);

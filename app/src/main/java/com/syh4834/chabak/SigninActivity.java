@@ -71,10 +71,9 @@ public class SigninActivity extends AppCompatActivity {
                             editor.putString("token", token);
                             editor.commit();
 
-//                            Log.e("token", token);
                             Intent intent = new Intent(SigninActivity.this, MainActivity.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK |Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(intent);
-                            finishAffinity();
                         } else {
                             switch (response.body().getMessage()) {
                                 case "존재하지 않는 아이디입니다":
