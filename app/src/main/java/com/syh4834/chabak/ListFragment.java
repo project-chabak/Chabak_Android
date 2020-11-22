@@ -280,7 +280,7 @@ public class ListFragment extends Fragment {
                 if (isOptionPageOpen) {
                     slidingdownPanel.startAnimation(translateUpAnim);
                     if(optionRegion().equals("전국")){
-                        getPlaceListData(); // 데이터 받기
+                        //getPlaceListData(); // 데이터 받기
                         btnOption.setText(optionRegion());
                         if(chbOptionJj.isChecked()){
                             chbOptionJj.setChecked(false);
@@ -310,17 +310,17 @@ public class ListFragment extends Fragment {
                     }
                     else{
                         if(btnOptionCounter()==1){
-                            getPlaceListData(); //데이터 받기
+                            //getPlaceListData(); //데이터 받기
                             btnOption.setText(optionRegion());
                             adapter.notifyDataSetChanged();
                         }
                         else if(btnOptionCounter()==0){
-                            getPlaceListData();
+                            //getPlaceListData();
                             btnOption.setText("여행지 선택");
                             adapter.notifyDataSetChanged();
                         }
                         else{
-                            getPlaceListData();
+                            //getPlaceListData();
                             btnOption.setText(optionRegion()+" 외 "+String.valueOf(btnOptionCounter()-1));
                             adapter.notifyDataSetChanged();
                         }
