@@ -21,8 +21,8 @@ public class SignupSuccessActivity extends AppCompatActivity {
 
         btnClose.setOnClickListener(l -> {
             Intent intent = new Intent(this, InitialActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK |Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
-            finishAffinity();
         });
         btnGoSignin.setOnClickListener(l -> {
             Intent intent = new Intent(this, SigninActivity.class);

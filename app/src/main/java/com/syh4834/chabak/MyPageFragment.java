@@ -1,78 +1,118 @@
 package com.syh4834.chabak;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link MyPageFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import com.syh4834.chabak.api.ChabakService;
+import com.syh4834.chabak.api.data.MypageData;
+import com.syh4834.chabak.api.response.ResponseMypage;
+
+import org.w3c.dom.Text;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
+import static android.content.Context.MODE_PRIVATE;
+
 public class MyPageFragment extends Fragment {
+    private TextView tvLogout;
+    private TextView tvNickname;
+    private TextView tvEmail;
+    private TextView tvBirth;
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private ImageView imgGender;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private View mView;
+    private Context context;
+
+    private String token;
+
+    private SharedPreferences sharedPreferences;
+
+    Retrofit retrofit = new Retrofit.Builder()
+            .baseUrl(ChabakService.BASE_RUL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build();
+    ChabakService chabakService = retrofit.create(ChabakService.class);
 
     public MyPageFragment() {
-        // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment MyPageFragment.
-     */
-    // TODO: Rename and change types and number of parameters
     public static MyPageFragment newInstance(String param1, String param2) {
         MyPageFragment fragment = new MyPageFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
         return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
 
-    // MyPageFragment inflater
-    View mView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         mView = inflater.inflate(R.layout.fragment_my_page, container, false);
+        tvLogout = (TextView) mView.findViewById(R.id.tv_logout);
+        tvNickname = (TextView) mView.findViewById(R.id.tv_nickname);
+        tvEmail = mView.findViewById(R.id.tv_email);
+        tvBirth = mView.findViewById(R.id.tv_birth);
 
-        // 버튼 객체 선언 및 초기화
-        Button btnLogout = (Button) mView.findViewById(R.id.btn_logout);
+        imgGender = mView.findViewById(R.id.img_gender);
 
-        // 버튼 클릭 이벤트
-        btnLogout.setOnClickListener(new View.OnClickListener() {
+        context = getActivity();
+
+        sharedPreferences = context.getSharedPreferences("chabak", MODE_PRIVATE);
+        token = sharedPreferences.getString("token", null);
+        Log.e("Mypage token", token);
+
+        chabakService.getMypage(token).enqueue(new Callback<ResponseMypage>() {
+            @Override
+            public void onResponse(Call<ResponseMypage> call, Response<ResponseMypage> response) {
+                if(response.body().getSuccess()) {
+                    MypageData mypageData = response.body().getData();
+                    tvNickname.setText(mypageData.getNickname() + "님");
+                    tvEmail.setText("아이디 : " + mypageData.getId());
+                    tvBirth.setText("생년월일 : " + mypageData.getBirthDate());
+
+                    Log.e("mypage", mypageData.getBirthDate());
+
+                    if(mypageData.getGender().equals("M")) {
+                        imgGender.setImageResource(R.drawable.man);
+                    } else {
+                        imgGender.setImageResource(R.drawable.woman);
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseMypage> call, Throwable t) {
+
+            }
+        });
+
+        tvLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // 로그아웃 팝업을 위한 AlertDialog.Builder
@@ -84,7 +124,14 @@ public class MyPageFragment extends Fragment {
                     @Override
                     public void onClick(DialogInterface dialog, int id)
                     {
-                        Toast.makeText(getContext(), "OK", Toast.LENGTH_SHORT).show();
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.remove("token");
+
+                        editor.commit();
+
+                        Intent intent = new Intent(context, InitialActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK |Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(intent);
                     }
                 });
 

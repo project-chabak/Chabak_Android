@@ -6,132 +6,178 @@
     android:layout_height="match_parent"
     tools:context=".MyPageFragment">
 
-
-    <TableLayout
-        android:id="@+id/table_view"
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_mypage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/nanum_barun_gothic_bold"
+        android:text="마이페이지"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbar3"
+        app:layout_constraintEnd_toEndOf="@+id/toolbar3"
+        app:layout_constraintStart_toStartOf="@+id/toolbar3"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/line_top"
+        android:layout_width="0dp"
+        android:layout_height="0.5dp"
+        android:src="@drawable/line_top_bottom"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar3" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_profile"
+        android:layout_width="0dp"
+        android:layout_height="150dp"
+        android:layout_marginStart="20dp"
         android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
         android:layout_marginRight="20dp"
+        android:background="@drawable/rec_primary_10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/line_top">
+
+        <ImageView
+            android:id="@+id/img_gender"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginLeft="20dp"
+            android:src="@drawable/woman"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginLeft="20dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/img_gender"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/tv_nickname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:fontFamily="@font/nanum_barun_gothic_bold"
+                android:text=""
+                android:textColor="@android:color/white"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/tv_email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="@font/nanum_barun_gothic_regular"
+                android:text=""
+                android:textColor="@android:color/white"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tv_birth"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nanum_barun_gothic_regular"
+                android:text=""
+                android:textColor="@android:color/white"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ImageView
+        android:id="@+id/img_rec_seperator_01"
+        android:layout_width="0dp"
+        android:layout_height="7dp"
         android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        >
-
-        <TableRow
-            >
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="30dp"
-                android:layout_marginRight="40dp"
-                android:gravity="center_vertical"
-                android:text="닉네임"
-                android:fontFamily="@font/nanum_barun_gothic_bold"
-                />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="30dp"
-                android:gravity="center_vertical"
-                android:text="닉네임"
-                android:textStyle="bold"
-                android:fontFamily="@font/nanum_barun_gothic_bold"
-                />
-        </TableRow>
-
-        <TableRow
-            android:layout_marginTop="10dp">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="30dp"
-                android:layout_marginRight="40dp"
-                android:gravity="center_vertical"
-                android:text="아이디"
-                android:fontFamily="@font/nanum_barun_gothic_bold"
-                />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="30dp"
-                android:gravity="center_vertical"
-                android:text="ID"
-                android:textStyle="bold"
-                android:fontFamily="@font/nanum_barun_gothic_bold"
-                />
-        </TableRow>
-
-        <TableRow
-            android:layout_marginTop="10dp">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="30dp"
-                android:layout_marginRight="40dp"
-                android:gravity="center_vertical"
-                android:text="생년월일"
-                android:fontFamily="@font/nanum_barun_gothic_bold"
-                />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="30dp"
-                android:text="2000.00.00"
-                android:textStyle="bold"
-                android:fontFamily="@font/nanum_barun_gothic_bold"
-                />
-        </TableRow>
-
-        <TableRow
-            android:layout_marginTop="10dp">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="30dp"
-                android:layout_marginRight="40dp"
-                android:gravity="center_vertical"
-                android:text="성별"
-                android:fontFamily="@font/nanum_barun_gothic_bold"
-                />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="30dp"
-                android:text="남자"
-                android:textStyle="bold"
-                android:fontFamily="@font/nanum_barun_gothic_bold"
-                />
-        </TableRow>
-
-        <TableRow
-            android:layout_marginTop="10dp">
-            <Button
-                android:id="@+id/btn_logout"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="로그아웃"
-                />
-        </TableRow>
-
-        <TableRow
-            android:layout_marginTop="10dp">
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="회원탈퇴"
-                />
-        </TableRow>
-    </TableLayout>
+        app:layout_constraintTop_toBottomOf="@id/cl_profile"
+        app:srcCompat="@drawable/rec_seperator" />
 
     <ImageView
-        android:layout_width="80dp"
-        android:layout_height="54dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginEnd="5dp"
-        android:layout_marginRight="10dp"
-        android:scaleType="fitXY"
-        app:srcCompat="@drawable/logo_green"
-        app:layout_constraintTop_toTopOf="@+id/table_view"
-        app:layout_constraintEnd_toEndOf="@+id/table_view"
-        />
+        android:id="@+id/imageView7"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginLeft="30dp"
+        android:src="@drawable/report"
+        app:layout_constraintBottom_toTopOf="@+id/img_line_seperator_01"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/img_rec_seperator_01" />
 
+    <TextView
+        android:id="@+id/tv_report"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:fontFamily="@font/nanum_barun_gothic_regular"
+        android:text="제보하기"
+        android:textColor="@color/colorTextDark"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/img_line_seperator_01"
+        app:layout_constraintStart_toEndOf="@+id/imageView7"
+        app:layout_constraintTop_toBottomOf="@+id/img_rec_seperator_01" />
+
+    <ImageView
+        android:id="@+id/img_line_seperator_01"
+        android:layout_width="0dp"
+        android:layout_height="2dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@null"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/img_rec_seperator_01"
+        app:srcCompat="@drawable/line_seperator" />
+
+    <ImageView
+        android:id="@+id/imageView8"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="25dp"
+        android:src="@drawable/logout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/img_line_seperator_01" />
+
+    <TextView
+        android:id="@+id/tv_logout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:fontFamily="@font/nanum_barun_gothic_regular"
+        android:text="로그아웃"
+        android:textColor="@color/colorTextDark"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView8"
+        app:layout_constraintStart_toEndOf="@+id/imageView8"
+        app:layout_constraintTop_toTopOf="@+id/imageView8" />
 </androidx.constraintlayout.widget.ConstraintLayout>
