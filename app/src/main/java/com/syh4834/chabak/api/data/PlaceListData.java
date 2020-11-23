@@ -3,38 +3,18 @@ package com.syh4834.chabak.api.data;
 
 public class PlaceListData{
 
-    private int placeIdx;
-    private String placeTitle;
-    private String placeAddress;
-    private double placeAvgStar;
-    private String placeThumbnail;
-    private boolean userLike;
+    private PlaceList[] placeList;
+    private Category[] category;
 
-    public int getPlaceIdx ()
+    public PlaceList[] getPlaceList()
     {
-        return placeIdx;
+        return placeList;
     }
 
-    public String getPlaceTitle ()
+    public Category[] getPlaceCategoryData()
     {
-        return placeTitle;
+        return category;
     }
 
-    public String getPlaceAddress ()
-    {
-        return placeAddress;
-    }
-
-    public double getPlaceAvgStar ()
-    {
-        return placeAvgStar;
-    }
-
-    public String getPlaceThumbnail ()
-    {
-        return placeThumbnail;
-    }
-
-    public boolean getUserLike () { return userLike; }
 }
 
