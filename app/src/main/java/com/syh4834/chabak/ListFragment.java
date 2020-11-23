@@ -146,7 +146,7 @@ public class ListFragment extends Fragment {
         btnOption = (Button) view.findViewById(R.id.btn_option);
         btnFilterBack = (Button) view.findViewById(R.id.btn_close);
         btnFilterAdapter = (Button) view.findViewById(R.id.btn_filter_adapter);
-        btnOptionBack = (Button) view.findViewById(R.id.btn_back);
+//        btnOptionBack = (Button) view.findViewById(R.id.btn_back);
         btnOptionAdapter = (Button) view.findViewById(R.id.btn_option_adapter);
 
         // 정렬버튼
@@ -287,25 +287,29 @@ public class ListFragment extends Fragment {
                 if (!isFilterPageOpen) {
                     slidingPanel.startAnimation(translateLeftAnim);
                     slidingPanel.setVisibility(View.VISIBLE);
-                    backgroundView.setAlpha((float) 0.2);
+                    //backgroundView.setAlpha((float) 0.2);
                 }
             }
         });
         // 옵션 필터
         slidingdownPanel = (ConstraintLayout) view.findViewById(R.id.option_select);
-        btnOptionBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (isOptionPageOpen) {
-                    slidingdownPanel.startAnimation(translateUpAnim);
-                }
-            }
-        });
+//        btnOptionBack.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if (isOptionPageOpen) {
+//                    slidingdownPanel.startAnimation(translateUpAnim);
+//                }
+//            }
+//        });
         btnOption.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (!isOptionPageOpen) {
                     slidingdownPanel.startAnimation(translateDownAnim);
+                    btnOption.setText("여행지 △");
+                } else {
+                    slidingdownPanel.startAnimation(translateUpAnim);
+                    btnOption.setText("여행지 ▽");
                 }
             }
         });
