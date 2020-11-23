@@ -21,9 +21,11 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 
+import com.bumptech.glide.Glide;
 import com.syh4834.chabak.api.ChabakService;
 import com.syh4834.chabak.api.data.PlaceDetailData;
 import com.syh4834.chabak.api.data.PlaceListData;
@@ -91,6 +93,15 @@ public class ListFragment extends Fragment {
     CheckBox chbOptionStore;
     CheckBox chbOptionCooking;
 
+    ImageView regionTotalImage;
+    ImageView regionjJImage;
+    ImageView regionSlImage;
+    ImageView regionBsImage;
+    ImageView regionGgImage;
+    ImageView regionGwImage;
+    ImageView regionCcImage;
+    ImageView regionJlImage;
+    ImageView regionGsImage;
 
     Animation translateLeftAnim;
     Animation translateRightAnim;
@@ -128,7 +139,7 @@ public class ListFragment extends Fragment {
         // sharedPreferences 값으로 사용자의 토큰을 얻어온다.
 //        SharedPreferences sharedPreferences = getSharedPreferences("chabak", MODE_PRIVATE);
 //        token = sharedPreferences.getString("token", null);
-        token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWR4IjoxLCJpZCI6ImlkIiwibmlja25hbWUiOiIxMjMiLCJpYXQiOjE2MDQ5NzMxMDN9.80OjSRBho8176t0BgYu5tuEZ5pJGBh_tCjVn_Nsic_I"; // 임시 토큰
+        token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWR4IjozLCJpZCI6ImlkVGVzdCIsIm5pY2tuYW1lIjoibmlja25hbWUiLCJpYXQiOjE2MDU5NzI5MjZ9.0-TXXAKF8KlE8qJn1OnsPnIuM_KExms0rMOwzcz0yP4"; // 임시 토큰
 
         //아래 변수들은 버튼들
         btnFilter = (Button) view.findViewById(R.id.btn_fillter);
@@ -158,6 +169,17 @@ public class ListFragment extends Fragment {
         chbOptionToilet = (CheckBox) view.findViewById(R.id.chb_option_toilet);
         chbOptionStore = (CheckBox) view.findViewById(R.id.chb_region_mk);
         chbOptionCooking = (CheckBox) view.findViewById(R.id.chb_region_cook);
+
+        regionTotalImage = (ImageView) view.findViewById(R.id.region_total_image);
+        regionjJImage = (ImageView) view.findViewById(R.id.region_jj_image);
+        regionSlImage = (ImageView) view.findViewById(R.id.region_sl_image);
+        regionBsImage = (ImageView) view.findViewById(R.id.region_bs_image);
+        regionGgImage = (ImageView) view.findViewById(R.id.region_gg_image);
+        regionGwImage = (ImageView) view.findViewById(R.id.region_gw_image);
+        regionCcImage = (ImageView) view.findViewById(R.id.region_cc_image);
+        regionJlImage = (ImageView) view.findViewById(R.id.region_jl_image);
+        regionGsImage = (ImageView) view.findViewById(R.id.region_gs_image);
+
 
         DataInit(view);
         //아래는 필터 애니메이션
@@ -296,7 +318,7 @@ public class ListFragment extends Fragment {
                         optionCheck();
                         regionList.clear();
                         regionList.add(0);
-                        //getPlaceListData(regionList); // 데이터 받기
+                        getPlaceListData(regionList); // 데이터 받기
                         btnOption.setText(optionRegion());
                         if(chbOptionJj.isChecked()){
                             chbOptionJj.setChecked(false);
@@ -328,19 +350,19 @@ public class ListFragment extends Fragment {
                     else{
                         if(btnOptionCounter()==1){
                             optionCheck();
-                            //getPlaceListData(setRegionList()); //데이터 받기
+                            getPlaceListData(setRegionList()); //데이터 받기
                             btnOption.setText(optionRegion());
                             adapter.notifyDataSetChanged();
                         }
                         else if(btnOptionCounter()==0){
                             optionCheck();
-                            //getPlaceListData(setRegionList());
+                            getPlaceListData(setRegionList());
                             btnOption.setText("여행지 선택");
                             adapter.notifyDataSetChanged();
                         }
                         else{
                             optionCheck();
-                            //getPlaceListData(setRegionList());
+                            getPlaceListData(setRegionList());
                             btnOption.setText(optionRegion()+" 외 "+String.valueOf(btnOptionCounter()-1));
                             adapter.notifyDataSetChanged();
                         }
@@ -435,35 +457,35 @@ public class ListFragment extends Fragment {
             regionList.add(regionTotalIdx);
         }
         if(chbOptionJj.isChecked()){
-            regionJjIdx=8;
+            regionJjIdx=1;
             regionList.add(regionJjIdx);
         }
         if(chbOptionSl.isChecked()){
-            regionSlIdx=6;
+            regionSlIdx=2;
             regionList.add(regionSlIdx);
         }
         if(chbOptionBs.isChecked()){
-            regionBsIdx=7;
+            regionBsIdx=3;
             regionList.add(regionBsIdx);
         }
         if(chbOptionGg.isChecked()){
-            regionGgIdx=1;
+            regionGgIdx=4;
             regionList.add(regionGgIdx);
         }
         if(chbOptionGw.isChecked()){
-            regionGwIdx=2;
+            regionGwIdx=5;
             regionList.add(regionGwIdx);
         }
         if(chbOptionCc.isChecked()){
-            regionCcIdx=3;
+            regionCcIdx=6;
             regionList.add(regionCcIdx);
         }
         if(chbOptionJl.isChecked()){
-            regionJlIdx=4;
+            regionJlIdx=7;
             regionList.add(regionJlIdx);
         }
         if(chbOptionGs.isChecked()) {
-            regionGsIdx=5;
+            regionGsIdx=8;
             regionList.add(regionGsIdx);
         }
         return regionList;
@@ -511,7 +533,8 @@ public class ListFragment extends Fragment {
             public void onResponse(Call<ResponsePlaceList> call, Response<ResponsePlaceList> response) {
                 if(response.body().getSuccess()) {
                     Log.e("성공!","성공!");
-                    PlaceListData[] placeListData = response.body().getData();
+                    placeListData = response.body().getData();
+                    setCategoryImage(placeListData,view);
                     getData(placeListData);
                 }
             }
@@ -524,7 +547,17 @@ public class ListFragment extends Fragment {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
     }
 
-
+    private void setCategoryImage(PlaceListData placeListData, View view){
+        Glide.with(view).load(placeListData.getPlaceCategoryData()[0].getPlaceCategoryImg()).into(regionTotalImage);
+        Glide.with(view).load(placeListData.getPlaceCategoryData()[0].getPlaceCategoryImg()).into(regionjJImage);
+        Glide.with(view).load(placeListData.getPlaceCategoryData()[1].getPlaceCategoryImg()).into(regionSlImage);
+        Glide.with(view).load(placeListData.getPlaceCategoryData()[2].getPlaceCategoryImg()).into(regionBsImage);
+        Glide.with(view).load(placeListData.getPlaceCategoryData()[3].getPlaceCategoryImg()).into(regionGgImage);
+        Glide.with(view).load(placeListData.getPlaceCategoryData()[4].getPlaceCategoryImg()).into(regionGwImage);
+        Glide.with(view).load(placeListData.getPlaceCategoryData()[5].getPlaceCategoryImg()).into(regionCcImage);
+        Glide.with(view).load(placeListData.getPlaceCategoryData()[6].getPlaceCategoryImg()).into(regionJlImage);
+        Glide.with(view).load(placeListData.getPlaceCategoryData()[7].getPlaceCategoryImg()).into(regionGsImage);
+    }
     // 아래는 정렬할때 하는 것
     private  void getPlaceListData(ArrayList<Integer> regionList){
         adapter.listData.clear();
@@ -532,7 +565,8 @@ public class ListFragment extends Fragment {
             @Override
             public void onResponse(Call<ResponsePlaceList> call, Response<ResponsePlaceList> response) {
                 if(response.body().getSuccess()) {
-                    PlaceListData[] placeListData = response.body().getData();
+                    Log.e("성공!", "성공!");
+                    placeListData = response.body().getData();
                     getData(placeListData);
                 }
             }
@@ -543,16 +577,16 @@ public class ListFragment extends Fragment {
         });
     }
 
-    private void getData(PlaceListData[] placeListData) {
+    private void getData(PlaceListData placeListData) {
 
         int rateImageView = R.drawable.star;
-        for (int i = 0; i < placeListData.length; i++) {
+        for (int i = 0; i < placeListData.getPlaceList().length; i++) {
             RecyclerListData data = new RecyclerListData();
-            data.setTitle(placeListData[i].getPlaceTitle());
-            data.setContent(placeListData[i].getPlaceAddress());
-            data.setGetRateText(placeListData[i].getPlaceAvgStar());
+            data.setTitle(placeListData.getPlaceList()[i].getPlaceTitle());
+            data.setContent(placeListData.getPlaceList()[i].getPlaceAddress());
+            data.setGetRateText(placeListData.getPlaceList()[i].getPlaceAvgStar());
             data.setRateImageView(rateImageView);
-            data.setContentImageView(placeListData[i].getPlaceThumbnail());
+            data.setContentImageView(placeListData.getPlaceList()[i].getPlaceThumbnail());
             adapter.addItem(data);
         }
         adapter.notifyDataSetChanged();

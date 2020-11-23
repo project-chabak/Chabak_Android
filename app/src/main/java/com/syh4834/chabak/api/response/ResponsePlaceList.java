@@ -8,9 +8,9 @@ public class ResponsePlaceList {
     private final int status;
     private final boolean success;
     private final String message;
-    private final PlaceListData[] data;
+    private final PlaceListData data;
 
-    public ResponsePlaceList(int status, boolean success, String message, PlaceListData[] data) {
+    public ResponsePlaceList(int status, boolean success, String message, PlaceListData data) {
         this.status = status;
         this.success = success;
         this.message = message;
@@ -23,6 +23,6 @@ public class ResponsePlaceList {
 
     public String getMessage() { return message; }
 
-    public PlaceListData[] getData() { return data; }
+    public PlaceListData getData() { return data; }
 
 }
