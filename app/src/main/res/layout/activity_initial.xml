@@ -14,10 +14,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/logo_white_text" />
+        app:srcCompat="@drawable/logo" />
 
     <Button
         android:id="@+id/btn_signin"
+        style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="0dp"
         android:layout_height="48dp"
         android:layout_marginStart="50dp"
@@ -37,6 +38,7 @@
 
     <Button
         android:id="@+id/btn_signup"
+        style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="0dp"
         android:layout_height="48dp"
         android:layout_marginStart="50dp"
