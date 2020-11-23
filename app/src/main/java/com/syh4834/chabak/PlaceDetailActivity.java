@@ -163,10 +163,9 @@ public class PlaceDetailActivity extends AppCompatActivity implements OnMapReady
 
 //        placeIdx = getIntent().getIntExtra("placeIdx", 0);
         placeIdx = 7;
-//        SharedPreferences sharedPreferences = getSharedPreferences("chabak", MODE_PRIVATE);
-//        token = sharedPreferences.getString("token", null);
+        SharedPreferences sharedPreferences = getSharedPreferences("chabak", MODE_PRIVATE);
+        token = sharedPreferences.getString("token", null);
 //        Log.e("token", token);
-        token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWR4IjoxLCJpZCI6ImlkIiwibmlja25hbWUiOiIxMjMiLCJpYXQiOjE2MDQ5NzMxMDN9.80OjSRBho8176t0BgYu5tuEZ5pJGBh_tCjVn_Nsic_I";
 
         getPlaceData();
         getPlaceReviewData("like");
