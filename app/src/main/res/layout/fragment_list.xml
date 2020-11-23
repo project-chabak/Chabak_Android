@@ -103,7 +103,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintHorizontal_bias="0.1"
-                    app:srcCompat="@drawable/logo_green_text" />
+                    app:srcCompat="@drawable/logo_primary" />
                 <Button
                     android:id="@+id/btn_filter_adapter"
                     android:layout_width="250dp"

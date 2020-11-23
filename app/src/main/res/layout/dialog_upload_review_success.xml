@@ -8,11 +8,11 @@
 
     <ImageView
         android:id="@+id/img_logo"
-        android:layout_width="70dp"
-        android:layout_height="45dp"
+        android:layout_width="77dp"
+        android:layout_height="50dp"
         android:layout_gravity="center|top"
         android:layout_marginTop="35dp"
-        app:srcCompat="@drawable/logo_green" />
+        app:srcCompat="@drawable/car_green" />
 
     <TextView
         android:id="@+id/tv_thanks"
