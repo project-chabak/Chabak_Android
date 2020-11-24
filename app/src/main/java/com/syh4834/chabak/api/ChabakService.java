@@ -4,6 +4,7 @@ import com.syh4834.chabak.api.request.RequestLikePlace;
 import com.syh4834.chabak.api.request.RequestLikeReview;
 import com.syh4834.chabak.api.request.RequestSignin;
 import com.syh4834.chabak.api.request.RequestSignup;
+import com.syh4834.chabak.api.response.ResponseHome;
 import com.syh4834.chabak.api.response.ResponseLike;
 import com.syh4834.chabak.api.response.ResponseMypage;
 import com.syh4834.chabak.api.response.ResponsePlaceDetail;
@@ -85,4 +86,8 @@ public interface ChabakService {
     @Headers("Content-Type: application/json")
     @GET("/mypage")
     Call<ResponseMypage> getMypage(@Header("token") String token);
+
+    @Headers("Content-Type: application/json")
+    @GET("/home")
+    Call<ResponseHome> getHome(@Header("token") String token);
 }
