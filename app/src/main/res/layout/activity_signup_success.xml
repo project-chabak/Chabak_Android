@@ -44,7 +44,7 @@
         android:layout_marginTop="40dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/logo_green_text" />
+        app:srcCompat="@drawable/logo_primary" />
 
     <TextView
         android:id="@+id/tv_signup_intro_sub"
