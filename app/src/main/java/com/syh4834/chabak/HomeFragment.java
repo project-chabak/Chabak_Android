@@ -133,9 +133,11 @@ public class HomeFragment extends Fragment {
 
             @Override
             public void onPageScrollStateChanged(int state) {
-                
+
             }
         });
+
+
     }
 
     // 지역별 여행지 초기화 함수

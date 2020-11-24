@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -14,7 +15,7 @@ import androidx.viewpager.widget.PagerAdapter;
 import com.syh4834.chabak.R;
 
 public class BannerImagePageAdapter extends PagerAdapter {
-    private int [] bannerImages = {R.drawable.place_image_01, R.drawable.place_image_01};
+    private int [] bannerImages = {R.drawable.home_banner_image_01, R.drawable.home_banner_image_02, R.drawable.home_banner_image_03};
     private LayoutInflater inflater;
     private Context context;
 
@@ -40,6 +41,15 @@ public class BannerImagePageAdapter extends PagerAdapter {
         ImageView imgBanner = (ImageView)v.findViewById(R.id.img_banner);
 
         imgBanner.setImageResource(bannerImages[position]);
+
+        // 배너 슬라이드 클릭 이벤트 리스너
+        imgBanner.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                Toast.makeText(context, "" + position, Toast.LENGTH_SHORT).show();
+            }
+        });
+
 
         container.addView(v);
         return v;
