@@ -11,6 +11,7 @@ public class RecyclerListData {
     private double rateText;
     private int rateImageView;
     private String contentImageView;
+    private int placeIdx;
 
     public String getTitle() {
         return title;
@@ -36,6 +37,14 @@ public class RecyclerListData {
 
     public int getRateImageView() {
         return rateImageView;
+    }
+
+    public int getPlaceIdx() {
+        return placeIdx;
+    }
+
+    public void setPlaceIdx(int placeIdx) {
+        this.placeIdx = placeIdx;
     }
 
     public void setRateImageView(int resId) {
