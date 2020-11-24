@@ -105,8 +105,9 @@ public class ListFragment extends Fragment {
     ImageView regionJlImage;
     ImageView regionGsImage;
 
-    Animation translateLeftAnim;
-    Animation translateRightAnim;
+    Animation orderUpAnim;
+    Animation orderDownAnim;
+
     ConstraintLayout slidingPanel;
     ConstraintLayout backgroundView;
 
@@ -199,49 +200,7 @@ public class ListFragment extends Fragment {
             }
         });
 
-        //아래는 필터 애니메이션
-        translateLeftAnim = AnimationUtils.loadAnimation(getActivity(), R.anim.left);
-        translateRightAnim = AnimationUtils.loadAnimation(getActivity(), R.anim.right);
 
-        translateLeftAnim.setAnimationListener(new Animation.AnimationListener() {
-            @Override
-            public void onAnimationStart(Animation animation) {
-            }
-
-            @Override
-            public void onAnimationEnd(Animation animation) {
-                if (isFilterPageOpen) {
-                    slidingPanel.setVisibility(View.INVISIBLE);
-                    isFilterPageOpen = false;
-                } else {
-                    isFilterPageOpen = true;
-                }
-            }
-
-            @Override
-            public void onAnimationRepeat(Animation animation) {
-            }
-        });
-        translateRightAnim.setAnimationListener(new Animation.AnimationListener() {
-            @Override
-            public void onAnimationStart(Animation animation) {
-            }
-
-            @Override
-            public void onAnimationEnd(Animation animation) {
-                if (isFilterPageOpen) {
-                    slidingPanel.setVisibility(View.INVISIBLE);
-                    isFilterPageOpen = false;
-                } else {
-
-                    isFilterPageOpen = true;
-                }
-            }
-
-            @Override
-            public void onAnimationRepeat(Animation animation) {
-            }
-        });
         // 아래는 옵션 애니메이션
         translateUpAnim = AnimationUtils.loadAnimation(getActivity(), R.anim.up);
         translateDownAnim = AnimationUtils.loadAnimation(getActivity(), R.anim.down);
@@ -265,6 +224,7 @@ public class ListFragment extends Fragment {
             public void onAnimationRepeat(Animation animation) {
             }
         });
+
         translateDownAnim.setAnimationListener(new Animation.AnimationListener() {
             @Override
             public void onAnimationStart(Animation animation) {
@@ -285,39 +245,78 @@ public class ListFragment extends Fragment {
             }
         });
 
+        orderUpAnim = AnimationUtils.loadAnimation(getActivity(), R.anim.translate_up);
+        orderDownAnim = AnimationUtils.loadAnimation(getActivity(), R.anim.translate_down);
+
+        orderUpAnim.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                if (isFilterPageOpen) {
+                    isFilterPageOpen = false;
+                } else {
+                    slidingPanel.setVisibility(View.VISIBLE);
+                    isFilterPageOpen = true;
+                }
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
+
+        orderDownAnim.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                if (isFilterPageOpen) {
+                    slidingPanel.setVisibility(View.INVISIBLE);
+                    isFilterPageOpen = false;
+                } else {
+                    isFilterPageOpen = true;
+                }
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
+
+
         // 버튼 클릭시 전환되는 화면
         slidingPanel = (ConstraintLayout) view.findViewById(R.id.activity_filter);
         backgroundView = (ConstraintLayout) view.findViewById(R.id.list_main);
-        btnFilterBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (isFilterPageOpen) {
-                    slidingPanel.startAnimation(translateRightAnim);
-                    slidingPanel.setVisibility(View.GONE);
-                    backgroundView.setAlpha((float) 1.0);
-                }
-            }
-        });
+
         btnFilter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (!isFilterPageOpen) {
-                    slidingPanel.startAnimation(translateLeftAnim);
+                    slidingPanel.startAnimation(orderUpAnim);
                     slidingPanel.setVisibility(View.VISIBLE);
+                    //backgroundView.setAlpha((float) 0.2);
+                }
+                if (isFilterPageOpen) {
+                    slidingPanel.startAnimation(orderDownAnim);
+                    slidingPanel.setVisibility(View.GONE);
                     //backgroundView.setAlpha((float) 0.2);
                 }
             }
         });
         // 옵션 필터
         slidingdownPanel = (ConstraintLayout) view.findViewById(R.id.option_select);
-//        btnOptionBack.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if (isOptionPageOpen) {
-//                    slidingdownPanel.startAnimation(translateUpAnim);
-//                }
-//            }
-//        });
+
         btnOption.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -409,7 +408,7 @@ public class ListFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if (isFilterPageOpen) {
-                    slidingPanel.startAnimation(translateRightAnim);
+                    slidingPanel.startAnimation(orderDownAnim);
                     slidingPanel.setVisibility(View.GONE);
                     btnFilter.setVisibility(View.VISIBLE);
                     backgroundView.setAlpha((float) 1.0);

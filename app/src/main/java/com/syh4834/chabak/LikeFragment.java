@@ -2,6 +2,7 @@ package com.syh4834.chabak;
 
 import android.os.Bundle;
 
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -31,7 +32,7 @@ public class LikeFragment extends Fragment {
     private RecyclerListAdapter adapter;
     private RecyclerView.LayoutManager layoutManager;
 
-    ImageView empty;
+    ConstraintLayout empty;
 
     // retrofit 객체 생성
     Retrofit retrofit = new Retrofit.Builder()
@@ -46,7 +47,7 @@ public class LikeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_like, container, false);
-        empty = (ImageView)view.findViewById(R.id.empty_image);
+        empty = (ConstraintLayout) view.findViewById(R.id.empty_image);
 // sharedPreferences 값으로 사용자의 토큰을 얻어온다.
 //        SharedPreferences sharedPreferences = getSharedPreferences("chabak", MODE_PRIVATE);
 //        token = sharedPreferences.getString("token", null);
