@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.provider.MediaStore;
 import android.text.Layout;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -52,6 +53,7 @@ public class ListFragment extends Fragment {
     private RecyclerListAdapter adapter;
     private RecyclerView.LayoutManager layoutManager;
     public ArrayList<Integer> regionList = new ArrayList<>();
+    public ArrayList<Integer> placeIdxList = new ArrayList<>();
     private String order="star";
     private int regionTotalIdx=0;
     private int regionJjIdx=0;
@@ -123,6 +125,7 @@ public class ListFragment extends Fragment {
     ChabakService chabakService = retrofit.create(ChabakService.class);
 
     String token;
+    int placeIdx;
 
     public ListFragment() {
         // Required empty public constructor
@@ -133,6 +136,7 @@ public class ListFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_list, container, false);
 
         // 서버로부터 요청할 변수
+        regionList.clear();
         regionList.add(0); // 전국으로 초기화
 
 
@@ -182,6 +186,19 @@ public class ListFragment extends Fragment {
 
 
         DataInit(view);
+        // 클릭시 전환되는 화면
+        adapter.setOnItemClickListener(new RecyclerReviewUploadImgAdapter.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(View v, int position) {
+                int pos = placeIdxList.get(position);
+                Log.e("포지션",String.valueOf(pos));
+                Intent intent = new Intent(getContext(), PlaceDetailActivity.class);
+                intent.putExtra("PlaceIdx", pos); // position부분을 수정해야 함
+                startActivity(intent);
+            }
+        });
+
         //아래는 필터 애니메이션
         translateLeftAnim = AnimationUtils.loadAnimation(getActivity(), R.anim.left);
         translateRightAnim = AnimationUtils.loadAnimation(getActivity(), R.anim.right);
@@ -582,7 +599,7 @@ public class ListFragment extends Fragment {
     }
 
     private void getData(PlaceListData placeListData) {
-
+        placeIdxList.clear();
         int rateImageView = R.drawable.star;
         for (int i = 0; i < placeListData.getPlaceList().length; i++) {
             RecyclerListData data = new RecyclerListData();
@@ -591,6 +608,7 @@ public class ListFragment extends Fragment {
             data.setGetRateText(placeListData.getPlaceList()[i].getPlaceAvgStar());
             data.setRateImageView(rateImageView);
             data.setContentImageView(placeListData.getPlaceList()[i].getPlaceThumbnail());
+            placeIdxList.add(placeListData.getPlaceList()[i].getPlaceIdx());
             adapter.addItem(data);
         }
         adapter.notifyDataSetChanged();
