@@ -51,4 +51,8 @@ public class PlaceImagePageAdapter extends PagerAdapter {
     public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
         container.invalidate();
     }
+
+    public String getThumbnail() {
+        return placeImages[0];
+    }
 }

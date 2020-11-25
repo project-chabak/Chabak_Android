@@ -10,6 +10,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -159,13 +160,15 @@ public class SignupActivity extends AppCompatActivity {
             String pw = edtPw.getText().toString();
             String pwCheck = edtPwCheck.toString();
             genderID = rgGender.getCheckedRadioButtonId();
-            if(genderID == 2131362112) {
+            RadioButton genderValue = findViewById(genderID);
+
+            if(genderValue.getText().toString().equals("남성")) {
                 gender = "M";
             } else {
                 gender = "F";
             }
-            Log.e("gender", gender);
-            String birth = edtBirth.toString();
+            String birth = edtBirth.getText().toString();
+            Log.e("birth", birth);
 
             if (nickname.isEmpty() || id.isEmpty() || pw.isEmpty() || pwCheck.isEmpty() || genderID == -1 || birth.isEmpty()) {
                 Toast.makeText(this, "회원가입 조건에 맞게 모두 채워주세요", Toast.LENGTH_SHORT).show();
@@ -198,6 +201,9 @@ public class SignupActivity extends AppCompatActivity {
                 }
             }
         });
-
+    }
+    @Override
+    public void onBackPressed() {
+        btnBack.performClick();
     }
 }

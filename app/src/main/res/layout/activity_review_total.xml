@@ -23,19 +23,19 @@
         android:id="@+id/btn_back"
         android:layout_width="20dp"
         android:layout_height="25dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
+        android:layout_marginStart="18dp"
+        android:layout_marginLeft="18dp"
+        android:background="@drawable/left_arrow"
         app:layout_constraintBottom_toBottomOf="@+id/toolbar"
         app:layout_constraintStart_toStartOf="@id/toolbar"
-        app:layout_constraintTop_toTopOf="@id/toolbar"
-        android:background="@drawable/left_arrow" />
+        app:layout_constraintTop_toTopOf="@id/toolbar" />
 
     <Button
         android:id="@+id/btn_edit"
-        android:layout_width="22dp"
-        android:layout_height="22dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginRight="20dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginEnd="18dp"
+        android:layout_marginRight="18dp"
         android:background="@drawable/edit"
         app:layout_constraintBottom_toBottomOf="@+id/toolbar"
         app:layout_constraintEnd_toEndOf="@+id/toolbar"
@@ -70,12 +70,12 @@
                 android:id="@+id/tv_review_count"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginLeft="20dp"
+                android:layout_marginStart="18dp"
+                android:layout_marginLeft="18dp"
                 android:layout_marginTop="15dp"
                 android:fontFamily="@font/nanum_barun_gothic_bold"
-                android:text="27"
-                android:textColor="@color/colorPrimary"
+                android:text=""
+                android:textColor="@color/colorPrimaryDark"
                 android:textSize="24sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
@@ -90,19 +90,19 @@
                 android:fontFamily="@font/nanum_barun_gothic_bold"
                 android:text="개의 리뷰"
                 android:textColor="@color/colorTextDark"
-                android:textSize="24sp"
+                android:textSize="21sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/tv_review_count"
                 app:layout_constraintStart_toEndOf="@+id/tv_review_count"
                 app:layout_constraintTop_toTopOf="@+id/tv_review_count" />
 
             <RadioGroup
-                android:id="@+id/radioGroup"
+                android:id="@+id/rg_review_order"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginRight="20dp"
+                android:layout_marginEnd="18dp"
+                android:layout_marginRight="18dp"
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_review_count">
@@ -116,7 +116,7 @@
                     android:button="@drawable/radio_range"
                     android:checked="true"
                     android:clickable="true"
-                    android:fontFamily="@font/nanum_barun_gothic_light"
+                    android:fontFamily="@font/nanum_barun_gothic_regular"
                     android:text="  추천순"
                     android:textColor="@color/text_selector"
                     android:textColorHighlight="@color/colorPrimary"
@@ -132,7 +132,7 @@
                     android:layout_weight="1"
                     android:button="@drawable/radio_range"
                     android:clickable="true"
-                    android:fontFamily="@font/nanum_barun_gothic_light"
+                    android:fontFamily="@font/nanum_barun_gothic_regular"
                     android:text="  최신순"
                     android:textColor="@color/text_selector"
                     android:textColorHighlight="@color/colorPrimary"
@@ -145,15 +145,34 @@
                 android:id="@+id/rv_review_total"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginLeft="20dp"
+                android:layout_marginStart="18dp"
+                android:layout_marginLeft="18dp"
                 android:layout_marginTop="20dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginRight="20dp"
+                android:layout_marginEnd="18dp"
+                android:layout_marginRight="18dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/radioGroup" />
+                app:layout_constraintTop_toBottomOf="@id/rg_review_order" />
 
+            <ImageView
+                android:id="@+id/img_rec_seperator_04"
+                android:layout_width="0dp"
+                android:layout_height="7dp"
+                android:layout_marginBottom="20dp"
+                app:layout_constraintBottom_toTopOf="@id/img_logo_detail_view"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:srcCompat="@drawable/rec_seperator" />
+
+            <ImageView
+                android:id="@+id/img_logo_detail_view"
+                android:layout_width="93dp"
+                android:layout_height="45dp"
+                android:layout_marginBottom="20dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:srcCompat="@drawable/logo_primary" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 

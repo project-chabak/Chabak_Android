@@ -102,6 +102,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         double placeLongitude = getIntent().getDoubleExtra("placeLongitude", 0);
         ArrayList<PlaceToiletData> toiletArray = getIntent().getParcelableArrayListExtra("toilets");
 
+        Log.e("toilets1", String.valueOf(toiletArray));
         naverMap.setCameraPosition(new CameraPosition(new LatLng(placeLatitude, placeLongitude), 17));
 
         //화장실 마커

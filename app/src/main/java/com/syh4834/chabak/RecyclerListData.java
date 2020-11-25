@@ -5,26 +5,25 @@ import java.util.ArrayList;
 
 public class RecyclerListData {
 
+    private boolean userLike;
     private String title;
     private String content;
-    private String rateText;
-
+    private double rateText;
     private int rateImageView;
-    private int contentImageView;
+    private String contentImageView;
+    private int placeIdx;
 
     public String getTitle() {
         return title;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
+    public void setTitle(String title) { this.title = title; }
 
-    public String getRateText() {
+    public double getRateText() {
         return rateText;
     }
 
-    public void setGetRateText(String rateText) {
+    public void setGetRateText(double rateText) {
         this.rateText = rateText;
     }
 
@@ -40,15 +39,31 @@ public class RecyclerListData {
         return rateImageView;
     }
 
+    public int getPlaceIdx() {
+        return placeIdx;
+    }
+
+    public void setPlaceIdx(int placeIdx) {
+        this.placeIdx = placeIdx;
+    }
+
     public void setRateImageView(int resId) {
         this.rateImageView = resId;
     }
 
-    public int getContentImageView() {
+    public String getContentImageView() {
         return contentImageView;
     }
 
-    public void setContentImageView(int resId) {
+    public void setContentImageView(String resId) {
         this.contentImageView = resId;
+    }
+
+    public boolean getUserLike() {
+        return userLike;
+    }
+
+    public void setUserLike(boolean userLike) {
+        this.userLike = userLike;
     }
 }
