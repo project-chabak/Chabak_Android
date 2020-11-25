@@ -1,5 +1,7 @@
 package com.syh4834.chabak;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -20,6 +22,8 @@ import com.syh4834.chabak.api.data.PlaceListData;
 import com.syh4834.chabak.api.response.ResponsePlaceLike;
 import com.syh4834.chabak.api.response.ResponsePlaceList;
 
+import java.util.ArrayList;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -29,8 +33,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class LikeFragment extends Fragment {
     private PlaceListData placeListData;
     private RecyclerView recyclerView;
-    private RecyclerListAdapter adapter;
+    private RecyclerLikeAdapter adapter;
     private RecyclerView.LayoutManager layoutManager;
+    public ArrayList<Integer> placeIdxList = new ArrayList<>();
 
     ConstraintLayout empty;
 
@@ -49,10 +54,20 @@ public class LikeFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_like, container, false);
         empty = (ConstraintLayout) view.findViewById(R.id.empty_image);
 // sharedPreferences 값으로 사용자의 토큰을 얻어온다.
-//        SharedPreferences sharedPreferences = getSharedPreferences("chabak", MODE_PRIVATE);
-//        token = sharedPreferences.getString("token", null);
-        token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWR4IjoxLCJpZCI6ImlkIiwibmlja25hbWUiOiIxMjMiLCJpYXQiOjE2MDQ5NzMxMDN9.80OjSRBho8176t0BgYu5tuEZ5pJGBh_tCjVn_Nsic_I"; // 임시 토큰
+        SharedPreferences sharedPreferences = getContext().getSharedPreferences("chabak", getContext().MODE_PRIVATE);
+        token = sharedPreferences.getString("token", null);
         DataInit(view);
+        adapter.setOnItemClickListener(new RecyclerReviewUploadImgAdapter.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(View v, int position) {
+                int pos = placeIdxList.get(position);
+                //Log.e("포지션",String.valueOf(pos));
+                Intent intent = new Intent(getContext(), PlaceDetailActivity.class);
+                intent.putExtra("PlaceIdx", pos); // position부분을 수정해야 함
+                startActivity(intent);
+            }
+        });
         return view;
     }
     private void DataInit(View view){
@@ -60,7 +75,7 @@ public class LikeFragment extends Fragment {
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(recyclerView.getContext());
         recyclerView.setLayoutManager(layoutManager);
-        adapter = new RecyclerListAdapter();
+        adapter = new RecyclerLikeAdapter();
         chabakService.getPlaceLike(token).enqueue(new Callback<ResponsePlaceLike>() {
             @Override
             public void onResponse(Call<ResponsePlaceLike> call, Response<ResponsePlaceLike> response) {
@@ -88,7 +103,7 @@ public class LikeFragment extends Fragment {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
     }
     private void getData(PlaceLikeData[] placeLikeData) {
-
+        placeIdxList.clear();
         int rateImageView = R.drawable.star;
         for (int i = 0; i < placeLikeData.length; i++) {
             RecyclerListData data = new RecyclerListData();
@@ -97,6 +112,7 @@ public class LikeFragment extends Fragment {
             data.setGetRateText(placeLikeData[i].getPlaceAvgStar());
             data.setRateImageView(rateImageView);
             data.setContentImageView(placeLikeData[i].getPlaceThumbnail());
+            placeIdxList.add(placeLikeData[i].getPlaceIdx());
             adapter.addItem(data);
         }
         adapter.notifyDataSetChanged();

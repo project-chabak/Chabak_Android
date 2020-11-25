@@ -1,19 +1,8 @@
 package com.syh4834.chabak;
 
 import android.content.Intent;
-import android.os.Build;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-
-import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.DefaultItemAnimator;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import android.provider.MediaStore;
-import android.text.Layout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,23 +12,20 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RadioButton;
+
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.syh4834.chabak.api.ChabakService;
-import com.syh4834.chabak.api.data.PlaceDetailData;
 import com.syh4834.chabak.api.data.PlaceListData;
-import com.syh4834.chabak.api.response.ResponsePlaceDetail;
-import com.syh4834.chabak.api.response.ResponsePlaceLike;
 import com.syh4834.chabak.api.response.ResponsePlaceList;
-import com.syh4834.chabak.api.response.ResponsePlaceReview;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -67,6 +53,7 @@ public class ListFragment extends Fragment {
     private int toiletIdx=0;
     private int cookingIdx=0;
     private int storeIdx=0;
+    private int regionSelector=-1;
 
 
     Button btnFilter;
@@ -142,14 +129,13 @@ public class ListFragment extends Fragment {
 
 
         // sharedPreferences 값으로 사용자의 토큰을 얻어온다.
-//        SharedPreferences sharedPreferences = getSharedPreferences("chabak", MODE_PRIVATE);
-//        token = sharedPreferences.getString("token", null);
-        token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWR4IjozLCJpZCI6ImlkVGVzdCIsIm5pY2tuYW1lIjoibmlja25hbWUiLCJpYXQiOjE2MDU5NzI5MjZ9.0-TXXAKF8KlE8qJn1OnsPnIuM_KExms0rMOwzcz0yP4"; // 임시 토큰
+        SharedPreferences sharedPreferences = getContext().getSharedPreferences("chabak", getContext().MODE_PRIVATE);
+        token = sharedPreferences.getString("token", null);
+        //Log.e("토큰",token);
 
         //아래 변수들은 버튼들
         btnFilter = (Button) view.findViewById(R.id.btn_fillter);
         btnOption = (Button) view.findViewById(R.id.btn_option);
-        btnFilterBack = (Button) view.findViewById(R.id.btn_close);
         btnFilterAdapter = (Button) view.findViewById(R.id.btn_filter_adapter);
 //        btnOptionBack = (Button) view.findViewById(R.id.btn_back);
         btnOptionAdapter = (Button) view.findViewById(R.id.btn_option_adapter);
@@ -185,15 +171,22 @@ public class ListFragment extends Fragment {
         regionJlImage = (ImageView) view.findViewById(R.id.region_jl_image);
         regionGsImage = (ImageView) view.findViewById(R.id.region_gs_image);
 
-
-        DataInit(view);
+        // 홈화면에서 받은 정보
+        regionSelector = getActivity().getIntent().getIntExtra("placeCategoryIdx",-1);
+        if(regionSelector==-1){
+            DataInit(view);
+        }
+        else{
+            regionList.add(regionSelector);
+            getPlaceListData(regionList);
+        }
         // 클릭시 전환되는 화면
         adapter.setOnItemClickListener(new RecyclerReviewUploadImgAdapter.OnItemClickListener() {
 
             @Override
             public void onItemClick(View v, int position) {
                 int pos = placeIdxList.get(position);
-                Log.e("포지션",String.valueOf(pos));
+                //Log.e("포지션",String.valueOf(pos));
                 Intent intent = new Intent(getContext(), PlaceDetailActivity.class);
                 intent.putExtra("PlaceIdx", pos); // position부분을 수정해야 함
                 startActivity(intent);
@@ -548,6 +541,7 @@ public class ListFragment extends Fragment {
         layoutManager = new LinearLayoutManager(recyclerView.getContext());
         recyclerView.setLayoutManager(layoutManager);
         adapter = new RecyclerListAdapter();
+        adapter.setToken(token);
         chabakService.getPlaceList(token,order,regionList,toiletIdx,cookingIdx,storeIdx).enqueue(new Callback<ResponsePlaceList>() {
             @Override
             public void onResponse(Call<ResponsePlaceList> call, Response<ResponsePlaceList> response) {
@@ -599,14 +593,22 @@ public class ListFragment extends Fragment {
 
     private void getData(PlaceListData placeListData) {
         placeIdxList.clear();
+
         int rateImageView = R.drawable.star;
         for (int i = 0; i < placeListData.getPlaceList().length; i++) {
             RecyclerListData data = new RecyclerListData();
+            if(placeListData.getPlaceList()[i].getUserLike() == true) {
+                data.setUserLike(true);
+            }
+            else{
+                data.setUserLike(false);
+            }
             data.setTitle(placeListData.getPlaceList()[i].getPlaceTitle());
             data.setContent(placeListData.getPlaceList()[i].getPlaceAddress());
             data.setGetRateText(placeListData.getPlaceList()[i].getPlaceAvgStar());
             data.setRateImageView(rateImageView);
             data.setContentImageView(placeListData.getPlaceList()[i].getPlaceThumbnail());
+            data.setPlaceIdx(placeListData.getPlaceList()[i].getPlaceIdx());
             placeIdxList.add(placeListData.getPlaceList()[i].getPlaceIdx());
             adapter.addItem(data);
         }
