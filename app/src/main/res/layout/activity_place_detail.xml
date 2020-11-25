@@ -402,6 +402,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/img_rec_seperator_02" />
 
+
             <com.naver.maps.map.MapView
                 android:id="@+id/map_view"
                 android:layout_width="match_parent"
@@ -418,17 +419,43 @@
                 app:layout_constraintTop_toBottomOf="@id/tv_location"
                 app:navermap_logoGravity="bottom|right"
                 app:navermap_logoMargin="10dp">
-
             </com.naver.maps.map.MapView>
+
+
+            <ImageView
+                android:id="@+id/img_marker_toilet"
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="12dp"
+                app:layout_constraintStart_toStartOf="@id/map_view"
+                app:layout_constraintTop_toBottomOf="@+id/map_view"
+                app:srcCompat="@drawable/marker_toilet" />
+
+            <TextView
+                android:id="@+id/tv_marker_toilet"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="화장실"
+                android:fontFamily="@font/nanum_barun_gothic_regular"
+                android:textColor="@color/colorTextDark"
+                android:textSize="12sp"
+                android:layout_marginLeft="4dp"
+                android:layout_marginStart="4dp"
+                app:layout_constraintTop_toTopOf="@id/img_marker_toilet"
+                app:layout_constraintBottom_toBottomOf="@+id/img_marker_toilet"
+                app:layout_constraintStart_toEndOf="@id/img_marker_toilet" />
 
             <ImageView
                 android:id="@+id/img_marker"
-                android:layout_width="18dp"
-                android:layout_height="18dp"
-                android:layout_marginEnd="5dp"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
                 android:layout_marginRight="5dp"
-                app:layout_constraintBottom_toBottomOf="@id/tv_location_detail"
+                android:layout_marginEnd="5dp"
                 app:layout_constraintEnd_toStartOf="@id/tv_location_detail"
+                app:layout_constraintTop_toTopOf="@+id/tv_location_detail"
+                app:layout_constraintBottom_toBottomOf="@id/tv_location_detail"
                 app:srcCompat="@drawable/marker_place" />
 
             <TextView
@@ -439,7 +466,7 @@
                 android:fontFamily="@font/nanum_barun_gothic_regular"
                 android:text="OO시, OO로 34-1길"
                 android:textColor="@color/colorTextDark"
-                android:textSize="12.5sp"
+                android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="@id/map_view"
                 app:layout_constraintTop_toBottomOf="@id/map_view" />
 

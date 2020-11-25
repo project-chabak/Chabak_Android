@@ -528,8 +528,8 @@ public class PlaceDetailActivity extends AppCompatActivity implements OnMapReady
             toilets[i] = new Marker();
             toilets[i].setPosition(new LatLng(placeToiletData[i].getToiletLatitude(), placeToiletData[i].getToiletLongitude()));
             toilets[i].setIcon(OverlayImage.fromResource(R.drawable.marker_toilet));
-            toilets[i].setWidth(80);
-            toilets[i].setHeight(80);
+            toilets[i].setWidth(30);
+            toilets[i].setHeight(30);
             toilets[i].setMap(naverMap);
         }
 
@@ -537,8 +537,8 @@ public class PlaceDetailActivity extends AppCompatActivity implements OnMapReady
         Marker place = new Marker();
         place.setPosition(new LatLng(placeLatitude, placeLongitude));
         place.setIcon(OverlayImage.fromResource(R.drawable.marker_place));
-        place.setWidth(250);
-        place.setHeight(250);
+        place.setWidth(90);
+        place.setHeight(90);
         place.setMap(naverMap);
     }
 
