@@ -1,6 +1,7 @@
 package com.syh4834.chabak.home;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,8 @@ import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.viewpager.widget.PagerAdapter;
 
+import com.syh4834.chabak.BannerDetailActivity;
+import com.syh4834.chabak.PlaceDetailActivity;
 import com.syh4834.chabak.R;
 
 public class BannerImagePageAdapter extends PagerAdapter {
@@ -46,10 +49,11 @@ public class BannerImagePageAdapter extends PagerAdapter {
         imgBanner.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Toast.makeText(context, "" + position, Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(view.getContext(), BannerDetailActivity.class);
+                intent.putExtra("position", position);
+                view.getContext().startActivity(intent);
             }
         });
-
 
         container.addView(v);
         return v;
