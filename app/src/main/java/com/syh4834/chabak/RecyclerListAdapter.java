@@ -4,6 +4,8 @@ package com.syh4834.chabak;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Build;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -22,6 +24,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.syh4834.chabak.api.ChabakService;
 import com.syh4834.chabak.api.request.RequestLikePlace;
+import com.syh4834.chabak.api.request.RequestLikeReview;
 import com.syh4834.chabak.api.response.ResponseLike;
 
 import java.util.ArrayList;
@@ -40,6 +43,8 @@ public class RecyclerListAdapter extends RecyclerView.Adapter<RecyclerListAdapte
 
     public ArrayList<RecyclerListData> listData = new ArrayList<>();
     private RecyclerReviewUploadImgAdapter.OnItemClickListener listener = null;
+
+    private static String token;
 
     public interface OnItemClickListener {
         void onItemClick(View v, int position);
@@ -66,6 +71,8 @@ public class RecyclerListAdapter extends RecyclerView.Adapter<RecyclerListAdapte
     void addItem(RecyclerListData recyclerListData) {
         listData.add(recyclerListData);
     }
+
+    void setToken(String token) { this.token = token; }
 
     public void setOnItemClickListener(RecyclerReviewUploadImgAdapter.OnItemClickListener listner) {
         this.listener = listner;
@@ -102,12 +109,65 @@ public class RecyclerListAdapter extends RecyclerView.Adapter<RecyclerListAdapte
 
         @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
         void onBind(RecyclerListData listData) {
+            Retrofit retrofit = new Retrofit.Builder()
+                    .baseUrl(ChabakService.BASE_RUL)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+            ChabakService chabakService = retrofit.create(ChabakService.class);
+
             textView1.setText(listData.getTitle());
             textView2.setText(listData.getContent());
             rateText.setText(String.valueOf(listData.getRateText()));
             rateImageView.setImageResource(listData.getRateImageView());
             Glide.with(itemView).load(listData.getContentImageView()).into(contentImageView);
             contentImageView.setClipToOutline(true);
+
+            if (listData.getUserLike()) {
+                likeImageView.setChecked(true);
+            }
+            else{
+                likeImageView.setChecked(false);
+            }
+            likeImageView.setOnClickListener(l -> {
+                if(likeImageView.isChecked()) {
+                    Log.e("플레이스",String.valueOf(listData.getPlaceIdx()));
+                    chabakService.likePlace(token, new RequestLikePlace(listData.getPlaceIdx())).enqueue(new Callback<ResponseLike>() {
+                        @Override
+                        public void onResponse(Call<ResponseLike> call, Response<ResponseLike> response) {
+                            if (response.body().getSuccess()) {
+                                likeImageView.setChecked(true);
+                                Log.e("reviewLike", "success");
+                            } else {
+                                Log.e("reviewLike", response.body().getMessage());
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<ResponseLike> call, Throwable t) {
+                            Log.e("fail","fail");
+
+                        }
+                    });
+                } else {
+                    chabakService.cancleLikedPlace(token, new RequestLikePlace(listData.getPlaceIdx())).enqueue(new Callback<ResponseLike>() {
+                        @Override
+                        public void onResponse(Call<ResponseLike> call, Response<ResponseLike> response) {
+                            if (response.body().getSuccess()) {
+                                likeImageView.setChecked(false);
+                                Log.e("cancleLikedReview", "success");
+                            } else {
+                                Log.e("cancleLikedReview", "fail");
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<ResponseLike> call, Throwable t) {
+                            Log.e("fail","fail");
+
+                        }
+                    });
+                }
+            });
         }
     }
 }
