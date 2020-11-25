@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.WindowManager;
@@ -71,9 +72,8 @@ public class ReviewTotalActivity extends AppCompatActivity {
 
         reviewCnt = getIntent().getIntExtra("reviewCnt", 0);
         tvReviewCount.setText(String.valueOf(reviewCnt));
-//        SharedPreferences sharedPreferences = getSharedPreferences("chabak", MODE_PRIVATE);
-//        token = sharedPreferences.getString("token", null);
-        token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWR4IjozLCJpZCI6ImlkVGVzdCIsIm5pY2tuYW1lIjoibmlja25hbWUiLCJpYXQiOjE2MDU2NzcyNDZ9.fKU9vfikGOMQ158oW7kyLhTR4ZRZPDMvvmpseFhK8sA";
+        SharedPreferences sharedPreferences = getSharedPreferences("chabak", MODE_PRIVATE);
+        token = sharedPreferences.getString("token", null);
 
         getPlaceReviewData("like");
 
