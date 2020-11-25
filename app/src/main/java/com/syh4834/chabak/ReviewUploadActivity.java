@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.ClipData;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -22,6 +23,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -68,6 +70,7 @@ public class ReviewUploadActivity extends AppCompatActivity {
 
     private String token;
     private int placeIdx;
+    private int reviewStarId;
     private int reviewStar;
 
     private Bitmap img;
@@ -100,9 +103,8 @@ public class ReviewUploadActivity extends AppCompatActivity {
         recyclerReviewUploadImgAdapter = new RecyclerReviewUploadImgAdapter();
 
         placeIdx = getIntent().getIntExtra("placeIdx", 0);
-//        SharedPreferences sharedPreferences = getSharedPreferences("chabak", MODE_PRIVATE);
-//        token = sharedPreferences.getString("token", null);
-        token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWR4IjozLCJpZCI6ImlkVGVzdCIsIm5pY2tuYW1lIjoibmlja25hbWUiLCJpYXQiOjE2MDU2NzcyNDZ9.fKU9vfikGOMQ158oW7kyLhTR4ZRZPDMvvmpseFhK8sA";
+        SharedPreferences sharedPreferences = getSharedPreferences("chabak", MODE_PRIVATE);
+        token = sharedPreferences.getString("token", null);
 
         tvPlaceTitle.setText(getIntent().getStringExtra("placeTitle"));
         tvPlaceName.setText(getIntent().getStringExtra("placeName"));
@@ -129,22 +131,25 @@ public class ReviewUploadActivity extends AppCompatActivity {
         });
 
         btnReviewUpload.setOnClickListener(l -> {
+            reviewStarId = rgReview.getCheckedRadioButtonId();
             reviewStar = 0;
-            switch(rgReview.getCheckedRadioButtonId()) {
-                case 2131362146:
-                    reviewStar = 1;
-                    break;
-                case 2131362142:
-                    reviewStar = 2;
-                    break;
-                case 2131362143:
-                    reviewStar = 3;
-                    break;
-                case 2131362144:
-                    reviewStar = 4;
-                    break;
-                case 2131362145:
-                    reviewStar = 5;
+
+            RadioButton getReviewStar = (RadioButton) findViewById(reviewStarId);
+
+            Log.e("radio", String.valueOf(rgReview.getCheckedRadioButtonId()));
+            Log.e("getReviewStar", "null"+getReviewStar.getTag());
+
+            CharSequence text = getReviewStar.getTag().toString();
+            if ("별로에요".equals(text)) {
+                reviewStar = 1;
+            } else if ("조금 아쉬워요".equals(text)) {
+                reviewStar = 2;
+            } else if ("괜찮아요".equals(text)) {
+                reviewStar = 3;
+            } else if ("좋았어요".equals(text)) {
+                reviewStar = 4;
+            } else if ("최고에요".equals(text)) {
+                reviewStar = 5;
             }
 
             if(reviewStar == 0) {

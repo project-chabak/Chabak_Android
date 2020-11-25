@@ -3,7 +3,7 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="line">
     <stroke
-        android:color="#272727"
-        android:width="0.3dp" />
+        android:color="@color/colorTextDark"
+        android:width="0.1dp" />
 
 </shape>

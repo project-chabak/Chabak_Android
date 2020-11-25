@@ -93,6 +93,7 @@ public class PlaceDetailActivity extends AppCompatActivity implements OnMapReady
     private Button btnBackWhite;
     private Button btnBack;
     private Button btnEdit;
+    private Button btnGoReview;
 
     private RadioButton rbRangeRec;
     private RadioButton rbRangeLatest;
@@ -153,6 +154,7 @@ public class PlaceDetailActivity extends AppCompatActivity implements OnMapReady
         btnBackWhite = findViewById(R.id.btn_back_white);
         btnBack = findViewById(R.id.btn_back);
         btnEdit = findViewById(R.id.btn_edit);
+        btnGoReview = findViewById(R.id.btn_go_review);
 
         rbRangeRec = findViewById(R.id.rb_range_rec);
         rbRangeLatest = findViewById(R.id.rb_range_latest);
@@ -161,8 +163,8 @@ public class PlaceDetailActivity extends AppCompatActivity implements OnMapReady
         mapView.onCreate(savedInstanceState);
         mapView.setClipToOutline(true);
 
-//        placeIdx = getIntent().getIntExtra("placeIdx", 0);
-        placeIdx = 7;
+        placeIdx = getIntent().getIntExtra("PlaceIdx", 0);
+        Log.e("placeIdx", String.valueOf(placeIdx));
         SharedPreferences sharedPreferences = getSharedPreferences("chabak", MODE_PRIVATE);
         token = sharedPreferences.getString("token", null);
 //        Log.e("token", token);
@@ -233,6 +235,10 @@ public class PlaceDetailActivity extends AppCompatActivity implements OnMapReady
             intent.putExtra("placeName", placeDetailData.getPlaceName());
             intent.putExtra("placeImg", placeImagePageAdapter.getThumbnail());
             startActivityForResult(intent, REQUEST_REVIEW_UPLOAD);
+        });
+
+        btnGoReview.setOnClickListener(l -> {
+            btnEdit.performClick();
         });
 
         rbRangeRec.setOnClickListener(l -> {
