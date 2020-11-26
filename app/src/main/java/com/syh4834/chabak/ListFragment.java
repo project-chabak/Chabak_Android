@@ -127,7 +127,6 @@ public class ListFragment extends Fragment {
         regionList.clear();
         regionList.add(0); // 전국으로 초기화
 
-
         // sharedPreferences 값으로 사용자의 토큰을 얻어온다.
         SharedPreferences sharedPreferences = getContext().getSharedPreferences("chabak", getContext().MODE_PRIVATE);
         token = sharedPreferences.getString("token", null);
@@ -171,6 +170,8 @@ public class ListFragment extends Fragment {
         regionJlImage = (ImageView) view.findViewById(R.id.region_jl_image);
         regionGsImage = (ImageView) view.findViewById(R.id.region_gs_image);
 
+        chbOptionTotal.setChecked(true);
+        filterRateHighSort.setChecked(true);
         // 홈화면에서 받은 정보
         regionSelector = getActivity().getIntent().getIntExtra("placeCategoryIdx",-1);
         if(regionSelector==-1){
@@ -327,7 +328,8 @@ public class ListFragment extends Fragment {
             public void onClick(View v) {
                 if (isOptionPageOpen) {
                     slidingdownPanel.startAnimation(translateUpAnim);
-                    if(optionRegion().equals("전국")){
+
+                    if(optionRegion().equals("전국")||optionRegion().equals("")){
                         optionCheck();
                         regionList.clear();
                         regionList.add(0);
@@ -357,7 +359,6 @@ public class ListFragment extends Fragment {
                         if(chbOptionGs.isChecked()){
                             chbOptionGs.setChecked(false);
                         }
-
                         adapter.notifyDataSetChanged();
                     }
                     else{
@@ -433,32 +434,45 @@ public class ListFragment extends Fragment {
     }
     private String optionRegion(){
         String region = "";
+        int cnt=0;
         if(chbOptionTotal.isChecked()){
             region = "전국";
+            cnt++;
         }
         else if(chbOptionJj.isChecked()){
             region = "제주도";
+            cnt++;
         }
         else if(chbOptionSl.isChecked()){
             region = "서울특별시";
+            cnt++;
         }
         else if(chbOptionBs.isChecked()){
             region = "부산광역시";
+            cnt++;
         }
         else if(chbOptionGg.isChecked()){
             region = "경기도";
+            cnt++;
         }
         else if(chbOptionGw.isChecked()){
             region = "강원도";
+            cnt++;
         }
         else if(chbOptionCc.isChecked()){
             region = "충청도";
+            cnt++;
         }
         else if(chbOptionJl.isChecked()){
             region = "전라도";
+            cnt++;
         }
         else if(chbOptionGs.isChecked()) {
             region = "경상도";
+            cnt++;
+        }
+        if(cnt==0){
+            region = "전국";
         }
         return region;
     }
