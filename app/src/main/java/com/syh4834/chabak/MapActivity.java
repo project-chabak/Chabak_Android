@@ -111,8 +111,8 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
             toilets[i] = new Marker();
             toilets[i].setPosition(new LatLng(toiletArray.get(i).getToiletLatitude(),toiletArray.get(i).getToiletLongitude()));
             toilets[i].setIcon(OverlayImage.fromResource(R.drawable.marker_toilet));
-            toilets[i].setWidth(80);
-            toilets[i].setHeight(80);
+            toilets[i].setWidth(50);
+            toilets[i].setHeight(50);
             toilets[i].setMap(naverMap);
         }
 
@@ -120,8 +120,8 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         Marker place = new Marker();
         place.setPosition(new LatLng(placeLatitude, placeLongitude));
         place.setIcon(OverlayImage.fromResource(R.drawable.marker_place));
-        place.setWidth(250);
-        place.setHeight(250);
+        place.setWidth(120);
+        place.setHeight(120);
         place.setMap(naverMap);
     }
 }

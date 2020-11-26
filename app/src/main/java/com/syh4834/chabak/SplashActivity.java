@@ -75,7 +75,7 @@ public class SplashActivity extends AppCompatActivity implements Animation.Anima
                             startActivity(intent);
                         }
                     }
-                }, 1000);
+                }, 900);
 
 
 

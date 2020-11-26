@@ -22,19 +22,21 @@
     <ImageView
         android:id="@+id/imageView6"
         android:layout_width="0dp"
-        android:layout_height="0.5dp"
+        android:layout_height="1dp"
         app:layout_constraintBottom_toTopOf="@+id/bn_bottom_navi"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/main_container"
-        app:srcCompat="@drawable/line_top_bottom" />
+        app:srcCompat="@drawable/rec_seperator" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bn_bottom_navi"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="52dp"
         android:background="@android:color/white"
-        app:elevation="0dp"
+        app:elevation="10dp"
+        android:outlineAmbientShadowColor="@color/colorTextDark"
+        app:itemIconSize="19dp"
         app:labelVisibilityMode="labeled"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

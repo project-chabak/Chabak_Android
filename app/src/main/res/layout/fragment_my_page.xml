@@ -21,12 +21,12 @@
         android:id="@+id/tv_mypage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
+        android:layout_marginStart="18dp"
+        android:layout_marginLeft="18dp"
         android:fontFamily="@font/nanum_barun_gothic_bold"
         android:text="마이페이지"
         android:textColor="@color/colorPrimaryDark"
-        android:textSize="18sp"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@+id/toolbar3"
         app:layout_constraintStart_toStartOf="@+id/toolbar3"
         app:layout_constraintTop_toTopOf="parent" />
@@ -34,12 +34,12 @@
     <ImageView
         android:id="@+id/line_top"
         android:layout_width="0dp"
-        android:layout_height="0.5dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginRight="20dp"
-        android:src="@drawable/line_top_bottom"
+        android:layout_height="1dp"
+        android:layout_marginStart="18dp"
+        android:layout_marginLeft="18dp"
+        android:layout_marginEnd="18dp"
+        android:layout_marginRight="18dp"
+        android:src="@drawable/rec_seperator"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar3" />
@@ -48,11 +48,11 @@
         android:id="@+id/cl_profile"
         android:layout_width="0dp"
         android:layout_height="150dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginRight="20dp"
+        android:layout_marginStart="18dp"
+        android:layout_marginLeft="18dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="18dp"
+        android:layout_marginRight="18dp"
         android:background="@drawable/rec_primary_75_10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -87,7 +87,7 @@
                 android:fontFamily="@font/nanum_barun_gothic_bold"
                 android:text=""
                 android:textColor="@android:color/white"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/tv_email"
@@ -97,7 +97,7 @@
                 android:fontFamily="@font/nanum_barun_gothic_regular"
                 android:text=""
                 android:textColor="@android:color/white"
-                android:textSize="15sp" />
+                android:textSize="13sp" />
 
             <TextView
                 android:id="@+id/tv_birth"
@@ -106,7 +106,7 @@
                 android:fontFamily="@font/nanum_barun_gothic_regular"
                 android:text=""
                 android:textColor="@android:color/white"
-                android:textSize="15sp" />
+                android:textSize="13sp" />
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -115,7 +115,7 @@
         android:id="@+id/img_rec_seperator_01"
         android:layout_width="0dp"
         android:layout_height="7dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="15dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/cl_profile"
@@ -123,8 +123,8 @@
 
     <ImageView
         android:id="@+id/imageView7"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
+        android:layout_width="18dp"
+        android:layout_height="18dp"
         android:layout_marginStart="30dp"
         android:layout_marginLeft="30dp"
         android:src="@drawable/report"
@@ -141,7 +141,7 @@
         android:fontFamily="@font/nanum_barun_gothic_regular"
         android:text="제보하기"
         android:textColor="@color/colorTextDark"
-        android:textSize="16sp"
+        android:textSize="14sp"
         app:layout_constraintBottom_toTopOf="@+id/img_line_seperator_01"
         app:layout_constraintStart_toEndOf="@+id/imageView7"
         app:layout_constraintTop_toBottomOf="@+id/img_rec_seperator_01" />
@@ -150,11 +150,11 @@
         android:id="@+id/img_line_seperator_01"
         android:layout_width="0dp"
         android:layout_height="2dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="60dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginRight="20dp"
+        android:layout_marginStart="18dp"
+        android:layout_marginLeft="18dp"
+        android:layout_marginTop="55dp"
+        android:layout_marginEnd="18dp"
+        android:layout_marginRight="18dp"
         android:background="@null"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -163,11 +163,11 @@
 
     <ImageView
         android:id="@+id/imageView8"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
+        android:layout_width="18dp"
+        android:layout_height="18dp"
         android:layout_marginStart="30dp"
         android:layout_marginLeft="30dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="20dp"
         android:src="@drawable/logout"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/img_line_seperator_01" />
@@ -181,7 +181,7 @@
         android:fontFamily="@font/nanum_barun_gothic_regular"
         android:text="로그아웃"
         android:textColor="@color/colorTextDark"
-        android:textSize="16sp"
+        android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView8"
         app:layout_constraintStart_toEndOf="@+id/imageView8"
         app:layout_constraintTop_toTopOf="@+id/imageView8" />

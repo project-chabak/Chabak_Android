@@ -9,7 +9,7 @@
     android:paddingBottom="20dp">
 
     <TextView
-        android:id="@+id/text_view1"
+        android:id="@+id/text_view_like1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
@@ -17,14 +17,14 @@
         android:includeFontPadding="false"
         android:text="가고싶은 그곳"
         android:textColor="@color/colorTextDark"
-        android:textSize="16sp"
+        android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/content_image_view"
+        app:layout_constraintTop_toBottomOf="@+id/content_image_view_like"
         tools:ignore="MissingConstraints" />
 
     <TextView
-        android:id="@+id/text_view2"
+        android:id="@+id/text_view_like2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="3dp"
@@ -32,31 +32,30 @@
         android:includeFontPadding="false"
         android:text="경기도 파주시 와석순환로"
         android:textColor="@color/colorTextLight"
-        android:textSize="13sp"
-        app:layout_constraintStart_toStartOf="@+id/text_view1"
-        app:layout_constraintTop_toBottomOf="@+id/text_view1"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="@+id/text_view_like1"
+        app:layout_constraintTop_toBottomOf="@+id/text_view_like1"
         tools:ignore="MissingConstraints" />
 
     <TextView
-        android:id="@+id/rate_text"
+        android:id="@+id/rate_text_like"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="5dp"
-        android:layout_marginTop="5dp"
         android:fontFamily="@font/nanum_barun_gothic_regular"
         android:includeFontPadding="false"
         android:text="4.5"
         android:textColor="@color/colorPrimary"
         android:textSize="13sp"
-        app:layout_constraintBottom_toBottomOf="@+id/rate_image_view"
-        app:layout_constraintLeft_toRightOf="@+id/rate_image_view"
-        app:layout_constraintTop_toTopOf="@+id/rate_image_view"
+        app:layout_constraintBottom_toBottomOf="@+id/rate_image_view_like"
+        app:layout_constraintLeft_toRightOf="@+id/rate_image_view_like"
+        app:layout_constraintTop_toTopOf="@+id/rate_image_view_like"
         tools:ignore="MissingConstraints" />
 
     <ImageView
-        android:id="@+id/content_image_view"
+        android:id="@+id/content_image_view_like"
         android:layout_width="0dp"
-        android:layout_height="190dp"
+        android:layout_height="200dp"
         android:background="@drawable/rec_transp_10dp"
         android:scaleType="fitXY"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -66,26 +65,12 @@
         tools:ignore="MissingConstraints" />
 
     <ImageView
-        android:id="@+id/rate_image_view"
+        android:id="@+id/rate_image_view_like"
         android:layout_width="17dp"
         android:layout_height="17dp"
         android:layout_marginTop="5dp"
         android:src="@drawable/star"
-        app:layout_constraintStart_toStartOf="@+id/text_view2"
-        app:layout_constraintTop_toBottomOf="@+id/text_view2"
-        tools:ignore="MissingConstraints" />
-
-    <CheckBox
-        android:id="@+id/like_image_view"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="15dp"
-        android:layout_marginRight="15dp"
-        android:background="@drawable/chb_like_white"
-        android:button="@null"
-        android:checked="false"
-        app:layout_constraintEnd_toEndOf="@+id/content_image_view"
-        app:layout_constraintTop_toTopOf="@+id/content_image_view"
+        app:layout_constraintStart_toStartOf="@+id/text_view_like2"
+        app:layout_constraintTop_toBottomOf="@+id/text_view_like2"
         tools:ignore="MissingConstraints" />
 </androidx.constraintlayout.widget.ConstraintLayout>

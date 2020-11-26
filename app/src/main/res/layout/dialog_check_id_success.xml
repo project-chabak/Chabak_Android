@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="230dp"
+    android:layout_width="235dp"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    >
+    android:orientation="vertical">
 
     <ImageView
         android:id="@+id/img_logo"
-        android:layout_width="88dp"
-        android:layout_height="55dp"
+        android:layout_width="80dp"
+        android:layout_height="50dp"
         android:layout_gravity="center|top"
         android:layout_marginTop="20dp"
         app:srcCompat="@drawable/car_green" />
@@ -19,7 +18,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="12dp"
         android:layout_marginBottom="15dp"
         android:fontFamily="@font/nanum_barun_gothic_regular"
         android:gravity="center"
@@ -41,7 +40,7 @@
             android:id="@+id/btn_use"
             android:layout_width="60dp"
             android:layout_height="match_parent"
-            android:layout_marginRight="10dp"
+            android:layout_marginRight="12dp"
             android:background="@drawable/rec_primary_10dp"
             android:fontFamily="@font/nanum_barun_gothic_regular"
             android:text="사용하기"

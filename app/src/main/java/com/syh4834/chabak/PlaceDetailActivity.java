@@ -93,6 +93,7 @@ public class PlaceDetailActivity extends AppCompatActivity implements OnMapReady
     private Button btnBackWhite;
     private Button btnBack;
     private Button btnEdit;
+    private Button btnGoReview;
 
     private RadioButton rbRangeRec;
     private RadioButton rbRangeLatest;
@@ -153,6 +154,7 @@ public class PlaceDetailActivity extends AppCompatActivity implements OnMapReady
         btnBackWhite = findViewById(R.id.btn_back_white);
         btnBack = findViewById(R.id.btn_back);
         btnEdit = findViewById(R.id.btn_edit);
+        btnGoReview = findViewById(R.id.btn_go_review);
 
         rbRangeRec = findViewById(R.id.rb_range_rec);
         rbRangeLatest = findViewById(R.id.rb_range_latest);
@@ -161,8 +163,8 @@ public class PlaceDetailActivity extends AppCompatActivity implements OnMapReady
         mapView.onCreate(savedInstanceState);
         mapView.setClipToOutline(true);
 
-//        placeIdx = getIntent().getIntExtra("placeIdx", 0);
-        placeIdx = 7;
+        placeIdx = getIntent().getIntExtra("PlaceIdx", 0);
+        Log.e("placeIdx", String.valueOf(placeIdx));
         SharedPreferences sharedPreferences = getSharedPreferences("chabak", MODE_PRIVATE);
         token = sharedPreferences.getString("token", null);
 //        Log.e("token", token);
@@ -233,6 +235,10 @@ public class PlaceDetailActivity extends AppCompatActivity implements OnMapReady
             intent.putExtra("placeName", placeDetailData.getPlaceName());
             intent.putExtra("placeImg", placeImagePageAdapter.getThumbnail());
             startActivityForResult(intent, REQUEST_REVIEW_UPLOAD);
+        });
+
+        btnGoReview.setOnClickListener(l -> {
+            btnEdit.performClick();
         });
 
         rbRangeRec.setOnClickListener(l -> {
@@ -522,8 +528,8 @@ public class PlaceDetailActivity extends AppCompatActivity implements OnMapReady
             toilets[i] = new Marker();
             toilets[i].setPosition(new LatLng(placeToiletData[i].getToiletLatitude(), placeToiletData[i].getToiletLongitude()));
             toilets[i].setIcon(OverlayImage.fromResource(R.drawable.marker_toilet));
-            toilets[i].setWidth(80);
-            toilets[i].setHeight(80);
+            toilets[i].setWidth(30);
+            toilets[i].setHeight(30);
             toilets[i].setMap(naverMap);
         }
 
@@ -531,8 +537,8 @@ public class PlaceDetailActivity extends AppCompatActivity implements OnMapReady
         Marker place = new Marker();
         place.setPosition(new LatLng(placeLatitude, placeLongitude));
         place.setIcon(OverlayImage.fromResource(R.drawable.marker_place));
-        place.setWidth(250);
-        place.setHeight(250);
+        place.setWidth(90);
+        place.setHeight(90);
         place.setMap(naverMap);
     }
 
