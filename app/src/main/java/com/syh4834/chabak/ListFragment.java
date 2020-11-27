@@ -120,7 +120,8 @@ public class ListFragment extends Fragment {
     }
     // 새로운 생성자
     public ListFragment(int placeCategoryIdx){
-        this.placeIdx=placeCategoryIdx;
+        this.regionSelector=placeCategoryIdx;
+        Log.e("인덱스",String.valueOf(this.regionSelector));
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -181,8 +182,12 @@ public class ListFragment extends Fragment {
             DataInit(view);
         }
         else{
+            regionList.clear();
             regionList.add(regionSelector);
-            getPlaceListData(regionList);
+            checkRegion(regionSelector);
+            btnOption.setText(optionRegion());
+            DataInit(view);
+            adapter.notifyDataSetChanged();
         }
         // 클릭시 전환되는 화면
         adapter.setOnItemClickListener(new RecyclerReviewUploadImgAdapter.OnItemClickListener() {
@@ -435,6 +440,33 @@ public class ListFragment extends Fragment {
             storeIdx=0;
         }
     }
+    private void checkRegion(int region){
+        chbOptionTotal.setChecked(false);
+        if(region==1){
+            chbOptionJj.setChecked(true);
+        }
+        else if(region==2){
+            chbOptionSl.setChecked(true);
+        }
+        else if(region==3){
+            chbOptionBs.setChecked(true);
+        }
+        else if(region==4){
+            chbOptionGg.setChecked(true);
+        }
+        else if(region==5){
+            chbOptionGw.setChecked(true);
+        }
+        else if(region==6){
+            chbOptionCc.setChecked(true);
+        }
+        else if(region==7){
+            chbOptionJl.setChecked(true);
+        }
+        else if(region==8){
+            chbOptionGs.setChecked(true);
+        }
+    }
     private String optionRegion(){
         String region = "";
         int cnt=0;
@@ -596,7 +628,7 @@ public class ListFragment extends Fragment {
             @Override
             public void onResponse(Call<ResponsePlaceList> call, Response<ResponsePlaceList> response) {
                 if(response.body().getSuccess()) {
-                    Log.e("성공!", "성공!");
+                    Log.e("인덱스!", "성공!");
                     placeListData = response.body().getData();
                     getData(placeListData);
                 }
