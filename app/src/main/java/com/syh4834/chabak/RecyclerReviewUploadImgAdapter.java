@@ -94,7 +94,7 @@ public class RecyclerReviewUploadImgAdapter extends RecyclerView.Adapter<Recycle
 
         void onBind(RecyclerReviewUploadImgData recyclerReviewUploadImgData) {
             Glide.with(itemView).load(recyclerReviewUploadImgData.getUploadImg()).into(imgReviewUpload);
-            //imgReviewUpload.setImageURI(recyclerReviewUploadImgData.getUploadImg());
+//            imgReviewUpload.setImageURI(Uri.parse(recyclerReviewUploadImgData.getUploadImg()));
         }
     }
 }

@@ -31,6 +31,7 @@ public class BannerDetailActivity extends AppCompatActivity {
         btnBack = findViewById(R.id.btn_back);
 
         ImageView imgBannerImage = (ImageView) findViewById(R.id.img_banner_image);
+        TextView tvToolbarTitle = (TextView) findViewById(R.id.tv_toolbar_title);
         TextView tvTitle = (TextView) findViewById(R.id.tv_title);
         TextView tvContent = (TextView) findViewById(R.id.tv_content);
 

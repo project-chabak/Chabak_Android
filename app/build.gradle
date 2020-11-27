@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "com.syh4834.chabak"
-        minSdkVersion 16
+        minSdkVersion 21
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -54,5 +54,4 @@ dependencies {
 
     //splash 애니메이션을 위한 lottie 라이브러리
     implementation 'com.airbnb.android:lottie:3.4.0'
-
 }

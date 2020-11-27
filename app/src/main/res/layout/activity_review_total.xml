@@ -146,10 +146,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="18dp"
-                android:layout_marginLeft="18dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="18dp"
-                android:layout_marginRight="18dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/rg_review_order" />
@@ -158,20 +156,22 @@
                 android:id="@+id/img_rec_seperator_04"
                 android:layout_width="0dp"
                 android:layout_height="7dp"
-                android:layout_marginBottom="20dp"
-                app:layout_constraintBottom_toTopOf="@id/img_logo_detail_view"
+                android:layout_marginTop="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rv_review_total"
                 app:srcCompat="@drawable/rec_seperator" />
 
             <ImageView
                 android:id="@+id/img_logo_detail_view"
                 android:layout_width="93dp"
                 android:layout_height="45dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginBottom="20dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/img_rec_seperator_04"
                 app:srcCompat="@drawable/logo_primary" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
