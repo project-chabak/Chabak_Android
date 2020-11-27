@@ -118,6 +118,10 @@ public class ListFragment extends Fragment {
     public ListFragment() {
         // Required empty public constructor
     }
+    // 새로운 생성자
+    public ListFragment(int placeCategoryIdx){
+        this.placeIdx=placeCategoryIdx;
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -173,7 +177,6 @@ public class ListFragment extends Fragment {
         chbOptionTotal.setChecked(true);
         filterRateHighSort.setChecked(true);
         // 홈화면에서 받은 정보
-        regionSelector = getActivity().getIntent().getIntExtra("placeCategoryIdx",-1);
         if(regionSelector==-1){
             DataInit(view);
         }
