@@ -90,11 +90,6 @@ public class BannerDetailActivity extends AppCompatActivity {
             }
         });
 
-        // 뒤로가기 버튼 이벤트
-        btnBack.setOnClickListener(l -> {
-            finish();
-        });
-
         btnBackWhite.setOnClickListener(l -> {
             finish();
         });
