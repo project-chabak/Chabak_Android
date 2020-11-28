@@ -13,11 +13,9 @@ import android.widget.TextView;
 
 public class BannerDetailActivity extends AppCompatActivity {
 
-    private ConstraintLayout clToolbar;
     private NestedScrollView nsvPlaceDetail;
 
     private Button btnBackWhite;
-    private Button btnBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,12 +24,9 @@ public class BannerDetailActivity extends AppCompatActivity {
 
         // 객체 초기화
         nsvPlaceDetail = findViewById(R.id.nsv_place_detail);
-        clToolbar = findViewById(R.id.cl_toolbar);
         btnBackWhite = findViewById(R.id.btn_back_white);
-        btnBack = findViewById(R.id.btn_back);
 
         ImageView imgBannerImage = (ImageView) findViewById(R.id.img_banner_image);
-        TextView tvToolbarTitle = (TextView) findViewById(R.id.tv_toolbar_title);
         TextView tvTitle = (TextView) findViewById(R.id.tv_title);
         TextView tvContent = (TextView) findViewById(R.id.tv_content);
 
@@ -77,18 +72,6 @@ public class BannerDetailActivity extends AppCompatActivity {
                     "화로대, 스토브, 장갑, 라이터/토치, 집게, 가위, 숯, 테이블, 숟가락/젓가락, 코펠, 다용도 나이프, 물, 쓰레기봉투 등");
         }
 
-        // 스크롤 이벤트
-        nsvPlaceDetail.getViewTreeObserver().addOnScrollChangedListener(new ViewTreeObserver.OnScrollChangedListener() {
-            @Override
-            public void onScrollChanged() {
-                int scrollY = nsvPlaceDetail.getScrollY();
-                if(scrollY > 120) {
-                    clToolbar.setVisibility(View.VISIBLE);
-                } else {
-                    clToolbar.setVisibility(View.INVISIBLE);
-                }
-            }
-        });
 
         btnBackWhite.setOnClickListener(l -> {
             finish();
