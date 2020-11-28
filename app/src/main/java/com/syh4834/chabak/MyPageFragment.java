@@ -37,6 +37,7 @@ public class MyPageFragment extends Fragment {
     private TextView tvNickname;
     private TextView tvEmail;
     private TextView tvBirth;
+    private TextView tvReport;
 
     private ImageView imgGender;
 
@@ -76,6 +77,7 @@ public class MyPageFragment extends Fragment {
         mView = inflater.inflate(R.layout.fragment_my_page, container, false);
         tvLogout = (TextView) mView.findViewById(R.id.tv_logout);
         tvNickname = (TextView) mView.findViewById(R.id.tv_nickname);
+        tvReport = (TextView) mView.findViewById(R.id.tv_report);
         tvEmail = mView.findViewById(R.id.tv_email);
         tvBirth = mView.findViewById(R.id.tv_birth);
 
@@ -110,6 +112,11 @@ public class MyPageFragment extends Fragment {
             public void onFailure(Call<ResponseMypage> call, Throwable t) {
 
             }
+        });
+
+        tvReport.setOnClickListener(l -> {
+            Intent intent = new Intent(context, ReportActivity.class);
+            startActivity(intent);
         });
 
         tvLogout.setOnClickListener(new View.OnClickListener() {

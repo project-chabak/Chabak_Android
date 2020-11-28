@@ -2,6 +2,7 @@ package com.syh4834.chabak.api;
 
 import com.syh4834.chabak.api.request.RequestLikePlace;
 import com.syh4834.chabak.api.request.RequestLikeReview;
+import com.syh4834.chabak.api.request.RequestReport;
 import com.syh4834.chabak.api.request.RequestSignin;
 import com.syh4834.chabak.api.request.RequestSignup;
 import com.syh4834.chabak.api.response.ResponseHome;
@@ -11,6 +12,7 @@ import com.syh4834.chabak.api.response.ResponsePlaceDetail;
 import com.syh4834.chabak.api.response.ResponsePlaceLike;
 import com.syh4834.chabak.api.response.ResponsePlaceList;
 import com.syh4834.chabak.api.response.ResponsePlaceReview;
+import com.syh4834.chabak.api.response.ResponseReport;
 import com.syh4834.chabak.api.response.ResponseSignin;
 import com.syh4834.chabak.api.response.ResponseSignup;
 import com.syh4834.chabak.api.response.ResponseSignupCheckID;
@@ -90,4 +92,8 @@ public interface ChabakService {
     @Headers("Content-Type: application/json")
     @GET("/home")
     Call<ResponseHome> getHome(@Header("token") String token);
+
+    @Headers("Content-Type: application/json")
+    @POST("/report")
+    Call<ResponseReport> report(@Header("token") String token, @Body RequestReport requestReport);
 }
