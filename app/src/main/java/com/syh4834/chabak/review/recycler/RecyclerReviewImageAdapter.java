@@ -1,4 +1,4 @@
-package com.syh4834.chabak;
+package com.syh4834.chabak.review.recycler;
 
 
 import android.os.Build;
@@ -12,6 +12,7 @@ import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.syh4834.chabak.R;
 
 import java.util.ArrayList;
 

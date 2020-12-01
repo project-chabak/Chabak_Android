@@ -1,4 +1,4 @@
-package com.syh4834.chabak;
+package com.syh4834.chabak.mypage;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -13,16 +13,16 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.syh4834.chabak.InitialActivity;
+import com.syh4834.chabak.R;
+import com.syh4834.chabak.report.ReportActivity;
 import com.syh4834.chabak.api.ChabakService;
 import com.syh4834.chabak.api.data.MypageData;
 import com.syh4834.chabak.api.response.ResponseMypage;
-
-import org.w3c.dom.Text;
 
 import retrofit2.Call;
 import retrofit2.Callback;

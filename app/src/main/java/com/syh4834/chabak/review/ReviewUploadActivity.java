@@ -1,4 +1,4 @@
-package com.syh4834.chabak;
+package com.syh4834.chabak.review;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
@@ -12,14 +12,12 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
-import android.os.Handler;
 import android.provider.MediaStore;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -29,6 +27,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.syh4834.chabak.R;
+import com.syh4834.chabak.review.recycler.RecyclerReviewUploadImgAdapter;
+import com.syh4834.chabak.review.recycler.RecyclerReviewUploadImgData;
 import com.syh4834.chabak.api.ChabakService;
 import com.syh4834.chabak.api.response.ResponseUploadReview;
 

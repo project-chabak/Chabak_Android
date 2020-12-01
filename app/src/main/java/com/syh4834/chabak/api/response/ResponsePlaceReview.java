@@ -18,11 +18,8 @@ public class ResponsePlaceReview {
     }
 
     public int getStatus() { return status; }
-
     public boolean getSuccess() { return success; }
-
     public String getMessage() { return message; }
-
     public PlaceReviewData[] getData() { return data; }
 
 }

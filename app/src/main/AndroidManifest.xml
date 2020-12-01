@@ -17,29 +17,29 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ReportActivity"></activity>
-        <activity android:name=".BannerDetailActivity" />
-        <activity android:name=".SplashActivity">
+        <activity android:name=".report.ReportActivity"></activity>
+        <activity android:name=".home.BannerDetailActivity" />
+        <activity android:name=".splash.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SignupSuccessActivity" />
-        <activity android:name=".MapActivity" />
-        <activity android:name=".ReviewUploadActivity" />
-        <activity android:name=".ReviewTotalActivity" />
+        <activity android:name=".auth.SignupSuccessActivity" />
+        <activity android:name=".placeDetail.MapActivity" />
+        <activity android:name=".review.ReviewUploadActivity" />
+        <activity android:name=".review.ReviewTotalActivity" />
 
         <meta-data
             android:name="com.naver.maps.map.CLIENT_ID"
             android:value="1tsbt7auhh" />
 
-        <activity android:name=".PlaceDetailActivity" />
-        <activity android:name=".SigninActivity" />
+        <activity android:name=".placeDetail.PlaceDetailActivity" />
+        <activity android:name=".auth.SigninActivity" />
         <activity android:name=".MainActivity" />
         <activity android:name=".InitialActivity" />
-        <activity android:name=".SignupActivity" />
+        <activity android:name=".auth.SignupActivity" />
     </application>
 
 </manifest>

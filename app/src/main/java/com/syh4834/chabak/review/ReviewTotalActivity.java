@@ -1,4 +1,4 @@
-package com.syh4834.chabak;
+package com.syh4834.chabak.review;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,15 +9,18 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
+import com.syh4834.chabak.R;
+import com.syh4834.chabak.review.recycler.RecyclerReviewAdapter;
+import com.syh4834.chabak.review.recycler.RecyclerReviewData;
 import com.syh4834.chabak.api.ChabakService;
 import com.syh4834.chabak.api.data.PlaceReviewData;
 import com.syh4834.chabak.api.response.ResponsePlaceReview;
+import com.syh4834.chabak.placeDetail.PlaceDetailActivity;
 
 import retrofit2.Call;
 import retrofit2.Callback;

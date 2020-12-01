@@ -1,22 +1,17 @@
-package com.syh4834.chabak;
+package com.syh4834.chabak.review.recycler;
 
-import android.content.ContentResolver;
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Build;
-import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
-import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.syh4834.chabak.R;
 
 import java.util.ArrayList;
 
@@ -55,7 +50,7 @@ public class RecyclerReviewUploadImgAdapter extends RecyclerView.Adapter<Recycle
         return listUploadImg.size();
     }
 
-    void addItem(RecyclerReviewUploadImgData recyclerReviewUploadImgData) {
+    public void addItem(RecyclerReviewUploadImgData recyclerReviewUploadImgData) {
         listUploadImg.add(recyclerReviewUploadImgData);
     }
 
@@ -65,7 +60,7 @@ public class RecyclerReviewUploadImgAdapter extends RecyclerView.Adapter<Recycle
         notifyDataSetChanged();
     }
 
-    ArrayList<RecyclerReviewUploadImgData> getItem() {
+    public ArrayList<RecyclerReviewUploadImgData> getItem() {
         return listUploadImg;
     }
 

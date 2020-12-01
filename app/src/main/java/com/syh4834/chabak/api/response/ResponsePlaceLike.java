@@ -17,10 +17,7 @@ public class ResponsePlaceLike {
     }
 
     public int getStatus() { return status; }
-
     public boolean getSuccess() { return success; }
-
     public String getMessage() { return message; }
-
     public PlaceLikeData[] getData() { return data; }
 }

@@ -6,14 +6,11 @@ import android.os.Parcelable;
 
 public class PlaceToiletData implements Parcelable {
     private double toiletLatitude;
-
     private double toiletLongitude;
-
     protected PlaceToiletData(Parcel in) {
         toiletLatitude = in.readDouble();
         toiletLongitude = in.readDouble();
     }
-
     public static final Creator<PlaceToiletData> CREATOR = new Creator<PlaceToiletData>() {
         @Override
         public PlaceToiletData createFromParcel(Parcel in) {
@@ -25,22 +22,18 @@ public class PlaceToiletData implements Parcelable {
             return new PlaceToiletData[size];
         }
     };
-
     public double getToiletLatitude ()
     {
         return toiletLatitude;
     }
-
     public void setToiletLatitude (double toiletLatitude)
     {
         this.toiletLatitude = toiletLatitude;
     }
-
     public double getToiletLongitude ()
     {
         return toiletLongitude;
     }
-
     public void setToiletLongitude (double toiletLongitude)
     {
         this.toiletLongitude = toiletLongitude;

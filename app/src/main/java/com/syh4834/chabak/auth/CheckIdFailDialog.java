@@ -1,9 +1,11 @@
-package com.syh4834.chabak;
+package com.syh4834.chabak.auth;
 
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.widget.Button;
+
+import com.syh4834.chabak.R;
 
 public class CheckIdFailDialog extends Dialog {
     private Button btnOk;

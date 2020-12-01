@@ -1,20 +1,18 @@
-package com.syh4834.chabak;
+package com.syh4834.chabak.report;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.syh4834.chabak.R;
 import com.syh4834.chabak.api.ChabakService;
 import com.syh4834.chabak.api.request.RequestReport;
-import com.syh4834.chabak.api.request.RequestSignup;
 import com.syh4834.chabak.api.response.ResponseReport;
-import com.syh4834.chabak.api.response.ResponseSignup;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -31,6 +29,7 @@ public class ReportActivity extends AppCompatActivity {
     EditText edtReportDetail;
 
     Button btnReport;
+    Button btnBack;
 
     Retrofit retrofit = new Retrofit.Builder()
             .baseUrl(ChabakService.BASE_RUL)
@@ -51,6 +50,11 @@ public class ReportActivity extends AppCompatActivity {
         chbReportCooking = findViewById(R.id.chb_report_cooking);
 
         btnReport = (Button) findViewById(R.id.btn_report);
+        btnBack = (Button) findViewById(R.id.btn_back);
+
+        btnBack.setOnClickListener(l -> {
+            finish();
+        });
 
         btnReport.setOnClickListener(l -> {
             String reportPlace = edtReportPlace.getText().toString();
@@ -76,25 +80,12 @@ public class ReportActivity extends AppCompatActivity {
             if (reportPlace.isEmpty() || reportAddress.isEmpty() || reportDetail.isEmpty()) {
                 Toast.makeText(this, "제보하기 내용을 모두 채워주세요", Toast.LENGTH_SHORT).show();
             } else {
-                String finalReportToilet = reportToilet;
-                String finalReportStore = reportStore;
-                String finalReportCooking = reportCooking;
-
                 SharedPreferences sharedPreferences = getSharedPreferences("chabak", MODE_PRIVATE);
                 String token = sharedPreferences.getString("token", null);
-                Log.e("token", token);
                 chabakService.report(token, new RequestReport(reportPlace, reportAddress, reportDetail, reportToilet, reportStore, reportCooking)).enqueue(new Callback<ResponseReport>() {
                     @Override
                     public void onResponse(Call<ResponseReport> call, Response<ResponseReport> response) {
                         if (response.body().getSuccess()) {
-                            Log.e("reportPlace", reportPlace);
-                            Log.e("reportAdd", reportAddress);
-                            Log.e("reportDetail", reportDetail);
-                            Log.e("reportTilet", finalReportToilet);
-                            Log.e("reportPlace", finalReportStore);
-                            Log.e("reportPlace", finalReportCooking);
-
-
                             Toast.makeText(ReportActivity.this, "성공적으로 제보되었습니다.", Toast.LENGTH_SHORT).show();
                             finish();
                         } else {

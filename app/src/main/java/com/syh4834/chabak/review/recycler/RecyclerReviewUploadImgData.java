@@ -1,4 +1,4 @@
-package com.syh4834.chabak;
+package com.syh4834.chabak.review.recycler;
 
 import android.net.Uri;
 

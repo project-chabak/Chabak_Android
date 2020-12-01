@@ -1,9 +1,7 @@
-package com.syh4834.chabak;
+package com.syh4834.chabak.review.recycler;
 
 
-import android.content.SharedPreferences;
 import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,13 +10,12 @@ import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.annotation.ColorRes;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.syh4834.chabak.R;
 import com.syh4834.chabak.api.ChabakService;
-import com.syh4834.chabak.api.request.RequestLikePlace;
 import com.syh4834.chabak.api.request.RequestLikeReview;
 import com.syh4834.chabak.api.response.ResponseLike;
 
@@ -54,11 +51,11 @@ public class RecyclerReviewAdapter extends RecyclerView.Adapter<RecyclerReviewAd
         return listData.size();
     }
 
-    void addItem(RecyclerReviewData recyclerReviewData) {
+    public void addItem(RecyclerReviewData recyclerReviewData) {
         listData.add(recyclerReviewData);
     }
 
-    void setToken(String token) {
+    public void setToken(String token) {
         this.token = token;
     }
 

@@ -1,4 +1,4 @@
-package com.syh4834.chabak;
+package com.syh4834.chabak.home;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -10,6 +10,8 @@ import android.view.ViewTreeObserver;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.syh4834.chabak.R;
 
 public class BannerDetailActivity extends AppCompatActivity {
 

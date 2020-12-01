@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PlaceDetailActivity">
+    tools:context=".placeDetail.PlaceDetailActivity">
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/nsv_place_detail"

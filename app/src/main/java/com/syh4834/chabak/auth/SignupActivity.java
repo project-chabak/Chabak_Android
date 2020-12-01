@@ -1,4 +1,4 @@
-package com.syh4834.chabak;
+package com.syh4834.chabak.auth;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,6 +19,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.syh4834.chabak.InitialActivity;
+import com.syh4834.chabak.MainActivity;
+import com.syh4834.chabak.R;
 import com.syh4834.chabak.api.ChabakService;
 import com.syh4834.chabak.api.request.RequestSignup;
 import com.syh4834.chabak.api.response.ResponseSignup;
