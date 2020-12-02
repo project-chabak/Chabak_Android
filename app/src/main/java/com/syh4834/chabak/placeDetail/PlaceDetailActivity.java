@@ -170,10 +170,8 @@ public class PlaceDetailActivity extends AppCompatActivity implements OnMapReady
         mapView.setClipToOutline(true);
 
         placeIdx = getIntent().getIntExtra("PlaceIdx", 0);
-        Log.e("placeIdx", String.valueOf(placeIdx));
         SharedPreferences sharedPreferences = getSharedPreferences("chabak", MODE_PRIVATE);
         token = sharedPreferences.getString("token", null);
-//        Log.e("token", token);
 
         getPlaceData();
         getPlaceReviewData("like");
