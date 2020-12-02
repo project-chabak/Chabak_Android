@@ -1,13 +1,19 @@
 package com.syh4834.chabak.review;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.Manifest;
 import android.content.ClipData;
+import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -16,6 +22,7 @@ import android.provider.MediaStore;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -27,6 +34,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.gun0912.tedpermission.PermissionListener;
+import com.gun0912.tedpermission.TedPermission;
 import com.syh4834.chabak.R;
 import com.syh4834.chabak.review.recycler.RecyclerReviewUploadImgAdapter;
 import com.syh4834.chabak.review.recycler.RecyclerReviewUploadImgData;
@@ -39,6 +48,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.List;
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -51,6 +61,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 
 public class ReviewUploadActivity extends AppCompatActivity {
+    Context context;
     private int GALLERY_REQUEST_CODE = 10010;
 
     private ImageView imgPlace;
@@ -81,6 +92,23 @@ public class ReviewUploadActivity extends AppCompatActivity {
             .addConverterFactory(GsonConverterFactory.create())
             .build();
     ChabakService chabakService = retrofit.create(ChabakService.class);
+
+
+    PermissionListener permissionlistener = new PermissionListener() {
+        @Override
+        public void onPermissionGranted() {
+            Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Audio.Media.EXTERNAL_CONTENT_URI);
+            intent.setType("image/*");
+            intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
+            startActivityForResult(Intent.createChooser(intent, "Select Picture"), GALLERY_REQUEST_CODE);
+        }
+
+        @Override
+        public void onPermissionDenied(ArrayList<String> deniedPermissions) {
+
+        }
+    };
+
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -123,10 +151,7 @@ public class ReviewUploadActivity extends AppCompatActivity {
             @Override
             public void onItemClick(View v, int position) {
                 if (position == 0) {
-                    Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Audio.Media.EXTERNAL_CONTENT_URI);
-                    intent.setType("image/*");
-                    intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
-                    startActivityForResult(Intent.createChooser(intent, "Select Picture"), GALLERY_REQUEST_CODE);
+                    checkPermissions();
                 }
             }
         });
@@ -208,14 +233,28 @@ public class ReviewUploadActivity extends AppCompatActivity {
         });
     }
 
+    private void checkPermissions() {
+        if (Build.VERSION.SDK_INT >= 23){ // 마시멜로(안드로이드 6.0) 이상 권한 체크
+            TedPermission.with(this)
+                    .setPermissionListener(permissionlistener)
+                    //.setRationaleMessage("이미지를 다루기 위해서는 접근 권한이 필요합니다")
+                    .setDeniedMessage("이미지 업로드를 위해서는 접근 권한이 필요합니다.\n [설정] > [권한] 에서 사용으로 활성화해주세요.")
+                    .setPermissions(new String[] { Manifest.permission.READ_EXTERNAL_STORAGE,
+                            Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                            Manifest.permission.CAMERA})
+                    .check();
+
+        } else {
+            Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Audio.Media.EXTERNAL_CONTENT_URI);
+            intent.setType("image/*");
+            intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
+            startActivityForResult(Intent.createChooser(intent, "Select Picture"), GALLERY_REQUEST_CODE);
+        }
+    }
 
     private String getRealPathFromURI(Uri contentURI) {
         String [] proj={MediaStore.Images.Media.DATA};
-        Cursor cursor = managedQuery( contentURI,
-                proj, // Which columns to return
-                null,       // WHERE clause; which rows to return (all rows)
-                null,       // WHERE clause selection arguments (none)
-                null); // Order-by clause (ascending by name)
+        Cursor cursor = managedQuery( contentURI, proj,null,null, null);
         int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
         cursor.moveToFirst();
         return cursor.getString(column_index);
@@ -249,10 +288,12 @@ public class ReviewUploadActivity extends AppCompatActivity {
 
         if (resultCode == RESULT_OK && requestCode == GALLERY_REQUEST_CODE) {
             ClipData clipData = data.getClipData();
+            Log.e("clipData", String.valueOf(clipData));
 
             if (clipData != null) {
                 for (int i = 0; i < clipData.getItemCount(); i++) {
                     String urione = getRealPathFromURI(clipData.getItemAt(i).getUri());
+                    Log.e("urione", urione);
 
                     recyclerReviewUploadImgData = new RecyclerReviewUploadImgData();
                     recyclerReviewUploadImgData.setUploadImg(urione);
@@ -268,7 +309,3 @@ public class ReviewUploadActivity extends AppCompatActivity {
         btnBack.performClick();
     }
 }
-
-
-
-//backPressed 필요하면 추가하기
