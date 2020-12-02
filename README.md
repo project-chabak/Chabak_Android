@@ -30,3 +30,4 @@
 ## 기타
 - 화면레이아웃 - 가능하면 Constraintlayout 사용(기기에따라 레이아웃이 변형되는 문제를 최소화하기위해)
 - drawable 파일 - drawable 파일 추가할 때 drawable-v24말고 drawable에 넣어주세요!
+![Group 4](https://user-images.githubusercontent.com/65716143/100766677-4083e580-343c-11eb-8719-1181ab438fac.png)

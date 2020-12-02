@@ -9,11 +9,11 @@
         android:id="@+id/img_like_picture"
         android:layout_width="match_parent"
         android:layout_height="150dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginEnd="5dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginStart="7dp"
+        android:layout_marginLeft="7dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="7dp"
+        android:layout_marginRight="7dp"
         android:background="@drawable/rec_transp_10dp"
         android:scaleType="fitXY"
         app:layout_constraintEnd_toEndOf="parent"
@@ -25,16 +25,16 @@
         android:id="@+id/chb_like_white"
         android:layout_width="22dp"
         android:layout_height="22dp"
-        android:layout_marginRight="20dp"
         android:layout_marginTop="10dp"
+        android:layout_marginRight="20dp"
         android:background="@drawable/chb_like_white"
         android:button="@null"
         android:checked="false"
-        app:layout_constraintTop_toTopOf="@+id/img_like_picture"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/img_like_picture" />
 
 
-    <TextView
+    <!--<TextView
         android:id="@+id/tv_place"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -44,41 +44,44 @@
         android:text="(장소)"
         android:textColor="@color/colorSubIcon"
         app:layout_constraintTop_toBottomOf="@+id/img_like_picture"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent"/>-->
 
     <TextView
         android:id="@+id/tv_like_title"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:layout_marginStart="3dp"
-        android:layout_marginLeft="3dp"
+        android:ellipsize="end"
         android:fontFamily="@font/nanum_barun_gothic_regular"
+        android:singleLine="true"
         android:text="글 제목"
         android:textColor="@color/colorTextLight"
-        app:layout_constraintTop_toBottomOf="@+id/img_like_picture"
-        app:layout_constraintStart_toEndOf="@+id/tv_place" />
+        app:layout_constraintEnd_toEndOf="@+id/img_like_picture"
+        app:layout_constraintStart_toStartOf="@+id/img_like_picture"
+        app:layout_constraintTop_toBottomOf="@+id/img_like_picture" />
 
     <ImageView
         android:id="@+id/img_star"
         android:layout_width="15dp"
         android:layout_height="15dp"
         android:layout_marginTop="5dp"
-        android:layout_marginLeft="10dp"
         android:background="@drawable/star"
         android:scaleType="fitXY"
-        app:layout_constraintTop_toBottomOf="@+id/tv_place"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="@+id/tv_like_title"
+        app:layout_constraintTop_toBottomOf="@+id/tv_like_title" />
 
     <TextView
+        android:id="@+id/tv_avg_star"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
         android:layout_marginStart="3dp"
         android:layout_marginLeft="3dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="10dp"
         android:fontFamily="@font/nanum_barun_gothic_regular"
         android:text="4.9"
         android:textColor="@color/colorTextLight"
-        app:layout_constraintTop_toBottomOf="@+id/tv_place"
-        app:layout_constraintStart_toEndOf="@+id/img_star" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/img_star"
+        app:layout_constraintTop_toBottomOf="@+id/tv_like_title" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -12,14 +12,14 @@
         android:layout_height="50dp"
         android:layout_gravity="center|top"
         android:layout_marginTop="20dp"
-        app:srcCompat="@drawable/logo_green" />
+        app:srcCompat="@drawable/car_green" />
 
     <TextView
         android:id="@+id/tv_usable_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="12dp"
         android:layout_marginBottom="10dp"
         android:fontFamily="@font/nanum_barun_gothic_regular"
         android:gravity="center"

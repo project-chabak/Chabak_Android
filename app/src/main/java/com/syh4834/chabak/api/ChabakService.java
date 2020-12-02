@@ -2,15 +2,23 @@ package com.syh4834.chabak.api;
 
 import com.syh4834.chabak.api.request.RequestLikePlace;
 import com.syh4834.chabak.api.request.RequestLikeReview;
+import com.syh4834.chabak.api.request.RequestReport;
 import com.syh4834.chabak.api.request.RequestSignin;
 import com.syh4834.chabak.api.request.RequestSignup;
-import com.syh4834.chabak.api.response.ResponsePlaceDetail;
+import com.syh4834.chabak.api.response.ResponseHome;
 import com.syh4834.chabak.api.response.ResponseLike;
+import com.syh4834.chabak.api.response.ResponseMypage;
+import com.syh4834.chabak.api.response.ResponsePlaceDetail;
+import com.syh4834.chabak.api.response.ResponsePlaceLike;
+import com.syh4834.chabak.api.response.ResponsePlaceList;
 import com.syh4834.chabak.api.response.ResponsePlaceReview;
+import com.syh4834.chabak.api.response.ResponseReport;
 import com.syh4834.chabak.api.response.ResponseSignin;
 import com.syh4834.chabak.api.response.ResponseSignup;
 import com.syh4834.chabak.api.response.ResponseSignupCheckID;
 import com.syh4834.chabak.api.response.ResponseUploadReview;
+
+import java.util.ArrayList;
 
 import okhttp3.MultipartBody;
 import okhttp3.Request;
@@ -68,4 +76,24 @@ public interface ChabakService {
     @Multipart
     @POST("/review/write")
     Call<ResponseUploadReview> uploadReview(@Header("token")String token, @Part("placeIdx") RequestBody placeIdx, @Part("content") RequestBody content, @Part("star") RequestBody star, @Part MultipartBody.Part[] imgs);
+
+    @Headers("Content-Type: application/json")
+    @GET("/place")
+    Call<ResponsePlaceList> getPlaceList(@Header("token") String token, @Query("order") String order, @Query("category") ArrayList<Integer> category, @Query("toilet") int toilet, @Query("cooking") int cooking, @Query("store") int store);
+
+    @Headers("Content-Type: application/json")
+    @GET("/place/like")
+    Call<ResponsePlaceLike> getPlaceLike(@Header("token") String token);
+
+    @Headers("Content-Type: application/json")
+    @GET("/mypage")
+    Call<ResponseMypage> getMypage(@Header("token") String token);
+
+    @Headers("Content-Type: application/json")
+    @GET("/home")
+    Call<ResponseHome> getHome(@Header("token") String token);
+
+    @Headers("Content-Type: application/json")
+    @POST("/report")
+    Call<ResponseReport> report(@Header("token") String token, @Body RequestReport requestReport);
 }

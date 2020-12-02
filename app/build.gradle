@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "com.syh4834.chabak"
-        minSdkVersion 16
+        minSdkVersion 21
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -35,7 +35,7 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
-
+    implementation 'de.hdodenhof:circleimageview:3.0.0'
     //이미지 로드를 위한 glide 라이브러리
     implementation 'com.github.bumptech.glide:glide:4.10.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.10.0'
@@ -52,4 +52,6 @@ dependencies {
     implementation 'com.squareup.retrofit2:retrofit:2.6.2'
     implementation 'com.squareup.retrofit2:converter-gson:2.6.2'
 
+    //splash 애니메이션을 위한 lottie 라이브러리
+    implementation 'com.airbnb.android:lottie:3.4.0'
 }
