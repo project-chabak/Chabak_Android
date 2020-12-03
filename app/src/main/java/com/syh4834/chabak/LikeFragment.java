@@ -14,13 +14,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
 import com.syh4834.chabak.api.ChabakService;
 import com.syh4834.chabak.api.data.PlaceLikeData;
 import com.syh4834.chabak.api.data.PlaceListData;
 import com.syh4834.chabak.api.response.ResponsePlaceLike;
-import com.syh4834.chabak.api.response.ResponsePlaceList;
+import com.syh4834.chabak.placeDetail.PlaceDetailActivity;
+import com.syh4834.chabak.review.recycler.RecyclerReviewUploadImgAdapter;
 
 import java.util.ArrayList;
 

@@ -1,4 +1,4 @@
-package com.syh4834.chabak;
+package com.syh4834.chabak.placeDetail;
 
 import android.content.Context;
 import android.util.Log;
@@ -13,6 +13,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.viewpager.widget.PagerAdapter;
 
 import com.bumptech.glide.Glide;
+import com.syh4834.chabak.R;
 
 public class PlaceImagePageAdapter extends PagerAdapter {
     private String[] placeImages;

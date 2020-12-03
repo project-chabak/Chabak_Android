@@ -1,4 +1,4 @@
-package com.syh4834.chabak;
+package com.syh4834.chabak.splash;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -16,6 +16,9 @@ import android.widget.ImageView;
 import com.airbnb.lottie.LottieAnimationView;
 import com.airbnb.lottie.LottieDrawable;
 import com.bumptech.glide.Glide;
+import com.syh4834.chabak.InitialActivity;
+import com.syh4834.chabak.MainActivity;
+import com.syh4834.chabak.R;
 
 public class SplashActivity extends AppCompatActivity implements Animation.AnimationListener {
     private Animation splashRight;
@@ -76,9 +79,6 @@ public class SplashActivity extends AppCompatActivity implements Animation.Anima
                         }
                     }
                 }, 900);
-
-
-
             }
 
             @Override

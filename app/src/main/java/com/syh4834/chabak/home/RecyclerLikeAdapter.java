@@ -1,9 +1,7 @@
 package com.syh4834.chabak.home;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +14,7 @@ import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.syh4834.chabak.PlaceDetailActivity;
+import com.syh4834.chabak.placeDetail.PlaceDetailActivity;
 import com.syh4834.chabak.R;
 import com.syh4834.chabak.api.data.PlaceList;
 

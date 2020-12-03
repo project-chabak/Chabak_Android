@@ -1,4 +1,4 @@
-package com.syh4834.chabak;
+package com.syh4834.chabak.auth;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -11,6 +11,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.syh4834.chabak.InitialActivity;
+import com.syh4834.chabak.MainActivity;
+import com.syh4834.chabak.R;
 import com.syh4834.chabak.api.ChabakService;
 import com.syh4834.chabak.api.request.RequestSignin;
 import com.syh4834.chabak.api.response.ResponseSignin;

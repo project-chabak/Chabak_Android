@@ -1,4 +1,4 @@
-package com.syh4834.chabak;
+package com.syh4834.chabak.placeDetail;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -37,6 +37,12 @@ import com.naver.maps.map.OnMapReadyCallback;
 import com.naver.maps.map.UiSettings;
 import com.naver.maps.map.overlay.Marker;
 import com.naver.maps.map.overlay.OverlayImage;
+import com.syh4834.chabak.R;
+import com.syh4834.chabak.review.recycler.RecyclerReviewAdapter;
+import com.syh4834.chabak.review.recycler.RecyclerReviewData;
+import com.syh4834.chabak.review.ReviewTotalActivity;
+import com.syh4834.chabak.review.ReviewUploadActivity;
+import com.syh4834.chabak.review.UploadReviewSuccessDialog;
 import com.syh4834.chabak.api.ChabakService;
 import com.syh4834.chabak.api.data.PlaceDetailData;
 import com.syh4834.chabak.api.data.PlaceReviewData;
@@ -164,10 +170,8 @@ public class PlaceDetailActivity extends AppCompatActivity implements OnMapReady
         mapView.setClipToOutline(true);
 
         placeIdx = getIntent().getIntExtra("PlaceIdx", 0);
-        Log.e("placeIdx", String.valueOf(placeIdx));
         SharedPreferences sharedPreferences = getSharedPreferences("chabak", MODE_PRIVATE);
         token = sharedPreferences.getString("token", null);
-//        Log.e("token", token);
 
         getPlaceData();
         getPlaceReviewData("like");

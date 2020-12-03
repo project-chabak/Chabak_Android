@@ -1,4 +1,4 @@
-package com.syh4834.chabak;
+package com.syh4834.chabak.placeDetail;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.UiThread;
@@ -16,6 +16,7 @@ import com.naver.maps.map.OnMapReadyCallback;
 import com.naver.maps.map.UiSettings;
 import com.naver.maps.map.overlay.Marker;
 import com.naver.maps.map.overlay.OverlayImage;
+import com.syh4834.chabak.R;
 import com.syh4834.chabak.api.data.PlaceToiletData;
 
 import java.util.ArrayList;

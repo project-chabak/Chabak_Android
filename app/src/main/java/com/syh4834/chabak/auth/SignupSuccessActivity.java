@@ -1,4 +1,4 @@
-package com.syh4834.chabak;
+package com.syh4834.chabak.auth;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,6 +6,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ImageButton;
+
+import com.syh4834.chabak.InitialActivity;
+import com.syh4834.chabak.R;
+import com.syh4834.chabak.auth.SigninActivity;
 
 public class SignupSuccessActivity extends AppCompatActivity {
     Button btnGoSignin;

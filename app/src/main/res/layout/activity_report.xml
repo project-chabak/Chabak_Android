@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".review.ReviewUploadActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btn_back"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="20dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="18dp"
+        android:layout_marginLeft="18dp"
+        android:background="@drawable/left_arrow"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbar"
+        app:layout_constraintStart_toStartOf="@id/toolbar"
+        app:layout_constraintTop_toTopOf="@id/toolbar" />
+
+    <ImageView
+        android:id="@+id/imageView10"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:srcCompat="@drawable/rec_seperator" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:fontFamily="@font/nanum_barun_gothic_bold"
+        android:text="제보하기"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbar"
+        app:layout_constraintStart_toEndOf="@+id/btn_back"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/nanum_barun_gothic_regular"
+        android:text="장소에대한 상세한 리뷰는 장소 추가에 큰 도움이 됩니다!"
+        android:textColor="@color/colorTextDark"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView10"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/imageView10"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+
+        android:screenOrientation="portrait"
+        android:windowSoftInputMode="adjustResize|adjustPan"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView10"
+        tools:context=".auth.SignupActivity">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <TextView
+                android:id="@+id/tv_report_place"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="18dp"
+                android:layout_marginTop="15dp"
+                android:fontFamily="@font/nanum_barun_gothic_regular"
+                android:text="장소명"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/edt_report_place"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginEnd="18dp"
+                android:background="@drawable/rec_primary_transp_10dp"
+                android:ems="10"
+                android:fontFamily="@font/nanum_barun_gothic_regular"
+                android:hint="예) 안반데기 마을"
+                android:inputType="textPersonName"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:textSize="13sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/tv_report_place"
+                app:layout_constraintTop_toBottomOf="@+id/tv_report_place" />
+
+            <TextView
+                android:id="@+id/tv_report_addrdss"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:fontFamily="@font/nanum_barun_gothic_regular"
+                android:text="주소"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/edt_report_place"
+                app:layout_constraintTop_toBottomOf="@+id/edt_report_place" />
+
+
+            <EditText
+                android:id="@+id/edt_report_address"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginEnd="18dp"
+                android:background="@drawable/rec_primary_transp_10dp"
+                android:ems="10"
+                android:fontFamily="@font/nanum_barun_gothic_regular"
+                android:hint="예) 강원도 강릉시 왕산면 안반덕길 428"
+                android:inputType="textPersonName|textEmailSubject"
+                android:lines="1"
+                android:paddingLeft="10dp"
+                android:paddingRight="70dp"
+                android:textSize="13sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/tv_report_addrdss"
+                app:layout_constraintTop_toBottomOf="@+id/tv_report_addrdss" />
+
+
+            <TextView
+                android:id="@+id/tv_report_etc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:fontFamily="@font/nanum_barun_gothic_regular"
+                android:text="기타시설"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/edt_report_address"
+                app:layout_constraintTop_toBottomOf="@id/edt_report_address" />
+
+
+            <LinearLayout
+                android:id="@+id/linear_etc_checkbox"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginEnd="40dp"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/tv_report_etc"
+                app:layout_constraintTop_toBottomOf="@id/tv_report_etc">
+
+                <CheckBox
+                    android:id="@+id/chb_report_toilet"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:buttonTint="@color/colorPrimaryDark"
+                    android:fontFamily="@font/nanum_barun_gothic_regular"
+                    android:text="화장실"
+                    android:textColor="@color/colorSubIcon"
+                    android:textSize="13sp" />
+
+                <CheckBox
+                    android:id="@+id/chb_report_store"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:buttonTint="@color/colorPrimaryDark"
+                    android:fontFamily="@font/nanum_barun_gothic_regular"
+                    android:text="편의점(마트)"
+                    android:textColor="@color/colorSubIcon"
+                    android:textSize="13sp" />
+
+                <CheckBox
+                    android:id="@+id/chb_report_cooking"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:buttonTint="@color/colorPrimaryDark"
+                    android:fontFamily="@font/nanum_barun_gothic_regular"
+                    android:text="취사가능"
+                    android:textColor="@color/colorSubIcon"
+                    android:textSize="13sp" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_report_detail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:fontFamily="@font/nanum_barun_gothic_regular"
+                android:text="상세설명"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/tv_report_etc"
+                app:layout_constraintTop_toBottomOf="@+id/linear_etc_checkbox" />
+
+
+            <EditText
+                android:id="@+id/edt_report_detail"
+                android:layout_width="0dp"
+                android:layout_height="170dp"
+                android:layout_marginStart="18dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="18dp"
+                android:background="@drawable/rec_primary_transp_10dp"
+                android:ems="10"
+                android:fadeScrollbars="true"
+                android:fontFamily="@font/nanum_barun_gothic_regular"
+                android:gravity="start|top"
+                android:hint="장소의 특징, 주변 볼거리 등 차박 여행지에 대한 상세한 정보를 남겨주세요."
+                android:inputType="textMultiLine"
+                android:padding="15dp"
+                android:scrollbarStyle="insideOverlay"
+                android:scrollbars="vertical"
+                android:textSize="13sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_report_detail" />
+
+            <Button
+                android:id="@+id/btn_report"
+                android:layout_width="0dp"
+                android:layout_height="45dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginBottom="30dp"
+                android:background="@drawable/rec_primary_10dp"
+                android:fontFamily="@font/nanum_barun_gothic_regular"
+                android:text="제보하기"
+                android:textColor="@android:color/white"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/edt_report_detail" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
