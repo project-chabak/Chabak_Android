@@ -52,7 +52,6 @@ public class RecyclerLikeAdapter extends RecyclerView.Adapter<RecyclerLikeAdapte
         private TextView tvLikeTitle;
         private TextView tvAvgStar;
         private ImageView imgLikePicture;
-        private CheckBox chb_like_white;
 
         @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
         ItemViewHolder(View itemView) {
@@ -61,20 +60,13 @@ public class RecyclerLikeAdapter extends RecyclerView.Adapter<RecyclerLikeAdapte
             tvLikeTitle = itemView.findViewById(R.id.tv_like_title);
             tvAvgStar = itemView.findViewById(R.id.tv_avg_star);
             imgLikePicture = itemView.findViewById(R.id.img_like_picture);
-            chb_like_white = itemView.findViewById(R.id.chb_like_white);
             imgLikePicture.setClipToOutline(true);
-            chb_like_white.setClickable(false);
         }
 
         void onBind(PlaceList recyclerReviewData) {
             tvLikeTitle.setText(recyclerReviewData.getPlaceTitle());
             tvAvgStar.setText(""+recyclerReviewData.getPlaceAvgStar());
             Glide.with(itemView).load(recyclerReviewData.getPlaceThumbnail()).into(imgLikePicture);
-            if(recyclerReviewData.getUserLike()) {
-                chb_like_white.setChecked(true);
-            } else {
-                chb_like_white.setChecked(false);
-            }
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

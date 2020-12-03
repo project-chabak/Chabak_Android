@@ -21,18 +21,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/place_image_01" />
 
-    <CheckBox
-        android:id="@+id/chb_like_white"
-        android:layout_width="22dp"
-        android:layout_height="22dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="20dp"
-        android:background="@drawable/chb_like_white"
-        android:button="@null"
-        android:checked="false"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/img_like_picture" />
-
 
     <!--<TextView
         android:id="@+id/tv_place"
