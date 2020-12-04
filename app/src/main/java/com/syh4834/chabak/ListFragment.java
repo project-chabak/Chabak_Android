@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
@@ -14,8 +15,10 @@ import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 
+import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -24,8 +27,6 @@ import com.bumptech.glide.Glide;
 import com.syh4834.chabak.api.ChabakService;
 import com.syh4834.chabak.api.data.PlaceListData;
 import com.syh4834.chabak.api.response.ResponsePlaceList;
-import com.syh4834.chabak.placeDetail.PlaceDetailActivity;
-import com.syh4834.chabak.review.recycler.RecyclerReviewUploadImgAdapter;
 
 import java.util.ArrayList;
 
@@ -200,7 +201,7 @@ public class ListFragment extends Fragment {
                 //Log.e("포지션",String.valueOf(pos));
                 Intent intent = new Intent(getContext(), PlaceDetailActivity.class);
                 intent.putExtra("PlaceIdx", pos); // position부분을 수정해야 함
-                startActivity(intent);
+                startActivityForResult(intent,0);
             }
         });
 
@@ -613,7 +614,6 @@ public class ListFragment extends Fragment {
     }
 
     private void setCategoryImage(PlaceListData placeListData, View view){
-        Glide.with(view).load(placeListData.getPlaceCategoryData()[0].getPlaceCategoryImg()).into(regionTotalImage);
         Glide.with(view).load(placeListData.getPlaceCategoryData()[0].getPlaceCategoryImg()).into(regionjJImage);
         Glide.with(view).load(placeListData.getPlaceCategoryData()[1].getPlaceCategoryImg()).into(regionSlImage);
         Glide.with(view).load(placeListData.getPlaceCategoryData()[2].getPlaceCategoryImg()).into(regionBsImage);
@@ -665,4 +665,14 @@ public class ListFragment extends Fragment {
         }
         adapter.notifyDataSetChanged();
     }
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == 0) {
+            if (resultCode == 0) {
+                getPlaceListData(regionList);
+            }
+        }
+    }
+
 }
