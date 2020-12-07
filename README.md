@@ -14,10 +14,14 @@
 ![홈_2](https://user-images.githubusercontent.com/65716143/101370737-34d96880-38ed-11eb-8938-6b76d8e9d04d.png)
 ![홈_3](https://user-images.githubusercontent.com/65716143/101370756-402c9400-38ed-11eb-8dff-238a5d91cc59.png)
 
-## 여행지 상세화면
-
 ## 전체여행지 화면
 ![Group 4](https://user-images.githubusercontent.com/65716143/100766677-4083e580-343c-11eb-8719-1181ab438fac.png)
+
+## 찜여행지 화면
+![Group 5](https://user-images.githubusercontent.com/65716143/101371635-52f39880-38ee-11eb-9cca-e189c45bab78.png)
+
+## 여행지 상세화면
+![Frame 4](https://user-images.githubusercontent.com/65716143/101371744-774f7500-38ee-11eb-802c-d234a2914a2a.png)
 
 ## 마이페이지 화면
 ![마이페이지](https://user-images.githubusercontent.com/65716143/101370817-5175a080-38ed-11eb-88cf-d9d44defd29a.png)
