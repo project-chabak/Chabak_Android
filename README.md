@@ -1,5 +1,6 @@
 # 오픈소스기반기초설계 Chabak 프로젝트
-![메인사진](https://user-images.githubusercontent.com/65716143/101370276-a49b2380-38ec-11eb-8d2c-5e5c10a35e3a.png)
+![Group 18](https://user-images.githubusercontent.com/65716143/101372693-87b41f80-38ef-11eb-9b94-80c6dce89c30.png)
+![전체메뉴얼](https://user-images.githubusercontent.com/65716143/101372921-bdf19f00-38ef-11eb-94cf-5c85ed59a422.png)
 ## 프로젝트 소개
 ### 차박 2일은 쉽고 빠르게 차박 여행지를 찾을 수 있는 서비스입니다. 차박 여행에 대한 수요가 증가하는 반면, 관련된 정보를 찾기 어렵습니다. 저희 서비스는 차박 여행에 관심이 있는 모든 사용자들을 위해 꼭 필요한 정보를 제공합니다.
 
