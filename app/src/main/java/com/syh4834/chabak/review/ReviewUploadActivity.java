@@ -163,7 +163,7 @@ public class ReviewUploadActivity extends AppCompatActivity {
             RadioButton getReviewStar = (RadioButton) findViewById(reviewStarId);
 
             Log.e("radio", String.valueOf(rgReview.getCheckedRadioButtonId()));
-            Log.e("getReviewStar", "null"+getReviewStar.getTag());
+            Log.e("getReviewStar", "null" + getReviewStar.getTag());
 
             CharSequence text = getReviewStar.getTag().toString();
             if ("별로에요".equals(text)) {
@@ -178,9 +178,9 @@ public class ReviewUploadActivity extends AppCompatActivity {
                 reviewStar = 5;
             }
 
-            if(reviewStar == 0) {
+            if (reviewStar == 0) {
                 Toast.makeText(this, "차박여행지에 대한 점수를 표시해주세요", Toast.LENGTH_SHORT).show();
-            } else if(edtReviewComment.getText().length() == 0) {
+            } else if (edtReviewComment.getText().length() == 0) {
                 Toast.makeText(this, "리뷰를 적어주세요", Toast.LENGTH_SHORT).show();
             } else {
                 MultipartBody.Part[] imgs = new MultipartBody.Part[recyclerReviewUploadImgAdapter.getItemCount()];
@@ -204,7 +204,7 @@ public class ReviewUploadActivity extends AppCompatActivity {
                     ByteArrayOutputStream baos = new ByteArrayOutputStream();
                     img.compress(Bitmap.CompressFormat.JPEG, 20, baos);
 
-                    RequestBody imgBody = RequestBody.create(MediaType.parse("image/*"),  baos.toByteArray());
+                    RequestBody imgBody = RequestBody.create(MediaType.parse("image/*"), baos.toByteArray());
 
                     imgs[i] = MultipartBody.Part.createFormData("imgs", uploadFile.getName(), imgBody);
                 }
@@ -216,7 +216,7 @@ public class ReviewUploadActivity extends AppCompatActivity {
                         imgs).enqueue(new Callback<ResponseUploadReview>() {
                     @Override
                     public void onResponse(Call<ResponseUploadReview> call, Response<ResponseUploadReview> response) {
-                        if(response.body().getSuccess()) {
+                        if (response.body().getSuccess()) {
                             Intent intent = new Intent();
                             intent.putExtra("reviewStar", reviewStar);
                             setResult(RESULT_OK, intent);
@@ -234,12 +234,12 @@ public class ReviewUploadActivity extends AppCompatActivity {
     }
 
     private void checkPermissions() {
-        if (Build.VERSION.SDK_INT >= 23){ // 마시멜로(안드로이드 6.0) 이상 권한 체크
+        if (Build.VERSION.SDK_INT >= 23) { // 마시멜로(안드로이드 6.0) 이상 권한 체크
             TedPermission.with(this)
                     .setPermissionListener(permissionlistener)
                     //.setRationaleMessage("이미지를 다루기 위해서는 접근 권한이 필요합니다")
                     .setDeniedMessage("이미지 업로드를 위해서는 접근 권한이 필요합니다.\n [설정] > [권한] 에서 사용으로 활성화해주세요.")
-                    .setPermissions(new String[] { Manifest.permission.READ_EXTERNAL_STORAGE,
+                    .setPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE,
                             Manifest.permission.WRITE_EXTERNAL_STORAGE,
                             Manifest.permission.CAMERA})
                     .check();
@@ -253,8 +253,8 @@ public class ReviewUploadActivity extends AppCompatActivity {
     }
 
     private String getRealPathFromURI(Uri contentURI) {
-        String [] proj={MediaStore.Images.Media.DATA};
-        Cursor cursor = managedQuery( contentURI, proj,null,null, null);
+        String[] proj = {MediaStore.Images.Media.DATA};
+        Cursor cursor = managedQuery(contentURI, proj, null, null, null);
         int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
         cursor.moveToFirst();
         return cursor.getString(column_index);
